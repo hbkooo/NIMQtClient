@@ -1,0 +1,8 @@
+"D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" D:\programming\Clion\projects\NIMQtClient
+-- ================== wrapper ==================
+-- BUILD_SHARED_LIBS: ON
+-- add definitions UNICODE, UNICODE, NOMINMAX, WIN32_LEAN_AND_MEAN, PSAPI_VERSION=1, NIM_SDK_DLL_IMPORT
+D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.cppD:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.cppD:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.cppD:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.cppD:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.cppD:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="nim_wrapper_util"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\QT\;CMake Files\..\..\..\QT\install\;CMake Files\..\..\..\QT\install\5.14.1\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\;CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\;CMake Files\nim_sdk\;CMake Files\nim_sdk\wrapper\;CMake Files\nim_sdk\wrapper\nim_wrapper_util\;CMake Files\nim_sdk\wrapper\nim_cpp_wrapper\;CMake Files\nim_sdk\wrapper\nim_chatroom_cpp_wrapper\;CMake Files\nim_sdk\wrapper\nim_tools_cpp_wrapper\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nim_wrapper_util">
+				<Option output="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-DUNICODE"/>
+					<Add option="-DNOMINMAX"/>
+					<Add option="-DWIN32_LEAN_AND_MEAN"/>
+					<Add option="-DPSAPI_VERSION=1"/>
+					<Add option="-DNIM_SDK_DLL_IMPORT"/>
+					<Add option="-DWIN32"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util_autogen/include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/.."/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim/api"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim/nim_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_chatroom/api"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_chatroom/nim_chatroom_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_tools_http"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../public_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../framework/nim.framework/Headers"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../framework/nim_chatroom.framework/Headers"/>
+					<Add directory="D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\ATLMFC\include"/>
+					<Add directory="D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\ucrt"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\shared"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\um"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\winrt"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 nim_wrapper_util"/>
+					<CompileFile command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nim_wrapper_util/fast">
+				<Option output="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-DUNICODE"/>
+					<Add option="-DNOMINMAX"/>
+					<Add option="-DWIN32_LEAN_AND_MEAN"/>
+					<Add option="-DPSAPI_VERSION=1"/>
+					<Add option="-DNIM_SDK_DLL_IMPORT"/>
+					<Add option="-DWIN32"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util_autogen/include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/.."/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim/api"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim/nim_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_chatroom/api"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_chatroom/nim_chatroom_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../nim_tools_http"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../public_defines"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../include"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../framework/nim.framework/Headers"/>
+					<Add directory="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/../framework/nim_chatroom.framework/Headers"/>
+					<Add directory="D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\ATLMFC\include"/>
+					<Add directory="D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\ucrt"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\shared"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\um"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\winrt"/>
+					<Add directory="D:\Windows Kits\10\include\10.0.17134.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 nim_wrapper_util/fast"/>
+					<CompileFile command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nim_wrapper_util_autogen">
+				<Option working_dir="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 nim_wrapper_util_autogen"/>
+					<CompileFile command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\nim_sdk\wrapper\nim_wrapper_util\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util_autogen/mocs_compilation.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/callback_proxy.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/convert_utf.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/assertions.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/autolink.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/config.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/features.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/forwards.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/json.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/reader.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/value.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/version.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json/writer.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_internalarray.inl">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_reader.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_tool.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_value.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_valueiterator.inl">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/json_writer.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_json_util.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_json_util.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_string_util.cpp">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util_include.h">
+			<Option target="nim_wrapper_util"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/Qrc.qrc">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5ModuleLocation.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QWindowsIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/../../../QT/install/5.14.1/msvc2017/lib/cmake/Qt5Widgets/Qt5Widgets_QWindowsVistaStylePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\QT\install\5.14.1\msvc2017\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nim_sdk\wrapper\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nim_sdk\wrapper\nim_wrapper_util\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nim_sdk\wrapper\nim_cpp_wrapper\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_chatroom_cpp_wrapper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nim_sdk\wrapper\nim_chatroom_cpp_wrapper\"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_tools_cpp_wrapper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nim_sdk\wrapper\nim_tools_cpp_wrapper\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
