@@ -2,23 +2,23 @@
 D:/programming/Clion/projects/NIMQtClient/src/client.h
 D:/programming/Clion/projects/NIMQtClient/window/loginwindow.h
  mmc:Q_OBJECT
-D:/programming/Clion/projects/NIMQtClient/window/message.h
-D:/programming/Clion/projects/NIMQtClient/window/messagelistwidget.h
- mmc:Q_OBJECT
+D:/programming/Clion/projects/NIMQtClient/main.cpp
 D:/programming/Clion/projects/NIMQtClient/src/init.cpp
 D:/programming/Clion/projects/NIMQtClient/window/registerwidget.h
  mmc:Q_OBJECT
-D:/programming/Clion/projects/NIMQtClient/main.cpp
-D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.cpp
+D:/programming/Clion/projects/NIMQtClient/window/messagelistwidget.h
+ mmc:Q_OBJECT
+D:/programming/Clion/projects/NIMQtClient/window/message.h
 D:/programming/Clion/projects/NIMQtClient/window/messageitem.h
  mmc:Q_OBJECT
+D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.cpp
 D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
  mmc:Q_OBJECT
-D:/programming/Clion/projects/NIMQtClient/src/login.cpp
 D:/programming/Clion/projects/NIMQtClient/window/registerwidget.cpp
+D:/programming/Clion/projects/NIMQtClient/src/login.cpp
+D:/programming/Clion/projects/NIMQtClient/src/message_send_receive.cpp
 D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h
  mmc:Q_OBJECT
-D:/programming/Clion/projects/NIMQtClient/src/message_send_receive.cpp
 D:/programming/Clion/projects/NIMQtClient/window/loginwindow.cpp
 D:/programming/Clion/projects/NIMQtClient/window/messageitem.cpp
 D:/programming/Clion/projects/NIMQtClient/window/messagelistwidget.cpp
