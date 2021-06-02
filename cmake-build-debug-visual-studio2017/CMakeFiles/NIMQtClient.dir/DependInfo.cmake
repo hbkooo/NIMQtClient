@@ -10,12 +10,16 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "D:/programming/Clion/projects/NIMQtClient/src/init.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/src/init.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/src/login.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/src/login.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/src/message_send_receive.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/src/message_send_receive.cpp.obj"
+  "D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingitem.cpp.obj"
+  "D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingwindow.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/friendsWidget/friendlistwidget.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/login/registerwidget.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/messageWidget/messageitem.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj"
   "D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/qmainwindow.cpp.obj"
+  "D:/programming/Clion/projects/NIMQtClient/window/toollabel.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/toollabel.cpp.obj"
+  "D:/programming/Clion/projects/NIMQtClient/window/util/util.cpp" "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/NIMQtClient.dir/window/util/util.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")
 

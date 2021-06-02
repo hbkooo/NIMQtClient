@@ -26,12 +26,6 @@ public_defines.h
 nim_global_def.h
 ../nim_sdk/include/nim_global_def.h
 
-../nim_sdk/include/nim_data_sync.h
-nim_data_sync_def.h
-../nim_sdk/include/nim_data_sync_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
-
 ../nim_sdk/include/nim_data_sync_def.h
 
 ../nim_sdk/include/nim_define_include.h
@@ -96,25 +90,11 @@ nim_vchat_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_doc_trans.h
-nim_doc_trans_def.h
-../nim_sdk/include/nim_doc_trans_def.h
-
 ../nim_sdk/include/nim_doc_trans_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_friend.h
-nim_friend_def.h
 ../nim_sdk/include/nim_friend_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_friend_def.h
-
-../nim_sdk/include/nim_global.h
-nim_global_def.h
-../nim_sdk/include/nim_global_def.h
 
 ../nim_sdk/include/nim_global_def.h
 nim_res_code_def.h
@@ -140,19 +120,11 @@ nim_nos_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_pass_through_proxy.h
-nim_pass_through_proxy_def.h
-../nim_sdk/include/nim_pass_through_proxy_def.h
-
 ../nim_sdk/include/nim_pass_through_proxy_def.h
 nim_global_def.h
 ../nim_sdk/include/nim_global_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_plugin_in.h
-nim_plugin_in_def.h
-../nim_sdk/include/nim_plugin_in_def.h
 
 ../nim_sdk/include/nim_plugin_in_def.h
 public_defines.h
@@ -160,19 +132,7 @@ public_defines.h
 
 ../nim_sdk/include/nim_res_code_def.h
 
-../nim_sdk/include/nim_robot.h
-nim_robot_def.h
 ../nim_sdk/include/nim_robot_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_robot_def.h
-
-../nim_sdk/include/nim_rts.h
-nim_rts_def.h
-../nim_sdk/include/nim_rts_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
 
 ../nim_sdk/include/nim_rts_def.h
 
@@ -196,17 +156,7 @@ nim_session_online_service_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_signaling.h
-nim_signaling_def.h
 ../nim_sdk/include/nim_signaling_def.h
-
-../nim_sdk/include/nim_signaling_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_subscribe_event.h
-nim_subscribe_event_def.h
-../nim_sdk/include/nim_subscribe_event_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
@@ -221,10 +171,6 @@ nim_super_team_def.h
 ../nim_sdk/include/nim_super_team_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_sysmsg.h
-nim_sysmsg_def.h
-../nim_sdk/include/nim_sysmsg_def.h
 
 ../nim_sdk/include/nim_sysmsg_def.h
 public_defines.h
@@ -272,29 +218,13 @@ nim_team_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_tools.h
-nim_tools_def.h
-../nim_sdk/include/nim_tools_def.h
-
 ../nim_sdk/include/nim_tools_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
-../nim_sdk/include/nim_user.h
-nim_user_def.h
-../nim_sdk/include/nim_user_def.h
-
 ../nim_sdk/include/nim_user_def.h
 nim_global_def.h
 ../nim_sdk/include/nim_global_def.h
-public_defines.h
-../nim_sdk/include/public_defines.h
-
-../nim_sdk/include/nim_vchat.h
-nim_global_def.h
-../nim_sdk/include/nim_global_def.h
-nim_vchat_def.h
-../nim_sdk/include/nim_vchat_def.h
 public_defines.h
 ../nim_sdk/include/public_defines.h
 
@@ -1124,8 +1054,6 @@ dlfcn.h
 string
 -
 
-D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_cpp_wrapper/nim_cpp_wrapper_autogen/mocs_compilation.cpp
-
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_client.cpp
 nim_cpp_wrapper/api/nim_cpp_client.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_client.h
@@ -1141,42 +1069,6 @@ nim_client.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_client.h
 TargetConditionals.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/TargetConditionals.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_data_sync.cpp
-nim_cpp_wrapper/api/nim_cpp_data_sync.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_data_sync.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_data_sync.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_data_sync.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_doc_trans.cpp
-nim_cpp_wrapper/api/nim_cpp_doc_trans.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_doc_trans.h
-nim_cpp_wrapper/api/nim_cpp_global.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_global.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_doc_trans.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_doc_trans.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_friend.cpp
-nim_cpp_wrapper/api/nim_cpp_friend.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_friend.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_friend.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_friend.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_global.cpp
-nim_cpp_wrapper/api/nim_cpp_global.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_global.h
-nim_client_def.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_client_def.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_global.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_global.h
 
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_msglog.cpp
 nim_cpp_wrapper/api/nim_cpp_msglog.h
@@ -1200,40 +1092,6 @@ D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/ni
 nim_nos.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_nos.h
 
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.cpp
-nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.h
-nim_pass_through_proxy_def.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_pass_through_proxy_def.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_pass_through_proxy.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_pass_through_proxy.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_plugin_in.cpp
-nim_cpp_wrapper/api/nim_cpp_plugin_in.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_plugin_in.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_plugin_in.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_plugin_in.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_robot.cpp
-nim_cpp_wrapper/api/nim_cpp_robot.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_robot.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_robot.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_robot.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_rts.cpp
-nim_cpp_wrapper/api/nim_cpp_rts.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_rts.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_rts.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_rts.h
-
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session.cpp
 nim_cpp_wrapper/api/nim_cpp_session.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_session.h
@@ -1252,26 +1110,6 @@ D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/ni
 nim_session_online_service.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_session_online_service.h
 
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.cpp
-nim_cpp_signaling.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_signaling.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_signaling.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.h
-nim_cpp_wrapper/helper/nim_signaling_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_signaling_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_subscribe_event.cpp
-nim_cpp_wrapper/api/nim_cpp_subscribe_event.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_subscribe_event.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_subscribe_event.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_subscribe_event.h
-
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_super_team.cpp
 nim_cpp_wrapper/api/nim_cpp_super_team.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_super_team.h
@@ -1281,14 +1119,6 @@ nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
 nim_super_team.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_super_team.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_sysmsg.cpp
-nim_cpp_wrapper/api/nim_cpp_sysmsg.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_sysmsg.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_sysmsg.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_sysmsg.h
 
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talk.cpp
 nim_cpp_wrapper/api/nim_cpp_talk.h
@@ -1344,87 +1174,11 @@ D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/ni
 nim_team.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_team.h
 
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_tool.cpp
-nim_cpp_wrapper/api/nim_cpp_tool.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_tool.h
-nim_cpp_wrapper/api/nim_cpp_global.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_global.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_tools.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_tools.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_user.cpp
-nim_cpp_wrapper/api/nim_cpp_user.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_user.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_user.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_user.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_vchat.cpp
-nim_cpp_wrapper/api/nim_cpp_vchat.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/api/nim_cpp_vchat.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_vchat.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/api/nim_vchat.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_client_helper.cpp
-nim_cpp_wrapper/helper/nim_client_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_client_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_doc_trans_helper.cpp
-nim_cpp_wrapper/helper/nim_doc_trans_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_doc_trans_helper.h
-nim_doc_trans_def.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_doc_trans_def.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_friend_helper.cpp
-nim_cpp_wrapper/helper/nim_friend_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_friend_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msg_helper.cpp
-pthread.h
--
-nim_msglog_def.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msglog_def.h
-nim_talk_def.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talk_def.h
-nim_cpp_wrapper/helper/nim_msg_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_msg_helper.h
-nim_wrapper_util/nim_json_util.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_wrapper_util/nim_json_util.h
-
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msglog_helper.cpp
 nim_cpp_wrapper/helper/nim_msglog_helper.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_msglog_helper.h
 nim_wrapper_util/nim_json_util.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_wrapper_util/nim_json_util.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_nos_helper.cpp
-pthread.h
--
-nim_cpp_wrapper/helper/nim_nos_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_nos_helper.h
-nim_wrapper_util/nim_json_util.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_wrapper_util/nim_json_util.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.cpp
-nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_robot_helper.cpp
-nim_cpp_wrapper/helper/nim_robot_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_robot_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.cpp
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_helper.cpp
-nim_cpp_wrapper/helper/nim_session_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_session_helper.h
 
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_online_service_helper.cpp
 nim_cpp_wrapper/helper/nim_session_online_service_helper.h
@@ -1432,47 +1186,9 @@ D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper
 nim_session_online_service_def.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_online_service_def.h
 
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_signaling_helper.cpp
-nim_cpp_wrapper/helper/nim_signaling_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_signaling_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_subscribe_event_helper.cpp
-nim_cpp_wrapper/helper/nim_subscribe_event_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_subscribe_event_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_super_team_helper.cpp
-nim_cpp_wrapper/helper/nim_super_team_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_super_team_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sysmsg_helper.cpp
-nim_cpp_wrapper/helper/nim_sysmsg_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_sysmsg_helper.h
-assert.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/assert.h
-
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talk_helper.cpp
 nim_cpp_wrapper/helper/nim_talk_helper.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_talk_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.cpp
-nim_talkex_helper_collect.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.h
-functional
--
-list
--
-string
--
-nim_define_include.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_define_include.h
-nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
-nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
-nim_wrapper_util/nim_json_util.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_wrapper_util/nim_json_util.h
 
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_pin_message.cpp
 nim_talkex_helper_pin_message.h
@@ -1521,16 +1237,4 @@ nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
 nim_wrapper_util/nim_json_util.h
 D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_wrapper_util/nim_json_util.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_team_helper.cpp
-nim_cpp_wrapper/helper/nim_team_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_team_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_tool_helper.cpp
-nim_cpp_wrapper/helper/nim_tool_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_tool_helper.h
-
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_user_helper.cpp
-nim_cpp_wrapper/helper/nim_user_helper.h
-D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_cpp_wrapper/helper/nim_user_helper.h
 

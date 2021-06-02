@@ -7,7 +7,7 @@
 	"INCLUDE_DIR" : "D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/include",
 	"INPUTS" : 
 	[
-		"D:/programming/Clion/projects/NIMQtClient/res/css/recentSessionWidget.css",
+		"D:/programming/Clion/projects/NIMQtClient/res/css/listWidget.css",
 		"D:/programming/Clion/projects/NIMQtClient/res/img/header1.png",
 		"D:/programming/Clion/projects/NIMQtClient/res/img/header2.png",
 		"D:/programming/Clion/projects/NIMQtClient/res/img/header3.png",

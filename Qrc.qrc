@@ -31,6 +31,6 @@
         <file alias="cb_unchecked">res/img/checkbox_unchecked.png</file>
     </qresource>
     <qresource prefix="/css">
-        <file alias="recentSessionWidget">res/css/recentSessionWidget.css</file>
+        <file alias="listWidget">res/css/listWidget.css</file>
     </qresource>
 </RCC>

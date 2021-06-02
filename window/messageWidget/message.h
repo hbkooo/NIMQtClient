@@ -8,7 +8,7 @@ struct Message{
     QPixmap header_pixmap;      // 用户头像
     QString name;               // 用户名
     QList<QString> msgs;        // 与该用户的聊天信息
-    QDateTime date_time;        // 最新的一条信息的聊天时间
+    int64_t msg_time_tag;       // 当前会话最新一条消息时间戳（毫秒）
 };
 
 

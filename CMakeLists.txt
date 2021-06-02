@@ -49,14 +49,18 @@ file(GLOB HEADER_FILES src/*.h)
 #aux_source_directory(window WINDOW_SOURCE_FILES)
 file(GLOB WINDOW_SOURCE_FILES
         window/*.cpp
+        window/util/*.cpp
         window/login/*.cpp
         window/messageWidget/*.cpp
-        window/friendsWidget/*.cpp)
+        window/friendsWidget/*.cpp
+        window/chattingWidget/*.cpp)
 file(GLOB WINDOW_HEADER_FILES
         window/*.h
+        window/util/*.h
         window/login/*.h
         window/messageWidget/*.h
-        window/friendsWidget/*.h)
+        window/friendsWidget/*.h
+        window/chattingWidget/*.h)
 
 message(${WINDOW_SOURCE_FILES})
 

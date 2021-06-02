@@ -96,14 +96,21 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  ../src/client.h
+ ../window/chattingWidget/chattingwindow.h
  ../window/qmainwindow.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/4UWBQHZ5O7/moc_loginwindow.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/4UWBQHZ5O7/moc_registerwidget.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/DT2573FGAL/moc_qmainwindow.cpp
+ D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/DT2573FGAL/moc_toollabel.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/L5V5DWHTZK/moc_friendlistwidget.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/MAVS5XYYHB/moc_messageitem.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/MAVS5XYYHB/moc_recentsessionwidget.cpp
+ D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/ZO7PSDTHEZ/moc_chattingitem.cpp
+ D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/ZO7PSDTHEZ/moc_chattingwindow.cpp
  D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/NIMQtClient_autogen/mocs_compilation.cpp
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h
  D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h
  D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.h
  D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h
@@ -111,11 +118,14 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h
  D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
+ D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QFile
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QObject
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QSettings
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
@@ -195,8 +205,10 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
@@ -219,6 +231,7 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
@@ -234,8 +247,15 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLineEdit
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollArea
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QStackedWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTabWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QToolButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
@@ -246,6 +266,7 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qcheckbox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
@@ -254,15 +275,20 @@ CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/mocs_compilation.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlineedit.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstackedwidget.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtoolbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
@@ -359,9 +385,12 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  ../src/client.h
+ ../window/chattingWidget/chattingitem.h
+ ../window/chattingWidget/chattingwindow.h
  ../window/login/loginwindow.h
  ../window/login/registerwidget.h
  ../window/qmainwindow.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/main.cpp
  D:/programming/Clion/projects/NIMQtClient/src/client.h
  D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h
@@ -369,11 +398,14 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h
  D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
+ D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QFile
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QObject
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QSettings
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
@@ -455,8 +487,10 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
@@ -481,6 +515,7 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
@@ -497,8 +532,15 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLineEdit
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollArea
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QStackedWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTabWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QToolButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
@@ -511,6 +553,7 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qcheckbox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdesktopwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
@@ -519,15 +562,20 @@ CMakeFiles/NIMQtClient.dir/main.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlineedit.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstackedwidget.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtoolbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
@@ -813,6 +861,472 @@ CMakeFiles/NIMQtClient.dir/src/message_send_receive.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  D:/programming/Clion/projects/NIMQtClient/src/client.h
  D:/programming/Clion/projects/NIMQtClient/src/message_send_receive.cpp
+CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingitem.cpp.obj
+ ../nim_sdk/include/nim_base_types.h
+ ../nim_sdk/include/nim_build_config.h
+ ../nim_sdk/include/nim_client_def.h
+ ../nim_sdk/include/nim_data_sync_def.h
+ ../nim_sdk/include/nim_define_include.h
+ ../nim_sdk/include/nim_device_def.h
+ ../nim_sdk/include/nim_doc_trans_def.h
+ ../nim_sdk/include/nim_friend_def.h
+ ../nim_sdk/include/nim_global_def.h
+ ../nim_sdk/include/nim_msglog_def.h
+ ../nim_sdk/include/nim_nos_def.h
+ ../nim_sdk/include/nim_pass_through_proxy_def.h
+ ../nim_sdk/include/nim_plugin_in_def.h
+ ../nim_sdk/include/nim_res_code_def.h
+ ../nim_sdk/include/nim_robot_def.h
+ ../nim_sdk/include/nim_rts_def.h
+ ../nim_sdk/include/nim_session_def.h
+ ../nim_sdk/include/nim_session_online_service_def.h
+ ../nim_sdk/include/nim_signaling_def.h
+ ../nim_sdk/include/nim_subscribe_event_def.h
+ ../nim_sdk/include/nim_super_team_def.h
+ ../nim_sdk/include/nim_sysmsg_def.h
+ ../nim_sdk/include/nim_talk_def.h
+ ../nim_sdk/include/nim_talkex_def_collect.h
+ ../nim_sdk/include/nim_talkex_def_pin_message.h
+ ../nim_sdk/include/nim_talkex_def_quick_comment.h
+ ../nim_sdk/include/nim_team_def.h
+ ../nim_sdk/include/nim_tools_def.h
+ ../nim_sdk/include/nim_user_def.h
+ ../nim_sdk/include/nim_vchat_def.h
+ ../nim_sdk/include/public_defines.h
+ ../nim_sdk/include/stdbool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_client.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_data_sync.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_doc_trans.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_friend.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_global.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_msglog.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_nos.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_plugin_in.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_robot.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_rts.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session_online_service.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_subscribe_event.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_super_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_sysmsg.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talk.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talkex.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_tool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_user.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_vchat.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_client_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_doc_trans_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_friend_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msglog_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_nos_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_robot_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_online_service_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_signaling_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_subscribe_event_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_super_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sysmsg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talk_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_pin_message.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_quick_comment.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_tool_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_user_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_cpp_api.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
+ ../nim_sdk/wrapper/nim_wrapper_util/callback_proxy.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/autolink.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/config.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/features.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/forwards.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/json.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/reader.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/value.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/writer.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_json_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
+ ../src/client.h
+ ../window/util/util.h
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.cpp
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_bootstrap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_cxx11.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_msvc.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbasicatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearraylist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qchar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcompilerdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig-bootstrapped.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainerfwd.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainertools_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontiguouscache.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcoreevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatastream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdebug.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfile.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfiledevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qflags.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qgenericatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobalstatic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhash.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhashfunctions.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiodevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiterator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qline.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlocale.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlogging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmargins.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmetatype.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmutex.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnamespace.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnumeric.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpair.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpoint.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qprocessordetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrect.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrefcount.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qregexp.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qscopedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qset.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qshareddata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsize.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstring.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringbuilder.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringliteral.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringmatcher.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsysinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsystemdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtcore-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtextstream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtypeinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurlquery.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvariant.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfont.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontmetrics.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qimage.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qkeysequence.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qmatrix.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpaintdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainterpath.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpalette.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixelformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpolygon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qregion.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtouchdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtransform.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvector2d.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayoutitem.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
+CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingwindow.cpp.obj
+ ../nim_sdk/include/nim_base_types.h
+ ../nim_sdk/include/nim_build_config.h
+ ../nim_sdk/include/nim_client_def.h
+ ../nim_sdk/include/nim_data_sync_def.h
+ ../nim_sdk/include/nim_define_include.h
+ ../nim_sdk/include/nim_device_def.h
+ ../nim_sdk/include/nim_doc_trans_def.h
+ ../nim_sdk/include/nim_friend_def.h
+ ../nim_sdk/include/nim_global_def.h
+ ../nim_sdk/include/nim_msglog_def.h
+ ../nim_sdk/include/nim_nos_def.h
+ ../nim_sdk/include/nim_pass_through_proxy_def.h
+ ../nim_sdk/include/nim_plugin_in_def.h
+ ../nim_sdk/include/nim_res_code_def.h
+ ../nim_sdk/include/nim_robot_def.h
+ ../nim_sdk/include/nim_rts_def.h
+ ../nim_sdk/include/nim_session_def.h
+ ../nim_sdk/include/nim_session_online_service_def.h
+ ../nim_sdk/include/nim_signaling_def.h
+ ../nim_sdk/include/nim_subscribe_event_def.h
+ ../nim_sdk/include/nim_super_team_def.h
+ ../nim_sdk/include/nim_sysmsg_def.h
+ ../nim_sdk/include/nim_talk_def.h
+ ../nim_sdk/include/nim_talkex_def_collect.h
+ ../nim_sdk/include/nim_talkex_def_pin_message.h
+ ../nim_sdk/include/nim_talkex_def_quick_comment.h
+ ../nim_sdk/include/nim_team_def.h
+ ../nim_sdk/include/nim_tools_def.h
+ ../nim_sdk/include/nim_user_def.h
+ ../nim_sdk/include/nim_vchat_def.h
+ ../nim_sdk/include/public_defines.h
+ ../nim_sdk/include/stdbool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_client.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_data_sync.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_doc_trans.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_friend.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_global.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_msglog.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_nos.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_plugin_in.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_robot.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_rts.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session_online_service.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_subscribe_event.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_super_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_sysmsg.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talk.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talkex.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_tool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_user.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_vchat.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_client_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_doc_trans_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_friend_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msglog_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_nos_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_robot_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_online_service_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_signaling_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_subscribe_event_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_super_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sysmsg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talk_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_pin_message.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_quick_comment.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_tool_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_user_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_cpp_api.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
+ ../nim_sdk/wrapper/nim_wrapper_util/callback_proxy.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/autolink.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/config.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/features.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/forwards.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/json.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/reader.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/value.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/writer.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_json_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
+ ../src/client.h
+ ../window/util/util.h
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.cpp
+ D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_bootstrap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_cxx11.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_msvc.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbasicatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearraylist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qchar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcompilerdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig-bootstrapped.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainerfwd.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainertools_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontiguouscache.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcoreevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatastream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatetime.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdebug.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfile.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfiledevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qflags.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qgenericatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobalstatic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhash.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhashfunctions.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiodevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qitemselectionmodel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiterator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qline.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlocale.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlogging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmargins.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmetatype.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmutex.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnamespace.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnumeric.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpair.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpoint.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qprocessordetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrect.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrefcount.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qregexp.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qregularexpression.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qscopedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qset.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qshareddata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsize.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstring.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringbuilder.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringliteral.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringmatcher.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsysinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsystemdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtcore-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtextstream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtypeinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurlquery.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvariant.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfont.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontmetrics.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qicon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qimage.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qkeysequence.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qmatrix.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpaintdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainterpath.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpalette.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpen.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixelformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpolygon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qregion.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtouchdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtransform.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvalidator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvector2d.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemdelegate.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayoutitem.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
 CMakeFiles/NIMQtClient.dir/window/friendsWidget/friendlistwidget.cpp.obj
  ../nim_sdk/include/nim_base_types.h
  ../nim_sdk/include/nim_build_config.h
@@ -1127,19 +1641,25 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  ../src/client.h
+ ../window/chattingWidget/chattingitem.h
+ ../window/chattingWidget/chattingwindow.h
  ../window/friendsWidget/friendlistwidget.h
  ../window/messageWidget/message.h
  ../window/messageWidget/messageitem.h
  ../window/messageWidget/recentsessionwidget.h
  ../window/qmainwindow.h
+ ../window/toollabel.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.cpp
  D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.h
  D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QFile
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QObject
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QSettings
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
@@ -1219,8 +1739,10 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
@@ -1243,6 +1765,7 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
@@ -1258,8 +1781,15 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLineEdit
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollArea
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QStackedWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTabWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QToolButton
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
@@ -1270,6 +1800,7 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qcheckbox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
@@ -1278,15 +1809,20 @@ CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlineedit.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstackedwidget.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtoolbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
@@ -1512,7 +2048,99 @@ CMakeFiles/NIMQtClient.dir/window/login/registerwidget.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
 CMakeFiles/NIMQtClient.dir/window/messageWidget/messageitem.cpp.obj
- D:/programming/Clion/projects/NIMQtClient/window/messageWidget/message.h
+ ../nim_sdk/include/nim_base_types.h
+ ../nim_sdk/include/nim_build_config.h
+ ../nim_sdk/include/nim_client_def.h
+ ../nim_sdk/include/nim_data_sync_def.h
+ ../nim_sdk/include/nim_define_include.h
+ ../nim_sdk/include/nim_device_def.h
+ ../nim_sdk/include/nim_doc_trans_def.h
+ ../nim_sdk/include/nim_friend_def.h
+ ../nim_sdk/include/nim_global_def.h
+ ../nim_sdk/include/nim_msglog_def.h
+ ../nim_sdk/include/nim_nos_def.h
+ ../nim_sdk/include/nim_pass_through_proxy_def.h
+ ../nim_sdk/include/nim_plugin_in_def.h
+ ../nim_sdk/include/nim_res_code_def.h
+ ../nim_sdk/include/nim_robot_def.h
+ ../nim_sdk/include/nim_rts_def.h
+ ../nim_sdk/include/nim_session_def.h
+ ../nim_sdk/include/nim_session_online_service_def.h
+ ../nim_sdk/include/nim_signaling_def.h
+ ../nim_sdk/include/nim_subscribe_event_def.h
+ ../nim_sdk/include/nim_super_team_def.h
+ ../nim_sdk/include/nim_sysmsg_def.h
+ ../nim_sdk/include/nim_talk_def.h
+ ../nim_sdk/include/nim_talkex_def_collect.h
+ ../nim_sdk/include/nim_talkex_def_pin_message.h
+ ../nim_sdk/include/nim_talkex_def_quick_comment.h
+ ../nim_sdk/include/nim_team_def.h
+ ../nim_sdk/include/nim_tools_def.h
+ ../nim_sdk/include/nim_user_def.h
+ ../nim_sdk/include/nim_vchat_def.h
+ ../nim_sdk/include/public_defines.h
+ ../nim_sdk/include/stdbool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_client.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_data_sync.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_doc_trans.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_friend.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_global.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_msglog.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_nos.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_pass_through_proxy.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_plugin_in.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_robot.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_rts.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_session_online_service.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_signaling.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_subscribe_event.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_super_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_sysmsg.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talk.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_talkex.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_team.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_tool.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_user.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/api/nim_cpp_vchat.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_client_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_doc_trans_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_friend_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_msglog_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_nos_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_pass_through_proxy_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_robot_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sdk_loader_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_session_online_service_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_signaling_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_subscribe_event_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_super_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_sysmsg_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talk_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_collect.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_pin_message.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_talkex_helper_quick_comment.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_team_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_tool_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/helper/nim_user_helper.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_cpp_api.h
+ ../nim_sdk/wrapper/nim_cpp_wrapper/nim_sdk_cpp_wrapper.h
+ ../nim_sdk/wrapper/nim_wrapper_util/callback_proxy.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/autolink.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/config.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/features.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/forwards.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/json.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/reader.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/value.h
+ ../nim_sdk/wrapper/nim_wrapper_util/json/writer.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_json_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
+ ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
+ ../src/client.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.cpp
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
@@ -1732,14 +2360,19 @@ CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  ../src/client.h
- D:/programming/Clion/projects/NIMQtClient/window/messageWidget/message.h
+ ../window/chattingWidget/chattingitem.h
+ ../window/chattingWidget/chattingwindow.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.cpp
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QFile
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QObject
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
@@ -1817,8 +2450,10 @@ CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
@@ -1833,12 +2468,17 @@ CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpaintdevice.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainterpath.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpalette.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpen.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixelformat.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixmap.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpolygon.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qregion.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtouchdevice.h
@@ -1850,13 +2490,21 @@ CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemdelegate.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemview.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractscrollarea.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractslider.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
@@ -1864,13 +2512,17 @@ CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayoutitem.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
@@ -1967,16 +2619,23 @@ CMakeFiles/NIMQtClient.dir/window/qmainwindow.cpp.obj
  ../nim_sdk/wrapper/nim_wrapper_util/nim_sdk_util.h
  ../nim_sdk/wrapper/nim_wrapper_util/nim_string_util.h
  ../src/client.h
+ ../window/chattingWidget/chattingitem.h
+ ../window/chattingWidget/chattingwindow.h
+ ../window/util/util.h
  D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/message.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h
  D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h
  D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp
  D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
+ D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDebug
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QFile
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QObject
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
@@ -2054,8 +2713,10 @@ CMakeFiles/NIMQtClient.dir/window/qmainwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QKeyEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QWheelEvent
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
@@ -2064,6 +2725,161 @@ CMakeFiles/NIMQtClient.dir/window/qmainwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontinfo.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontmetrics.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qicon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qimage.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qkeysequence.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qmatrix.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpaintdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainterpath.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpalette.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpen.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixelformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpolygon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qregion.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextdocument.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtouchdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtransform.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvalidator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvector2d.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidgetItem
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QMessageBox
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QPushButton
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollArea
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollBar
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QStackedWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTabWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QTextEdit
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QToolButton
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QVBoxLayout
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractbutton.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemdelegate.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayout.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayoutitem.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qmessagebox.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qpushbutton.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollarea.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollbar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstackedwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtextedit.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtoolbutton.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
+CMakeFiles/NIMQtClient.dir/window/toollabel.cpp.obj
+ D:/programming/Clion/projects/NIMQtClient/window/toollabel.cpp
+ D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_bootstrap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_cxx11.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_msvc.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbasicatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearraylist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qchar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcompilerdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig-bootstrapped.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainerfwd.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainertools_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontiguouscache.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcoreevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatastream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdebug.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfile.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qfiledevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qflags.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qgenericatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobalstatic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhash.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhashfunctions.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiodevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiterator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qline.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlocale.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlogging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmargins.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmetatype.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmutex.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnamespace.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnumeric.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpair.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpoint.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qprocessordetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrect.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrefcount.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qregexp.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qscopedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qset.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qshareddata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsize.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstring.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringbuilder.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringliteral.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringmatcher.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsysinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsystemdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtcore-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtextstream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtypeinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qurlquery.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvariant.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QMouseEvent
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcursor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfont.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontmetrics.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qimage.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qkeysequence.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qmatrix.h
@@ -2080,36 +2896,107 @@ CMakeFiles/NIMQtClient.dir/window/qmainwindow.cpp.obj
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtouchdevice.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtransform.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvalidator.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qvector2d.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QScrollArea
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QWidget
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemdelegate.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractitemview.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractscrollarea.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractslider.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qabstractspinbox.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qframe.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qgridlayout.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayout.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlayoutitem.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistwidget.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qrubberband.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qscrollarea.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qsizepolicy.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qslider.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyle.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qstyleoption.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabbar.h
- D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtabwidget.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgets-config.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qtwidgetsglobal.h
  D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qwidget.h
+CMakeFiles/NIMQtClient.dir/window/util/util.cpp.obj
+ D:/programming/Clion/projects/NIMQtClient/window/util/util.cpp
+ D:/programming/Clion/projects/NIMQtClient/window/util/util.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDateTime
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qarraydata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_bootstrap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_cxx11.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qatomic_msvc.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbasicatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qbytearraylist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qchar.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcompilerdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig-bootstrapped.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qconfig.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainerfwd.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcontainertools_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qcoreevent.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatastream.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qdatetime.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qflags.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qgenericatomic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qglobalstatic.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhash.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qhashfunctions.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiodevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qiterator.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qline.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qlogging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmargins.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmetatype.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qmutex.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnamespace.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qnumeric.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobjectdefs_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpair.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpoint.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qprocessordetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrect.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qrefcount.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qregexp.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qscopedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qshareddata.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsharedpointer_impl.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsize.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstring.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringalgorithms.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringbuilder.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringlist.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringliteral.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringmatcher.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qstringview.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsysinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsystemdetection.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtcore-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qtypeinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvarlengtharray.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qvector.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qversiontagging.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QBitmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPainter
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/QPixmap
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbitmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qbrush.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qcolor.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfont.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontinfo.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qfontmetrics.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qimage.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qmatrix.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpaintdevice.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainter.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpainterpath.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpen.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixelformat.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpixmap.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qpolygon.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qregion.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgb.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qrgba64.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtextoption.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtgui-config.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtguiglobal.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qtransform.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs.h
+ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h

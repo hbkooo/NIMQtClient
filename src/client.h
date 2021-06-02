@@ -20,6 +20,6 @@ void Login(const std::string& appKey, const std::string& account, const std::str
 void Logout();
 
 // 发送文本消息
-void sendTextMessage(const std::string &content);
+void sendTextMessage(const std::string &receiver, const std::string &content);
 
 #endif //NIMQTCLIENT_CLIENT_H

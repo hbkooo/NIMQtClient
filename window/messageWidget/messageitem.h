@@ -6,9 +6,11 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMouseEvent>
+#include <QDateTime>
 #include <QDebug>
 
-#include "message.h"
+#include <client.h>
+#include "util/util.h"
 
 /**
  * @brief The MessageItem class
@@ -20,26 +22,23 @@ class MessageItem: public QWidget
     Q_OBJECT
 
 public:
-    MessageItem(const Message &msg, QWidget *parent=nullptr);
-    ~MessageItem(){}
+    explicit MessageItem(nim::SessionData data, QWidget *parent=nullptr);
+    ~MessageItem() override {qDebug() << "In ~MessageItem ..., delete id is " << QString::fromStdString(sessionData.id_);}
 
-    Message getMessage(){return message;}
+    const nim::SessionData& getSessionData() const {return sessionData;}
 
     // 更新该条目的信息
-    void update(const Message &msg);
+    void update(const nim::SessionData &data);
 
 private:
     // 根据一条消息记录创建一个会话列表的item
-    QWidget* make_one_item(const Message &msg);
-    // 生成会话列表的一个item中要显示的时间信息
-    QString generate_last_time(const QDateTime &time);
-    // 将图片生成圆形图片
-    QPixmap PixmapToRound(const QPixmap &src, int radius);
+    // QWidget* make_one_item(const Message &msg);
 
 private:
 
     // 该条目显示的信息
-    Message message;
+//    Message message;
+    nim::SessionData sessionData;
 
     QLabel *header_label = nullptr;         // 用户头像
     QLabel *name_label = nullptr;           // 用户姓名标签

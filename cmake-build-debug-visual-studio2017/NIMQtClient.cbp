@@ -1010,6 +1010,18 @@
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/src/message_send_receive.cpp">
 			<Option target="NIMQtClient"/>
 		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.cpp">
 			<Option target="NIMQtClient"/>
 		</Unit>
@@ -1047,6 +1059,18 @@
 			<Option target="NIMQtClient"/>
 		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/toollabel.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/toollabel.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/util/util.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/util/util.h">
 			<Option target="NIMQtClient"/>
 		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/CMakeLists.txt">

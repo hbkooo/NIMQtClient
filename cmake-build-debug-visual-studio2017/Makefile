@@ -439,6 +439,60 @@ src\message_send_receive.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.s
 .PHONY : src\message_send_receive.cpp.s
 
+window\chattingWidget\chattingitem.obj: window\chattingWidget\chattingitem.cpp.obj
+
+.PHONY : window\chattingWidget\chattingitem.obj
+
+# target to build an object file
+window\chattingWidget\chattingitem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj
+.PHONY : window\chattingWidget\chattingitem.cpp.obj
+
+window\chattingWidget\chattingitem.i: window\chattingWidget\chattingitem.cpp.i
+
+.PHONY : window\chattingWidget\chattingitem.i
+
+# target to preprocess a source file
+window\chattingWidget\chattingitem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.i
+.PHONY : window\chattingWidget\chattingitem.cpp.i
+
+window\chattingWidget\chattingitem.s: window\chattingWidget\chattingitem.cpp.s
+
+.PHONY : window\chattingWidget\chattingitem.s
+
+# target to generate assembly for a file
+window\chattingWidget\chattingitem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.s
+.PHONY : window\chattingWidget\chattingitem.cpp.s
+
+window\chattingWidget\chattingwindow.obj: window\chattingWidget\chattingwindow.cpp.obj
+
+.PHONY : window\chattingWidget\chattingwindow.obj
+
+# target to build an object file
+window\chattingWidget\chattingwindow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj
+.PHONY : window\chattingWidget\chattingwindow.cpp.obj
+
+window\chattingWidget\chattingwindow.i: window\chattingWidget\chattingwindow.cpp.i
+
+.PHONY : window\chattingWidget\chattingwindow.i
+
+# target to preprocess a source file
+window\chattingWidget\chattingwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.i
+.PHONY : window\chattingWidget\chattingwindow.cpp.i
+
+window\chattingWidget\chattingwindow.s: window\chattingWidget\chattingwindow.cpp.s
+
+.PHONY : window\chattingWidget\chattingwindow.s
+
+# target to generate assembly for a file
+window\chattingWidget\chattingwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.s
+.PHONY : window\chattingWidget\chattingwindow.cpp.s
+
 window\friendsWidget\friendlistwidget.obj: window\friendsWidget\friendlistwidget.cpp.obj
 
 .PHONY : window\friendsWidget\friendlistwidget.obj
@@ -601,6 +655,60 @@ window\qmainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.s
 .PHONY : window\qmainwindow.cpp.s
 
+window\toollabel.obj: window\toollabel.cpp.obj
+
+.PHONY : window\toollabel.obj
+
+# target to build an object file
+window\toollabel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj
+.PHONY : window\toollabel.cpp.obj
+
+window\toollabel.i: window\toollabel.cpp.i
+
+.PHONY : window\toollabel.i
+
+# target to preprocess a source file
+window\toollabel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.i
+.PHONY : window\toollabel.cpp.i
+
+window\toollabel.s: window\toollabel.cpp.s
+
+.PHONY : window\toollabel.s
+
+# target to generate assembly for a file
+window\toollabel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.s
+.PHONY : window\toollabel.cpp.s
+
+window\util\util.obj: window\util\util.cpp.obj
+
+.PHONY : window\util\util.obj
+
+# target to build an object file
+window\util\util.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj
+.PHONY : window\util\util.cpp.obj
+
+window\util\util.i: window\util\util.cpp.i
+
+.PHONY : window\util\util.i
+
+# target to preprocess a source file
+window\util\util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\util\util.cpp.i
+.PHONY : window\util\util.cpp.i
+
+window\util\util.s: window\util\util.cpp.s
+
+.PHONY : window\util\util.s
+
+# target to generate assembly for a file
+window\util\util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\util\util.cpp.s
+.PHONY : window\util\util.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -640,6 +748,12 @@ help:
 	@echo ... src/message_send_receive.obj
 	@echo ... src/message_send_receive.i
 	@echo ... src/message_send_receive.s
+	@echo ... window/chattingWidget/chattingitem.obj
+	@echo ... window/chattingWidget/chattingitem.i
+	@echo ... window/chattingWidget/chattingitem.s
+	@echo ... window/chattingWidget/chattingwindow.obj
+	@echo ... window/chattingWidget/chattingwindow.i
+	@echo ... window/chattingWidget/chattingwindow.s
 	@echo ... window/friendsWidget/friendlistwidget.obj
 	@echo ... window/friendsWidget/friendlistwidget.i
 	@echo ... window/friendsWidget/friendlistwidget.s
@@ -658,6 +772,12 @@ help:
 	@echo ... window/qmainwindow.obj
 	@echo ... window/qmainwindow.i
 	@echo ... window/qmainwindow.s
+	@echo ... window/toollabel.obj
+	@echo ... window/toollabel.i
+	@echo ... window/toollabel.s
+	@echo ... window/util/util.obj
+	@echo ... window/util/util.i
+	@echo ... window/util/util.s
 .PHONY : help
 
 

@@ -19,7 +19,7 @@ void initData(MainWindow &w) {
     Message msg = {QPixmap(":/header/header1"),
                    "韩冰凯",
                    {"在干嘛呢？"},
-                   time.addYears(-1)};
+                   time.addYears(-1).toTime_t()};
 //    w.addMessageItem(msg);  // 新增一个会话item
 
 }

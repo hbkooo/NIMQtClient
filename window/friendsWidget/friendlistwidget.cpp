@@ -9,6 +9,8 @@
 FriendListWidget::FriendListWidget(QListWidget *parent) :
         QListWidget(parent) {
 
+    this->setObjectName("MsgFriItem");      // 为了使用listWidget.css中的一些鼠标选中和hover样式
+    InitControl();
     InitFriendList();
 
 }
@@ -19,7 +21,7 @@ FriendListWidget::~FriendListWidget() {
 
 
 void FriendListWidget::InitControl() {
-    QFile css(":/css/recentSessionWidget");
+    QFile css(":/css/listWidget");
     css.open(QFile::ReadOnly);
 //    qDebug() << css.readAll();
     this->setStyleSheet(css.readAll());

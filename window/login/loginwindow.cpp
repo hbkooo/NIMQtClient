@@ -157,6 +157,7 @@ void LoginWindow::InitControl() {
     loginBtn->setFixedSize(300,50);
     loginBtn->setStyleSheet("QPushButton { font-size:20px;"
                             "color:white;"
+                            "border: none;"
                             "background-color:#238efa;}"
                             "QPushButton:hover {"
                             "background-color:#4ca6ff;}"
@@ -230,6 +231,12 @@ bool LoginWindow::eventFilter(QObject *obj, QEvent *ev) {
         } else if (ev->type() == QEvent::FocusOut)
         {
             pwdIconBtn->setIcon(pwdNormalIcon);
+        } else if(ev->type() == QEvent::KeyPress) {
+            // 在密码框内回车按键则直接登录
+            auto *key = dynamic_cast<QKeyEvent *>(ev);
+            if (key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return) {
+                OnLoginClicked();
+            }
         }
     }
     return QWidget::eventFilter(obj,ev);
@@ -251,10 +258,6 @@ void LoginWindow::OnRegisterClicked() {
 }
 
 void LoginWindow::OnLoginClicked() {
-//    qDebug() << "clicked login button";
-//    qDebug() << "username: " << usernameLE->text()
-//        <<"\npassword: " << passwordLE->text();
-
     if (usernameLE->text() == "") {
         userIconBtn->setIcon(userErrorIcon);
         helpInfoLB->setText("账号为空");
