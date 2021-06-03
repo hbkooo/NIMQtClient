@@ -32,7 +32,7 @@ public:
      */
     void AddSessionItem(const nim::SessionData &data, int row= -1);  // 向列表中新增一个item消息
     void removeOneItem(int row);          // 删除列表中第row行的item消息
-    void UpdateSessionItem(const nim::SessionData &sessionData, int total_unread_counts);      //向某个位置添加一个条目
+    void UpdateSessionItem(const nim::SessionData &sessionData);      //向某个位置添加一个条目
 
     const QList<SessionItem*> & getAllSessionItems() const { return sessionItems; }
 
@@ -66,14 +66,10 @@ private:
 signals:
     void UpdateSessionListSignal();
     // 新增一个会话，调用槽函数为 RecentSessionWidget::AddSessionItem
-    void AddOneSessionSignal(const nim::SessionData &data, int index);
-    // 更新某一个会话,调用槽函数为 RecentSessionWidget::UpdateSessionItem
-    void UpdateSessionSignal(const nim::SessionData &sessionData, int total_unread_counts);
+    void AddOneSessionSignal(const nim::SessionData &data, int row);
+    // 更新某一个会话,调用槽函数为 RecentSessionWidget::UpdateSessionItem, MainWindow::SessionChangedSlot
+    void UpdateSessionSignal(const nim::SessionData &sessionData);
 
-    // 发送消息之后会有一个消息回调。发送到ChattingWindow::sendMsgCallbackSlot中。其实该信号触发于MainWindow::sendMsgCallbackSlot。
-    void sendMsgCallbackSignal(const nim::SendMessageArc& messageArc);
-    // APP收到一条消息，需要将消息转发给对应的聊天窗口中。发送到ChattingWindow::receiveMsgSlot中。其实该信号触发于MainWindow::receiveMsgSlot中。
-    void receiveMsgSignal(const nim::IMMessage &msg);
     // 双击某一个会话 item ，需要打开与该好友的聊天界面
     void OpenChattingWindowSignal(const nim::SessionData &sessionData);
 

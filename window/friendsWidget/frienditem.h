@@ -25,7 +25,8 @@ public:
     ~FriendItem() override;
 
     const nim::UserNameCard& getUserNameCard() const {return userNameCard;}
-
+    // 单独设置用户的备注信息
+    void setName(const QString& alias);
     // 更新用户信息
     void update(const nim::UserNameCard &nameCard);
 
@@ -43,6 +44,7 @@ private:
 private:
     // 数据信息
     nim::UserNameCard userNameCard;
+    QString Alias;              // 好友关系的备注信息
 
 };
 

@@ -69,8 +69,9 @@ void FriendListWidget::OnGetFriendList(nim::NIMResCode res_code, const std::list
     qDebug() << "[info]: 获取 " << user_profile_list.size() << " 个好友 ";
     QList<QString> accounts;
     for (auto & friendProfile: user_profile_list) {
-        qDebug() << QString::fromStdString(friendProfile.ToJsonString());
+        qDebug() << "[info]: FriendProfile: " << QString::fromStdString(friendProfile.ToJsonString());
         accounts.append(QString::fromStdString(friendProfile.GetAccId()));
+        friendProfileMap.insert(QString::fromStdString(friendProfile.GetAccId()), friendProfile);       // 新增一条好友关系信息
     }
     GetUserNameCard(accounts);
 }
@@ -149,11 +150,21 @@ void FriendListWidget::GetUserNameCardOnLine(const QList<QString>& accounts) {
 
 //  获取用户信息回调
 void FriendListWidget::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
+    // 如果查找的用户 accID 不存在，则还会有回调在这里，只不过不存在查询的这条用户 accID 的数据。
     qDebug() << "获取用户详细信息：" << json_result.size() << " 个";
     for(auto &info: json_result) {
 //        qDebug() << QString::fromStdString(info.ToJsonString())
 //                << ", icon: " << QString::fromStdString(info.GetIconUrl());
-        emit AddOneFriendSignal(info);
+//        if (info.GetAccId() == "hbk5") {
+//            qDebug() << "[info]: hbk5's UserNameCard: " << QString::fromStdString(info.ToJsonString());
+//        }
+        userNameCardMap.insert(QString::fromStdString(info.GetAccId()), info);      // 插入一条用户信息数据
+
+        if(friendProfileMap.contains(QString::fromStdString(info.GetAccId()))) {
+            // 如果该用户 accID在好友列表 friendProfileMap 中，则说明该用户是好友，则向好友列表中新增一个好友条目
+            emit AddOneFriendSignal(info);      // 向好友列表中新增一个好友条目, FriendListWidget::AddOneFriendSlot
+        }
+
     }
 }
 
@@ -166,8 +177,9 @@ void FriendListWidget::ListenUserNameCardChanged() {
 }
 
 // 用户信息变化监听回调
-void FriendListWidget::OnUserInfoChange(const std::list<nim::UserNameCard> &uinfo_list) {
-    for (auto& info : uinfo_list)
+void FriendListWidget::OnUserInfoChange(const std::list<nim::UserNameCard> &info_list) {
+    // TODO 用户信息变化，监听变化并修改
+    for (auto& info : info_list)
     {
         //用户名或头像变化了
         if (info.ExistValue(nim::kUserNameCardKeyName)
@@ -202,6 +214,8 @@ void FriendListWidget::OnUpdateMyInfo(nim::NIMResCode res) {
 
 void FriendListWidget::AddOneFriendSlot(const nim::UserNameCard &userNameCard) {
     auto *friendItem = new FriendItem(userNameCard);
+
+    friendItemsMap.insert(QString::fromStdString(userNameCard.GetAccId()), friendItem);
     auto *listItem = new QListWidgetItem();
     // 必须设置，设置每一个条目显示的宽、高
     listItem->setSizeHint(QSize(350, friendItem->size().height()));
@@ -211,8 +225,16 @@ void FriendListWidget::AddOneFriendSlot(const nim::UserNameCard &userNameCard) {
     this->setItemWidget(listItem, friendItem);
 }
 
-void FriendListWidget::UpdateFriendSlot(const nim::UserNameCard &userNameCard) {
-
+// 更新用户信息
+void FriendListWidget::UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard) {
+    // TODO 用户信息变更
+    // 好友信息更新变化通知处理
+    auto accID = QString::fromStdString(userNameCard.GetAccId());
+    if(friendItemsMap.contains(accID)) {
+        // 如果是该用户的好友，则需要更新好友列表的条目
+        friendItemsMap[accID]->update(userNameCard);
+    }
+    userNameCardMap.insert(accID, userNameCard);
 }
 
 

@@ -24,7 +24,7 @@ void RecentSessionWidget::InitControl() {
     this->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);   // 让内容连续地滚动，而不是整行整行的滚动
 }
 
-void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData, int total_unread_counts) {
+void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData) {
     qDebug() << "[info]: session of '" << QString::fromStdString(sessionData.id_) << "' has changed!";
     //<< QString::fromStdString(nim::SessionData::ToJsonString(sessionData));
 
@@ -61,6 +61,9 @@ void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData,
  */
 void RecentSessionWidget::AddSessionItem(const nim::SessionData &data, int row) {
     qDebug() << "[info]: add one session of: " << QString::fromStdString(data.id_);
+    if (data.id_ == "hbk5") {
+        qDebug() << "[info]: SessionData: " << QString::fromStdString(nim::SessionData::ToJsonString(data));
+    }
     auto *sessionItem = new SessionItem(data);
     auto *listItem = new QListWidgetItem();
     // 必须设置，设置每一个条目显示的宽、高
@@ -101,21 +104,12 @@ void RecentSessionWidget::removeOneItem(int row) {
 //鼠标双击事件
 void RecentSessionWidget::mouseDoubleClickEvent(QMouseEvent *event) {
 
-    auto index = currentIndex();    // 获取当前点击的item对应的index
-
     QListWidgetItem *item = itemAt(event->pos());       // 获取点击的item
     if (item == nullptr) return;
     // 从item获取对应的自定义的widget
     auto *sessionItem = dynamic_cast<SessionItem *>(this->itemWidget(item));
     if (sessionItem == nullptr) return;
     auto sessionData = sessionItem->getSessionData();
-
-//    auto *chattingWindow = new ChattingWindow(sessionData);
-//    // 将最近发送的消息成功与否信号传递到聊天窗口中
-//    connect(this, &RecentSessionWidget::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
-//    // 当其他用户发送来新的消息后所有的聊天窗口界面都会收到该消息。
-//    connect(this, &RecentSessionWidget::receiveMsgSignal, chattingWindow, &ChattingWindow::receiveMsgSlot);
-//    chattingWindow->show();
 
     emit OpenChattingWindowSignal(sessionData);
     RestUnread(sessionData.id_, sessionData.type_);
@@ -160,7 +154,7 @@ void RecentSessionWidget::OnRecentSessionChangeCallback(nim::NIMResCode resCode,
         // 最近会话更新变动，有可能是之前的会话聊天信息变动，也有可能是有了新的好友聊天，产生了新的会话
         for(auto *session: sessionItems) {
             if (session->getSessionData().id_ == sessionData.id_) {
-                emit UpdateSessionSignal(sessionData, total_unread_counts);       // RecentSessionWidget::UpdateSessionItem
+                emit UpdateSessionSignal(sessionData);       // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangedSlot
                 return;
             }
         }

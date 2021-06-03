@@ -42,6 +42,15 @@ private:
     // 加载账号密码密码
     void LoadPwd();
 
+private:
+    /// API 获取用户信息操作
+    // 获取本地用户信息
+    void GetUserNameCard(const std::string & account);
+    // 获取服务器用户信息
+    void GetUserNameCardOnLine(const std::string & account);
+    //  获取用户信息回调
+    void OnGetUserCard(const std::list<nim::UserNameCard> &json_result);
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 

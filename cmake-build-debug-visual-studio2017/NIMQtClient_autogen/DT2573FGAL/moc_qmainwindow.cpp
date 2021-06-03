@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[18];
-    char stringdata0[296];
+    QByteArrayData data[19];
+    char stringdata0[315];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,23 +42,25 @@ QT_MOC_LITERAL(6, 78, 16), // "receiveMsgSignal"
 QT_MOC_LITERAL(7, 95, 14), // "nim::IMMessage"
 QT_MOC_LITERAL(8, 110, 3), // "msg"
 QT_MOC_LITERAL(9, 114, 16), // "toolLabelChecked"
-QT_MOC_LITERAL(10, 131, 37), // "OpenChattingWindowFromFriendL..."
-QT_MOC_LITERAL(11, 169, 17), // "nim::UserNameCard"
-QT_MOC_LITERAL(12, 187, 12), // "userNameCard"
-QT_MOC_LITERAL(13, 200, 39), // "OpenChattingWindowFromRecentS..."
-QT_MOC_LITERAL(14, 240, 16), // "nim::SessionData"
-QT_MOC_LITERAL(15, 257, 11), // "sessionData"
-QT_MOC_LITERAL(16, 269, 23), // "CloseChattingWindowSlot"
-QT_MOC_LITERAL(17, 293, 2) // "id"
+QT_MOC_LITERAL(10, 131, 18), // "SessionChangedSlot"
+QT_MOC_LITERAL(11, 150, 16), // "nim::SessionData"
+QT_MOC_LITERAL(12, 167, 11), // "sessionData"
+QT_MOC_LITERAL(13, 179, 37), // "OpenChattingWindowFromFriendL..."
+QT_MOC_LITERAL(14, 217, 17), // "nim::UserNameCard"
+QT_MOC_LITERAL(15, 235, 12), // "userNameCard"
+QT_MOC_LITERAL(16, 248, 39), // "OpenChattingWindowFromRecentS..."
+QT_MOC_LITERAL(17, 288, 23), // "CloseChattingWindowSlot"
+QT_MOC_LITERAL(18, 312, 2) // "id"
 
     },
     "MainWindow\0LogoutSignal\0\0sendMsgCallbackSignal\0"
     "nim::SendMessageArc\0messageArc\0"
     "receiveMsgSignal\0nim::IMMessage\0msg\0"
-    "toolLabelChecked\0OpenChattingWindowFromFriendListsSlot\0"
+    "toolLabelChecked\0SessionChangedSlot\0"
+    "nim::SessionData\0sessionData\0"
+    "OpenChattingWindowFromFriendListsSlot\0"
     "nim::UserNameCard\0userNameCard\0"
     "OpenChattingWindowFromRecentSessionSlot\0"
-    "nim::SessionData\0sessionData\0"
     "CloseChattingWindowSlot\0id"
 };
 #undef QT_MOC_LITERAL
@@ -69,7 +71,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -77,15 +79,16 @@ static const uint qt_meta_data_MainWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
-       3,    1,   50,    2, 0x06 /* Public */,
-       6,    1,   53,    2, 0x06 /* Public */,
+       1,    0,   54,    2, 0x06 /* Public */,
+       3,    1,   55,    2, 0x06 /* Public */,
+       6,    1,   58,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   56,    2, 0x0a /* Public */,
-      10,    1,   57,    2, 0x0a /* Public */,
-      13,    1,   60,    2, 0x0a /* Public */,
-      16,    1,   63,    2, 0x0a /* Public */,
+       9,    0,   61,    2, 0x0a /* Public */,
+      10,    1,   62,    2, 0x0a /* Public */,
+      13,    1,   65,    2, 0x0a /* Public */,
+      16,    1,   68,    2, 0x0a /* Public */,
+      17,    1,   71,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -96,7 +99,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 11,   12,
     QMetaType::Void, 0x80000000 | 14,   15,
-    QMetaType::Void, QMetaType::QString,   17,
+    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void, QMetaType::QString,   18,
 
        0        // eod
 };
@@ -111,9 +115,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->sendMsgCallbackSignal((*reinterpret_cast< const nim::SendMessageArc(*)>(_a[1]))); break;
         case 2: _t->receiveMsgSignal((*reinterpret_cast< const nim::IMMessage(*)>(_a[1]))); break;
         case 3: _t->toolLabelChecked(); break;
-        case 4: _t->OpenChattingWindowFromFriendListsSlot((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
-        case 5: _t->OpenChattingWindowFromRecentSessionSlot((*reinterpret_cast< const nim::SessionData(*)>(_a[1]))); break;
-        case 6: _t->CloseChattingWindowSlot((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->SessionChangedSlot((*reinterpret_cast< const nim::SessionData(*)>(_a[1]))); break;
+        case 5: _t->OpenChattingWindowFromFriendListsSlot((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
+        case 6: _t->OpenChattingWindowFromRecentSessionSlot((*reinterpret_cast< const nim::SessionData(*)>(_a[1]))); break;
+        case 7: _t->CloseChattingWindowSlot((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -171,13 +176,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

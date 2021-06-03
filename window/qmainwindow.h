@@ -25,7 +25,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QString accID_, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 protected:
@@ -77,9 +77,13 @@ private:
      */
     QMap<QString, ChattingWindow*> chattingWindows;
 
+    QString accID;      // 登录成功的该用户 id
+
 public slots:
     void toolLabelChecked();                    // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
 
+    // 最近会话变动，需要将会话传递给聊天界面中
+    void SessionChangedSlot(const nim::SessionData &sessionData);
     // 从好友列表中双击某一个好友打开聊天界面
     void OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard);
     // 从最近会话中双击某一个会话打开聊天界面

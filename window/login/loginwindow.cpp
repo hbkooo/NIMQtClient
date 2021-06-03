@@ -5,7 +5,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_LoginWindow.h" resolved
 
 #include "loginwindow.h"
-
+nim::UserNameCard SELF_USER_NAME_CARD("");
 
 LoginWindow::LoginWindow(QWidget *parent) :
         QWidget(parent){
@@ -296,11 +296,14 @@ void LoginWindow::LoginSuccessSlot() {
     SavePwd();
     loginBtn->setText("登 录");
     if (mainWindow == nullptr) {
-        mainWindow = new MainWindow();
+        mainWindow = new MainWindow(usernameLE->text());
         connect(mainWindow, &MainWindow::LogoutSignal, this, &LoginWindow::OnLogoutSlot);
     }
+    SELF_USER_NAME_CARD.SetAccId(usernameLE->text().toStdString());
+    GetUserNameCard(usernameLE->text().toStdString());
     mainWindow->show();
     this->hide();
+
 }
 
 // 在主界面退出登录时回调到这里的槽函数
@@ -347,3 +350,35 @@ void LoginWindow::LoadPwd() {
     }
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////根据用户 id 查询用户详细信息 ///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+void LoginWindow::GetUserNameCard(const std::string & account) {
+    std::list<std::string> account_list;
+    account_list.push_back(account);
+    nim::User::GetUserNameCard(account_list,[this](auto &&PH1) {
+        OnGetUserCard(std::forward<decltype(PH1)>(PH1));
+    });
+}
+
+void LoginWindow::GetUserNameCardOnLine(const std::string & account) {
+    std::list<std::string> account_list;
+    account_list.push_back(account);
+    nim::User::GetUserNameCardOnline(account_list,[this](auto &&PH1) {
+        OnGetUserCard(std::forward<decltype(PH1)>(PH1));
+    });
+}
+
+void LoginWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
+    if(json_result.empty()) {
+        // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
+        // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
+        qDebug() << "[error]: 获取用户 '" << usernameLE->text() << "' 信息失败 ...";
+    } else {
+        SELF_USER_NAME_CARD = json_result.front();
+        qDebug() << "[info]: 登录成功的用户信息为：" << QString::fromStdString(SELF_USER_NAME_CARD.ToJsonString());
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////

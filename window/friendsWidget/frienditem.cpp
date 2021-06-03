@@ -81,6 +81,12 @@ void FriendItem::SetLayout() {
     setLayout(main_layout);
 }
 
+// 单独设置用户的备注信息
+void FriendItem::setName(const QString& alias) {
+    Alias = alias;
+    name_label->setText(alias);
+}
+
 void FriendItem::update(const nim::UserNameCard &nameCard) {
 
     userNameCard = nameCard;
@@ -95,13 +101,21 @@ void FriendItem::update(const nim::UserNameCard &nameCard) {
     }
     header_label->setPixmap(PixmapToRound(map.scaled(header_label->size()), 24));
 
-    if(userNameCard.GetName().empty()) {
-        name_label->setText(QString::fromStdString(userNameCard.GetAccId()));
+    if(Alias != "") {
+        // 用户的备注信息不为空，则直接设置为备注信息
+        name_label->setText(Alias);
     } else {
-        name_label->setText(QString::fromStdString(userNameCard.GetName()));
+        // 否则根据用户的名片来设置信息
+        if(userNameCard.GetName().empty()) {
+            name_label->setText(QString::fromStdString(userNameCard.GetAccId()));
+        } else {
+            name_label->setText(QString::fromStdString(userNameCard.GetName()));
+        }
     }
+
     signature_label->setText(QString::fromStdString(userNameCard.GetSignature()));
 
 }
+
 
 

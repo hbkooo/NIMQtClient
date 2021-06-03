@@ -9,14 +9,14 @@
  * @param isRight_ 该条消息是自己发送的消息还是对方发送的消息，因为要根据这个标志来判断头像是在右边还是左边
  * @param parent 父控件
  */
-ChattingItem::ChattingItem(bool isRight_, QWidget *parent) :
-        isLeft(isRight_), QWidget(parent) {
+ChattingItem::ChattingItem(bool isRight_, const nim::UserNameCard &nameCard, QWidget *parent) :
+        isLeft(isRight_), userNameCard(nameCard), QWidget(parent) {
     InitControl();
     SetLayout();
 }
 
 ChattingItem::~ChattingItem() {
-    qDebug() << "[info]: In ~ChattingItem ...";
+//    qDebug() << "[info]: In ~ChattingItem ...";
 }
 
 void ChattingItem::InitControl() {
@@ -44,9 +44,7 @@ void ChattingItem::InitControl() {
 
     headPhotoLabel = new QLabel();
     headPhotoLabel->setFixedSize(40, 40);
-    QPixmap map(":/default_header/dh9");
-    map = map.scaled(headPhotoLabel->size());
-    headPhotoLabel->setPixmap(PixmapToRound(map, 20));
+    updateHeaderPhotoIcon();
 
 }
 
@@ -65,6 +63,16 @@ void ChattingItem::SetLayout() {
         hLayout->addStretch();
     }
     setLayout(hLayout);
+}
+
+// 更新消息的头像图标
+void ChattingItem::updateHeaderPhotoIcon() {
+    QPixmap map(QString::fromStdString(userNameCard.GetIconUrl()));
+    if (map.isNull()) {
+        // 头像加载失败
+        map.load(":/default_header/dh1");
+    }
+    headPhotoLabel->setPixmap(PixmapToRound(map.scaled(headPhotoLabel->size()), headPhotoLabel->height()/2));
 }
 
 void ChattingItem::updateContent(const QString& content) {

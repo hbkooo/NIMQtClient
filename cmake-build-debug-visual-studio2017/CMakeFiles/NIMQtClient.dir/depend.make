@@ -1952,6 +1952,7 @@ CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: ..\win
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\QDateTime
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\QDebug
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\QFile
+CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\QMap
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\QObject
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\qabstractitemmodel.h
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: D:\programming\QT\install\5.14.1\msvc2017\include\QtCore\qalgorithms.h

@@ -1008,11 +1008,7 @@ string
 nim_cpp_wrapper/nim_cpp_api.h
 ../src/nim_cpp_wrapper/nim_cpp_api.h
 
-../window/util/util.h
-QPixmap
-../window/util/QPixmap
-
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h
+../window/chattingWidget/chattingitem.h
 QWidget
 -
 QLabel
@@ -1026,11 +1022,11 @@ QPixmap
 QDebug
 -
 util/util.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/util/util.h
+../window/chattingWidget/util/util.h
 client.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/client.h
+../window/chattingWidget/client.h
 
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h
+../window/chattingWidget/chattingwindow.h
 QWidget
 -
 QHBoxLayout
@@ -1070,13 +1066,13 @@ QDebug
 QDate
 -
 chattingitem.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingitem.h
+../window/chattingWidget/chattingitem.h
 util/util.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/util/util.h
+../window/chattingWidget/util/util.h
 client.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/client.h
+../window/chattingWidget/client.h
 
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.h
+../window/friendsWidget/frienditem.h
 QWidget
 -
 QObject
@@ -1094,29 +1090,25 @@ QDebug
 client.h
 -
 util/util.h
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/util/util.h
+../window/friendsWidget/util/util.h
 
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h
+../window/friendsWidget/friendlistwidget.h
 QWidget
 -
 QListWidget
 -
 QFile
 -
+QMap
+-
 QDebug
 -
 client.h
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/client.h
+../window/friendsWidget/client.h
 frienditem.h
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.h
+../window/friendsWidget/frienditem.h
 
-D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp
-qmainwindow.h
-D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
-qlistwidget.h
--
-
-D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h
+../window/qmainwindow.h
 QWidget
 -
 QLabel
@@ -1136,21 +1128,21 @@ QStackedWidget
 QMap
 -
 recentSessionWidget/message.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/message.h
+../window/recentSessionWidget/message.h
 recentSessionWidget/sessionitem.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.h
+../window/recentSessionWidget/sessionitem.h
 recentSessionWidget/recentsessionwidget.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.h
+../window/recentSessionWidget/recentsessionwidget.h
 friendsWidget/friendlistwidget.h
-D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h
+../window/friendsWidget/friendlistwidget.h
 chattingWidget/chattingwindow.h
-D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h
+../window/chattingWidget/chattingwindow.h
 toollabel.h
-D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+../window/toollabel.h
 client.h
-D:/programming/Clion/projects/NIMQtClient/window/client.h
+../window/client.h
 
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/message.h
+../window/recentSessionWidget/message.h
 QObject
 -
 QDateTime
@@ -1158,7 +1150,7 @@ QDateTime
 QPixmap
 -
 
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.h
+../window/recentSessionWidget/recentsessionwidget.h
 QObject
 -
 QWidget
@@ -1174,13 +1166,13 @@ QDebug
 algorithm
 -
 client.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/client.h
+../window/recentSessionWidget/client.h
 sessionitem.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.h
+../window/recentSessionWidget/sessionitem.h
 chattingWidget/chattingwindow.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/chattingWidget/chattingwindow.h
+../window/recentSessionWidget/chattingWidget/chattingwindow.h
 
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.h
+../window/recentSessionWidget/sessionitem.h
 QObject
 -
 QWidget
@@ -1198,12 +1190,70 @@ QDebug
 client.h
 -
 util/util.h
-D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/util/util.h
+../window/recentSessionWidget/util/util.h
 
-D:/programming/Clion/projects/NIMQtClient/window/toollabel.h
+../window/toollabel.h
 QLabel
 -
 QMouseEvent
+-
+
+../window/util/util.h
+QPixmap
+../window/util/QPixmap
+
+D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.cpp
+loginwindow.h
+D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.h
+
+D:/programming/Clion/projects/NIMQtClient/window/login/loginwindow.h
+iostream
+-
+QWidget
+-
+QPixmap
+-
+QLabel
+-
+QPushButton
+-
+QLineEdit
+-
+QVBoxLayout
+-
+QHBoxLayout
+-
+QCheckBox
+-
+QSettings
+-
+qmainwindow.h
+D:/programming/Clion/projects/NIMQtClient/window/login/qmainwindow.h
+client.h
+D:/programming/Clion/projects/NIMQtClient/window/login/client.h
+registerwidget.h
+D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h
+
+D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h
+QWidget
+-
+QPixmap
+-
+QLabel
+-
+QPushButton
+-
+QLineEdit
+-
+QVBoxLayout
+-
+QHBoxLayout
+-
+QEvent
+-
+client.h
+D:/programming/Clion/projects/NIMQtClient/window/login/client.h
+QDebug
 -
 
 D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QDate
@@ -1237,6 +1287,10 @@ D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qobject.h
 D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QPoint
 qpoint.h
 D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qpoint.h
+
+D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/QSettings
+qsettings.h
+D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsettings.h
 
 D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qabstractitemmodel.h
 QtCore/qvariant.h
@@ -1744,6 +1798,18 @@ QtCore/qcontainertools_impl.h
 initializer_list
 -
 iterator
+-
+
+D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qsettings.h
+QtCore/qobject.h
+-
+QtCore/qvariant.h
+-
+QtCore/qstring.h
+-
+QtCore/qscopedpointer.h
+-
+ctype.h
 -
 
 D:/programming/QT/install/5.14.1/msvc2017/include/QtCore/qshareddata.h
@@ -2400,6 +2466,10 @@ D:/programming/QT/install/5.14.1/msvc2017/include/QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QCheckBox
+qcheckbox.h
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qcheckbox.h
+
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QHBoxLayout
 qboxlayout.h
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
@@ -2407,6 +2477,10 @@ D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qboxlayout.h
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLabel
 qlabel.h
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlabel.h
+
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QLineEdit
+qlineedit.h
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlineedit.h
 
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/QListWidget
 qlistwidget.h
@@ -2516,6 +2590,12 @@ QtWidgets/qwidget.h
 limits.h
 -
 
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qcheckbox.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractbutton.h
+-
+
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qdialog.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -2572,6 +2652,18 @@ QtWidgets/qsizepolicy.h
 QtCore/qrect.h
 -
 limits.h
+-
+
+D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlineedit.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qframe.h
+-
+QtGui/qtextcursor.h
+-
+QtCore/qstring.h
+-
+QtCore/qmargins.h
 -
 
 D:/programming/QT/install/5.14.1/msvc2017/include/QtWidgets/qlistview.h

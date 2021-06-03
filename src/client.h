@@ -9,6 +9,8 @@
 #include <string>
 #include "nim_cpp_wrapper/nim_cpp_api.h"
 
+extern nim::UserNameCard SELF_USER_NAME_CARD;
+
 const extern std::string app_key;
 
 // 初始化

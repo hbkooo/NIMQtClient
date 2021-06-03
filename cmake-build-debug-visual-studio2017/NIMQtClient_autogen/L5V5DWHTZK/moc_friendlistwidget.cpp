@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_FriendListWidget_t {
     QByteArrayData data[9];
-    char stringdata0[146];
+    char stringdata0[152];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,13 +40,13 @@ QT_MOC_LITERAL(4, 55, 12), // "userNameCard"
 QT_MOC_LITERAL(5, 68, 18), // "UpdateFriendSignal"
 QT_MOC_LITERAL(6, 87, 24), // "OpenChattingWindowSignal"
 QT_MOC_LITERAL(7, 112, 16), // "AddOneFriendSlot"
-QT_MOC_LITERAL(8, 129, 16) // "UpdateFriendSlot"
+QT_MOC_LITERAL(8, 129, 22) // "UpdateUserNameCardSlot"
 
     },
     "FriendListWidget\0AddOneFriendSignal\0"
     "\0nim::UserNameCard\0userNameCard\0"
     "UpdateFriendSignal\0OpenChattingWindowSignal\0"
-    "AddOneFriendSlot\0UpdateFriendSlot"
+    "AddOneFriendSlot\0UpdateUserNameCardSlot"
 };
 #undef QT_MOC_LITERAL
 
@@ -94,7 +94,7 @@ void FriendListWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 1: _t->UpdateFriendSignal((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
         case 2: _t->OpenChattingWindowSignal((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
         case 3: _t->AddOneFriendSlot((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
-        case 4: _t->UpdateFriendSlot((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
+        case 4: _t->UpdateUserNameCardSlot((*reinterpret_cast< const nim::UserNameCard(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
