@@ -85,7 +85,7 @@ public slots:
     // 从最近会话中双击某一个会话打开聊天界面
     void OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData);
     // 关闭某一个聊天界面
-    void CloseChattingWindowSlot(QString id);
+    void CloseChattingWindowSlot(const QString& id);
 };
 
 #endif // WIDGET_H

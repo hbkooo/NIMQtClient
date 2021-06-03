@@ -31,7 +31,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    qDebug() << "[info]: in ~MainWindow ...";
+    qDebug() << "[info]: in ~MainWindow. Opened chatting windows number is " << chattingWindows.size();
+    for(auto * chattingWindow: chattingWindows) {
+        if(chattingWindow) {
+            chattingWindow->hide();
+            delete chattingWindow;
+        }
+    }
 }
 
 void MainWindow::InitControl() {
@@ -174,15 +180,21 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
     connect(chattingWindow, &ChattingWindow::closeChattingWindowSignal, this, &MainWindow::CloseChattingWindowSlot);
     chattingWindow->show();
     chattingWindows.insert(QString::fromStdString(sessionData.id_), chattingWindow);
+    qDebug() << "[info]: opened chatting window size is: " << chattingWindows.size();
 }
 
-void MainWindow::CloseChattingWindowSlot(QString id) {
+void MainWindow::CloseChattingWindowSlot(const QString& id) {
+    qDebug() << "[info]: close chatting window : " << id;
     if (!chattingWindows.contains(id)) {
         qDebug() << "[error]: close window error, the closed window '" << id << "' not in all opened windows: " << chattingWindows.keys();
         return;
     }
     // 删除该聊天窗口
-    chattingWindows.remove(id);
+    auto *window = chattingWindows.take(id);
+    if(window) {
+        window->hide();
+        delete window;
+    }
 }
 
 

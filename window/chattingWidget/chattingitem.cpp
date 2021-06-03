@@ -16,7 +16,7 @@ ChattingItem::ChattingItem(bool isRight_, QWidget *parent) :
 }
 
 ChattingItem::~ChattingItem() {
-
+    qDebug() << "[info]: In ~ChattingItem ...";
 }
 
 void ChattingItem::InitControl() {

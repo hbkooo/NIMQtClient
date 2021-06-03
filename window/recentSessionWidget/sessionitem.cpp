@@ -77,7 +77,7 @@ SessionItem::SessionItem(nim::SessionData data, QWidget *parent)
 
 
 SessionItem::~SessionItem() {
-    qDebug() << "In SessionItem ..., delete id is " << QString::fromStdString(sessionData.id_);
+    qDebug() << "[info]: In ~SessionItem, delete session id is " << QString::fromStdString(sessionData.id_);
 }
 
 void SessionItem::update(const nim::SessionData &data) {

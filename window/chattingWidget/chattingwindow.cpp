@@ -20,10 +20,14 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
     SetLayout();
     messageTextEdit->installEventFilter(this);
 
+    // Qt窗口在Close()指令后调用CloseEven()，最后判断是否关闭
+    // 若关闭，则Hide()窗口，并不是真正的释放内存。若不关闭则不作任何操作
+    setAttribute(Qt::WA_QuitOnClose);       // 实现窗口在Close()后自动释放内存需要设置该属性。
+
 }
 
 ChattingWindow::~ChattingWindow() {
-
+    qDebug() << "[info]: In ~ChattingWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
 }
 
 void ChattingWindow::InitHeader() {
@@ -291,7 +295,9 @@ void ChattingWindow::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void ChattingWindow::closeEvent(QCloseEvent *event) {
+//    qDebug() << "ChattingWindow : get close event...";
     emit closeChattingWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
+//    event->ignore();
     QWidget::closeEvent(event);
 }
 //////////////////////////////////////////////////////////////////////////

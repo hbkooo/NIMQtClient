@@ -16,7 +16,7 @@ FriendItem::FriendItem(nim::UserNameCard nameCard, QWidget *parent) :
 }
 
 FriendItem::~FriendItem() {
-    qDebug() << "[info]: In FriendItem::~FriendItem";
+    qDebug() << "[info]: In FriendItem::~FriendItem, delete friend item: " << QString::fromStdString(userNameCard.GetAccId());
 }
 
 void FriendItem::InitControl() {

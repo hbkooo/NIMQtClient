@@ -106,9 +106,9 @@ void RecentSessionWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     QListWidgetItem *item = itemAt(event->pos());       // 获取点击的item
     if (item == nullptr) return;
     // 从item获取对应的自定义的widget
-    auto *messageItem = dynamic_cast<SessionItem *>(this->itemWidget(item));
-    if (messageItem == nullptr) return;
-    auto sessionData = messageItem->getSessionData();
+    auto *sessionItem = dynamic_cast<SessionItem *>(this->itemWidget(item));
+    if (sessionItem == nullptr) return;
+    auto sessionData = sessionItem->getSessionData();
 
 //    auto *chattingWindow = new ChattingWindow(sessionData);
 //    // 将最近发送的消息成功与否信号传递到聊天窗口中

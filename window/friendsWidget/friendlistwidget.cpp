@@ -57,7 +57,7 @@ void FriendListWidget::mouseDoubleClickEvent(QMouseEvent *event) {
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// 好友列表操作 ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
-// 获取好友列表
+// 获取好友列表。这里是直接获取本地的好友列表。
 void FriendListWidget::InitFriendList() {
     nim::Friend::GetList([this](auto && PH1, auto && PH2) {
         OnGetFriendList(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2));
@@ -99,11 +99,13 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
         case nim::kNIMFriendChangeTypeRequest:
         {
             qDebug() << "加好友/处理好友请求";
+            // 别人加好友会在这里收到通知
             break;
         }
         case nim::kNIMFriendChangeTypeSyncList:
         {
             qDebug() << "好友列表同步与更新";
+            // 登录完成之后，会访问云端好友关系，并在这里更新。可能更新后的结果与本地已有结果不同...
             break;
         }
         case nim::kNIMFriendChangeTypeUpdate:
