@@ -7,9 +7,95 @@
 	"CMAKE_LIST_FILES" : 
 	[
 		"D:/programming/Clion/projects/NIMQtClient/CMakeLists.txt",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineSystem.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeSystem.cmake.in",
 		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeSystem.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeNMakeFindMake.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Bruce-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Compaq-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/GNU-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/HP-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/SDCC-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/SunPro-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/XL-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/XLClang-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/zOS-C-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in",
 		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeCCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCXXCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Platform/Windows-Determine-CXX.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/HP-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/XL-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in",
 		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeCXXCompiler.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeGenericSystem.cmake",
@@ -25,9 +111,23 @@
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Platform/Windows-MSVC-C.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Platform/Windows-MSVC.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineRCCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeRCCompiler.cmake.in",
 		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeRCCompiler.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeRCInformation.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestRCCompiler.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCCompilerABI.c",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in",
+		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeCCompiler.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCXXInformation.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Compiler/MSVC-CXX.cmake",
@@ -35,6 +135,17 @@
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Platform/Windows-MSVC-CXX.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Platform/Windows-MSVC.cmake",
 		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCXXCompiler.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCXXCompilerABI.cpp",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake",
+		"D:/programming/Clion/install/CLion 2021.1.1/bin/cmake/win/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in",
+		"D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/CMakeFiles/3.19.2/CMakeCXXCompiler.cmake",
 		"D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5ConfigVersion.cmake",
 		"D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5Config.cmake",
 		"D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/Qt5/Qt5ModuleLocation.cmake",
@@ -94,6 +205,11 @@
 			"ZO7PSDTHEZ/moc_chattingwindow.cpp"
 		],
 		[
+			"D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.h",
+			"MU",
+			"L5V5DWHTZK/moc_frienditem.cpp"
+		],
+		[
 			"D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.h",
 			"MU",
 			"L5V5DWHTZK/moc_friendlistwidget.cpp"
@@ -109,24 +225,24 @@
 			"4UWBQHZ5O7/moc_registerwidget.cpp"
 		],
 		[
-			"D:/programming/Clion/projects/NIMQtClient/window/messageWidget/message.h",
-			"MU",
-			"MAVS5XYYHB/moc_message.cpp"
-		],
-		[
-			"D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h",
-			"MU",
-			"MAVS5XYYHB/moc_messageitem.cpp"
-		],
-		[
-			"D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h",
-			"MU",
-			"MAVS5XYYHB/moc_recentsessionwidget.cpp"
-		],
-		[
 			"D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h",
 			"MU",
 			"DT2573FGAL/moc_qmainwindow.cpp"
+		],
+		[
+			"D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/message.h",
+			"MU",
+			"BJI6O5Q2QC/moc_message.cpp"
+		],
+		[
+			"D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.h",
+			"MU",
+			"BJI6O5Q2QC/moc_recentsessionwidget.cpp"
+		],
+		[
+			"D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.h",
+			"MU",
+			"BJI6O5Q2QC/moc_sessionitem.cpp"
 		],
 		[
 			"D:/programming/Clion/projects/NIMQtClient/window/toollabel.h",
@@ -193,6 +309,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/programming/Clion/projects/NIMQtClient/main.cpp", "MU" ],
+		[ "D:/programming/Clion/projects/NIMQtClient/src/client.cpp", "MU" ],
 		[ "D:/programming/Clion/projects/NIMQtClient/src/init.cpp", "MU" ],
 		[ "D:/programming/Clion/projects/NIMQtClient/src/login.cpp", "MU" ],
 		[
@@ -208,6 +325,10 @@
 			"MU"
 		],
 		[
+			"D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.cpp",
+			"MU"
+		],
+		[
 			"D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.cpp",
 			"MU"
 		],
@@ -220,15 +341,15 @@
 			"MU"
 		],
 		[
-			"D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.cpp",
-			"MU"
-		],
-		[
-			"D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.cpp",
-			"MU"
-		],
-		[
 			"D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp",
+			"MU"
+		],
+		[
+			"D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.cpp",
+			"MU"
+		],
+		[
+			"D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.cpp",
 			"MU"
 		],
 		[

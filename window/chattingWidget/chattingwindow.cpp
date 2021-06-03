@@ -289,6 +289,11 @@ void ChattingWindow::mouseReleaseEvent(QMouseEvent *event) {
     }
     QWidget::mouseReleaseEvent(event);
 }
+
+void ChattingWindow::closeEvent(QCloseEvent *event) {
+    emit closeChattingWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
+    QWidget::closeEvent(event);
+}
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -328,22 +333,21 @@ void ChattingWindow::QueryMsgOnline(int64_t from_time,
 
 void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::string& id,
                                         nim::NIMSessionType to_type, const nim::QueryMsglogResult& result) {
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
-    qDebug() << "query message size: " << result.msglogs_.size();
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
     if (result.msglogs_.empty()){
         hasMoreMessage = false;
         emit noMoreMessageSignal();     // 没有更多的聊天消息了
         return;
     }
-    qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
+    //    qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
     for(const auto& msg: result.msglogs_) {
         // 将消息添加进所有的消息列表中。
         // 这里消息的顺序是按时间逆序排列的，也就是说最新的一条消息在数组的第一条，最久远的消息在数组的最后一条
         chattingMsg.append(msg);
-        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
-                << ", content: " << QString::fromStdString(msg.content_);
+        //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
+        //                << ", content: " << QString::fromStdString(msg.content_);
     }
     emit updateMsgListWidgetSignal(result.msglogs_.size());
 }
@@ -461,5 +465,6 @@ void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
     }
     chattingListWidget->setItemWidget(listItem, label);
 }
+
 
 

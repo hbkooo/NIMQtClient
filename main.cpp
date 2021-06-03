@@ -36,6 +36,5 @@ int main(int argc, char *argv[]) {
     LoginWindow login;
     login.show();
 
-
     return QApplication::exec();
 }

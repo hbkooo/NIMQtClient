@@ -94,6 +94,7 @@ private:
     QVBoxLayout *mainLayout;            // 界面主布局
 
 private:
+    // 实际的数据存储位置在 SessionItem 类中存储
     nim::SessionData sessionData;
 
 private:
@@ -108,10 +109,12 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
+    void closeEvent(QCloseEvent* event) override;                   // 关闭窗口消息事件
 
     signals:
     void updateMsgListWidgetSignal(int);
     void noMoreMessageSignal();         // 发送没有更多的聊天消息信息
+    void closeChattingWindowSignal(QString id);     // 关闭该聊天界面窗口
 
 public slots:
     // 点击发送按钮后发送消息槽函数

@@ -358,6 +358,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\main.cpp.s
 .PHONY : main.cpp.s
 
+src\client.obj: src\client.cpp.obj
+
+.PHONY : src\client.obj
+
+# target to build an object file
+src\client.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\src\client.cpp.obj
+.PHONY : src\client.cpp.obj
+
+src\client.i: src\client.cpp.i
+
+.PHONY : src\client.i
+
+# target to preprocess a source file
+src\client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\src\client.cpp.i
+.PHONY : src\client.cpp.i
+
+src\client.s: src\client.cpp.s
+
+.PHONY : src\client.s
+
+# target to generate assembly for a file
+src\client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\src\client.cpp.s
+.PHONY : src\client.cpp.s
+
 src\init.obj: src\init.cpp.obj
 
 .PHONY : src\init.obj
@@ -493,6 +520,33 @@ window\chattingWidget\chattingwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.s
 .PHONY : window\chattingWidget\chattingwindow.cpp.s
 
+window\friendsWidget\frienditem.obj: window\friendsWidget\frienditem.cpp.obj
+
+.PHONY : window\friendsWidget\frienditem.obj
+
+# target to build an object file
+window\friendsWidget\frienditem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj
+.PHONY : window\friendsWidget\frienditem.cpp.obj
+
+window\friendsWidget\frienditem.i: window\friendsWidget\frienditem.cpp.i
+
+.PHONY : window\friendsWidget\frienditem.i
+
+# target to preprocess a source file
+window\friendsWidget\frienditem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.i
+.PHONY : window\friendsWidget\frienditem.cpp.i
+
+window\friendsWidget\frienditem.s: window\friendsWidget\frienditem.cpp.s
+
+.PHONY : window\friendsWidget\frienditem.s
+
+# target to generate assembly for a file
+window\friendsWidget\frienditem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.s
+.PHONY : window\friendsWidget\frienditem.cpp.s
+
 window\friendsWidget\friendlistwidget.obj: window\friendsWidget\friendlistwidget.cpp.obj
 
 .PHONY : window\friendsWidget\friendlistwidget.obj
@@ -574,60 +628,6 @@ window\login\registerwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.s
 .PHONY : window\login\registerwidget.cpp.s
 
-window\messageWidget\messageitem.obj: window\messageWidget\messageitem.cpp.obj
-
-.PHONY : window\messageWidget\messageitem.obj
-
-# target to build an object file
-window\messageWidget\messageitem.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj
-.PHONY : window\messageWidget\messageitem.cpp.obj
-
-window\messageWidget\messageitem.i: window\messageWidget\messageitem.cpp.i
-
-.PHONY : window\messageWidget\messageitem.i
-
-# target to preprocess a source file
-window\messageWidget\messageitem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.i
-.PHONY : window\messageWidget\messageitem.cpp.i
-
-window\messageWidget\messageitem.s: window\messageWidget\messageitem.cpp.s
-
-.PHONY : window\messageWidget\messageitem.s
-
-# target to generate assembly for a file
-window\messageWidget\messageitem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.s
-.PHONY : window\messageWidget\messageitem.cpp.s
-
-window\messageWidget\recentsessionwidget.obj: window\messageWidget\recentsessionwidget.cpp.obj
-
-.PHONY : window\messageWidget\recentsessionwidget.obj
-
-# target to build an object file
-window\messageWidget\recentsessionwidget.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj
-.PHONY : window\messageWidget\recentsessionwidget.cpp.obj
-
-window\messageWidget\recentsessionwidget.i: window\messageWidget\recentsessionwidget.cpp.i
-
-.PHONY : window\messageWidget\recentsessionwidget.i
-
-# target to preprocess a source file
-window\messageWidget\recentsessionwidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.i
-.PHONY : window\messageWidget\recentsessionwidget.cpp.i
-
-window\messageWidget\recentsessionwidget.s: window\messageWidget\recentsessionwidget.cpp.s
-
-.PHONY : window\messageWidget\recentsessionwidget.s
-
-# target to generate assembly for a file
-window\messageWidget\recentsessionwidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.s
-.PHONY : window\messageWidget\recentsessionwidget.cpp.s
-
 window\qmainwindow.obj: window\qmainwindow.cpp.obj
 
 .PHONY : window\qmainwindow.obj
@@ -654,6 +654,60 @@ window\qmainwindow.s: window\qmainwindow.cpp.s
 window\qmainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.s
 .PHONY : window\qmainwindow.cpp.s
+
+window\recentSessionWidget\recentsessionwidget.obj: window\recentSessionWidget\recentsessionwidget.cpp.obj
+
+.PHONY : window\recentSessionWidget\recentsessionwidget.obj
+
+# target to build an object file
+window\recentSessionWidget\recentsessionwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj
+.PHONY : window\recentSessionWidget\recentsessionwidget.cpp.obj
+
+window\recentSessionWidget\recentsessionwidget.i: window\recentSessionWidget\recentsessionwidget.cpp.i
+
+.PHONY : window\recentSessionWidget\recentsessionwidget.i
+
+# target to preprocess a source file
+window\recentSessionWidget\recentsessionwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.i
+.PHONY : window\recentSessionWidget\recentsessionwidget.cpp.i
+
+window\recentSessionWidget\recentsessionwidget.s: window\recentSessionWidget\recentsessionwidget.cpp.s
+
+.PHONY : window\recentSessionWidget\recentsessionwidget.s
+
+# target to generate assembly for a file
+window\recentSessionWidget\recentsessionwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.s
+.PHONY : window\recentSessionWidget\recentsessionwidget.cpp.s
+
+window\recentSessionWidget\sessionitem.obj: window\recentSessionWidget\sessionitem.cpp.obj
+
+.PHONY : window\recentSessionWidget\sessionitem.obj
+
+# target to build an object file
+window\recentSessionWidget\sessionitem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj
+.PHONY : window\recentSessionWidget\sessionitem.cpp.obj
+
+window\recentSessionWidget\sessionitem.i: window\recentSessionWidget\sessionitem.cpp.i
+
+.PHONY : window\recentSessionWidget\sessionitem.i
+
+# target to preprocess a source file
+window\recentSessionWidget\sessionitem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.i
+.PHONY : window\recentSessionWidget\sessionitem.cpp.i
+
+window\recentSessionWidget\sessionitem.s: window\recentSessionWidget\sessionitem.cpp.s
+
+.PHONY : window\recentSessionWidget\sessionitem.s
+
+# target to generate assembly for a file
+window\recentSessionWidget\sessionitem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NIMQtClient.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.s
+.PHONY : window\recentSessionWidget\sessionitem.cpp.s
 
 window\toollabel.obj: window\toollabel.cpp.obj
 
@@ -739,6 +793,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/client.obj
+	@echo ... src/client.i
+	@echo ... src/client.s
 	@echo ... src/init.obj
 	@echo ... src/init.i
 	@echo ... src/init.s
@@ -754,6 +811,9 @@ help:
 	@echo ... window/chattingWidget/chattingwindow.obj
 	@echo ... window/chattingWidget/chattingwindow.i
 	@echo ... window/chattingWidget/chattingwindow.s
+	@echo ... window/friendsWidget/frienditem.obj
+	@echo ... window/friendsWidget/frienditem.i
+	@echo ... window/friendsWidget/frienditem.s
 	@echo ... window/friendsWidget/friendlistwidget.obj
 	@echo ... window/friendsWidget/friendlistwidget.i
 	@echo ... window/friendsWidget/friendlistwidget.s
@@ -763,15 +823,15 @@ help:
 	@echo ... window/login/registerwidget.obj
 	@echo ... window/login/registerwidget.i
 	@echo ... window/login/registerwidget.s
-	@echo ... window/messageWidget/messageitem.obj
-	@echo ... window/messageWidget/messageitem.i
-	@echo ... window/messageWidget/messageitem.s
-	@echo ... window/messageWidget/recentsessionwidget.obj
-	@echo ... window/messageWidget/recentsessionwidget.i
-	@echo ... window/messageWidget/recentsessionwidget.s
 	@echo ... window/qmainwindow.obj
 	@echo ... window/qmainwindow.i
 	@echo ... window/qmainwindow.s
+	@echo ... window/recentSessionWidget/recentsessionwidget.obj
+	@echo ... window/recentSessionWidget/recentsessionwidget.i
+	@echo ... window/recentSessionWidget/recentsessionwidget.s
+	@echo ... window/recentSessionWidget/sessionitem.obj
+	@echo ... window/recentSessionWidget/sessionitem.i
+	@echo ... window/recentSessionWidget/sessionitem.s
 	@echo ... window/toollabel.obj
 	@echo ... window/toollabel.i
 	@echo ... window/toollabel.s

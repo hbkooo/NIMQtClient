@@ -998,6 +998,9 @@
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/nim_sdk/wrapper/nim_wrapper_util/nim_wrapper_util_include.h">
 			<Option target="nim_wrapper_util"/>
 		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/src/client.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/src/client.h">
 			<Option target="NIMQtClient"/>
 		</Unit>
@@ -1022,6 +1025,12 @@
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/chattingWidget/chattingwindow.h">
 			<Option target="NIMQtClient"/>
 		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/frienditem.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/friendsWidget/friendlistwidget.cpp">
 			<Option target="NIMQtClient"/>
 		</Unit>
@@ -1040,25 +1049,25 @@
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/login/registerwidget.h">
 			<Option target="NIMQtClient"/>
 		</Unit>
-		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/messageWidget/message.h">
-			<Option target="NIMQtClient"/>
-		</Unit>
-		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.cpp">
-			<Option target="NIMQtClient"/>
-		</Unit>
-		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/messageWidget/messageitem.h">
-			<Option target="NIMQtClient"/>
-		</Unit>
-		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.cpp">
-			<Option target="NIMQtClient"/>
-		</Unit>
-		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/messageWidget/recentsessionwidget.h">
-			<Option target="NIMQtClient"/>
-		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.cpp">
 			<Option target="NIMQtClient"/>
 		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/qmainwindow.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/message.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/recentsessionwidget.h">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.cpp">
+			<Option target="NIMQtClient"/>
+		</Unit>
+		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/recentSessionWidget/sessionitem.h">
 			<Option target="NIMQtClient"/>
 		</Unit>
 		<Unit filename="D:/programming/Clion/projects/NIMQtClient/window/toollabel.cpp">

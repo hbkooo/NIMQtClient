@@ -13,17 +13,17 @@
 #include "util/util.h"
 
 /**
- * @brief The MessageItem class
+ * @brief The SessionItem class
  * 自定义的控件，即列表中每一个item的内容
  */
 
-class MessageItem: public QWidget
+class SessionItem: public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MessageItem(nim::SessionData data, QWidget *parent=nullptr);
-    ~MessageItem() override {qDebug() << "In ~MessageItem ..., delete id is " << QString::fromStdString(sessionData.id_);}
+    explicit SessionItem(nim::SessionData data, QWidget *parent=nullptr);
+    ~SessionItem() override;
 
     const nim::SessionData& getSessionData() const {return sessionData;}
 
@@ -37,7 +37,6 @@ private:
 private:
 
     // 该条目显示的信息
-//    Message message;
     nim::SessionData sessionData;
 
     QLabel *header_label = nullptr;         // 用户头像

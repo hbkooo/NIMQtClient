@@ -130,9 +130,28 @@ CMakeFiles\NIMQtClient.dir\main.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\main.cpp.s /c D:\programming\Clion\projects\NIMQtClient\main.cpp
 <<
 
+CMakeFiles\NIMQtClient.dir\src\client.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
+CMakeFiles\NIMQtClient.dir\src\client.cpp.obj: ..\src\client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/NIMQtClient.dir/src/client.cpp.obj"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\src\client.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\src\client.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\src\client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/src/client.cpp.i"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\src\client.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\src\client.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\src\client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/src/client.cpp.s"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\src\client.cpp.s /c D:\programming\Clion\projects\NIMQtClient\src\client.cpp
+<<
+
 CMakeFiles\NIMQtClient.dir\src\init.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\src\init.cpp.obj: ..\src\init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/NIMQtClient.dir/src/init.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/NIMQtClient.dir/src/init.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\src\init.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\src\init.cpp
 <<
@@ -151,7 +170,7 @@ CMakeFiles\NIMQtClient.dir\src\init.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\src\login.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\src\login.cpp.obj: ..\src\login.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/NIMQtClient.dir/src/login.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/NIMQtClient.dir/src/login.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\src\login.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\src\login.cpp
 <<
@@ -170,7 +189,7 @@ CMakeFiles\NIMQtClient.dir\src\login.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.obj: ..\src\message_send_receive.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/NIMQtClient.dir/src/message_send_receive.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/NIMQtClient.dir/src/message_send_receive.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\src\message_send_receive.cpp
 <<
@@ -189,7 +208,7 @@ CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj: ..\window\chattingWidget\chattingitem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingitem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingitem.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingitem.cpp
 <<
@@ -208,7 +227,7 @@ CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj: ..\window\chattingWidget\chattingwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingwindow.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/NIMQtClient.dir/window/chattingWidget/chattingwindow.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingwindow.cpp
 <<
@@ -225,9 +244,28 @@ CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.s: cmake_for
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingwindow.cpp
 <<
 
+CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
+CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj: ..\window\friendsWidget\frienditem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/NIMQtClient.dir/window/friendsWidget/frienditem.cpp.obj"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\frienditem.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/window/friendsWidget/frienditem.cpp.i"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\frienditem.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/friendsWidget/frienditem.cpp.s"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\frienditem.cpp
+<<
+
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj: ..\window\friendsWidget\friendlistwidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/NIMQtClient.dir/window/friendsWidget/friendlistwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/NIMQtClient.dir/window/friendsWidget/friendlistwidget.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\friendlistwidget.cpp
 <<
@@ -246,7 +284,7 @@ CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.s: cmake_fo
 
 CMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.obj: ..\window\login\loginwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/NIMQtClient.dir/window/login/loginwindow.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\login\loginwindow.cpp
 <<
@@ -265,7 +303,7 @@ CMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.obj: ..\window\login\registerwidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/NIMQtClient.dir/window/login/registerwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/NIMQtClient.dir/window/login/registerwidget.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\login\registerwidget.cpp
 <<
@@ -280,44 +318,6 @@ CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/login/registerwidget.cpp.s"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\login\registerwidget.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
-CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj: ..\window\messageWidget\messageitem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/NIMQtClient.dir/window/messageWidget/messageitem.cpp.obj"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\messageWidget\messageitem.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/window/messageWidget/messageitem.cpp.i"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\window\messageWidget\messageitem.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/messageWidget/messageitem.cpp.s"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\messageWidget\messageitem.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
-CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj: ..\window\messageWidget\recentsessionwidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.obj"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\messageWidget\recentsessionwidget.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.i"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\window\messageWidget\recentsessionwidget.cpp
-<<
-
-CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/messageWidget/recentsessionwidget.cpp.s"
-	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\messageWidget\recentsessionwidget.cpp
 <<
 
 CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
@@ -339,9 +339,47 @@ CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\qmainwindow.cpp
 <<
 
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj: ..\window\recentSessionWidget\recentsessionwidget.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/recentsessionwidget.cpp.obj"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\recentsessionwidget.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/recentsessionwidget.cpp.i"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\recentsessionwidget.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/recentsessionwidget.cpp.s"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\recentsessionwidget.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj: ..\window\recentSessionWidget\sessionitem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/sessionitem.cpp.obj"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\sessionitem.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/sessionitem.cpp.i"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe > CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\sessionitem.cpp
+<<
+
+CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/NIMQtClient.dir/window/recentSessionWidget/sessionitem.cpp.s"
+	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.s /c D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\sessionitem.cpp
+<<
+
 CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj: ..\window\toollabel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/NIMQtClient.dir/window/toollabel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/NIMQtClient.dir/window/toollabel.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\toollabel.cpp
 <<
@@ -360,7 +398,7 @@ CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj: ..\window\util\util.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/NIMQtClient.dir/window/util/util.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/NIMQtClient.dir/window/util/util.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\window\util\util.cpp
 <<
@@ -379,7 +417,7 @@ CMakeFiles\NIMQtClient.dir\window\util\util.cpp.s: cmake_force
 
 CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.obj: CMakeFiles\NIMQtClient.dir\flags.make
 CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.obj: NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/EWIEGA46WW/qrc_Qrc.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/NIMQtClient.dir/NIMQtClient_autogen/EWIEGA46WW/qrc_Qrc.cpp.obj"
 	D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\cl.exe @<<
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.obj /FdCMakeFiles\NIMQtClient.dir\ /FS -c D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp
 <<
@@ -400,17 +438,19 @@ CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.s: cmake_f
 NIMQtClient_OBJECTS = \
 "CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\mocs_compilation.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\main.cpp.obj" \
+"CMakeFiles\NIMQtClient.dir\src\client.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\src\init.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\src\login.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj" \
+"CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.obj" \
-"CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj" \
-"CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.obj" \
+"CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj" \
+"CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj" \
 "CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.obj"
@@ -420,17 +460,19 @@ NIMQtClient_EXTERNAL_OBJECTS =
 
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\mocs_compilation.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\main.cpp.obj
+NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\src\client.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\src\init.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\src\login.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\src\message_send_receive.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingitem.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\chattingWidget\chattingwindow.cpp.obj
+NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\friendsWidget\frienditem.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\friendsWidget\friendlistwidget.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\login\loginwindow.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\login\registerwidget.cpp.obj
-NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\messageWidget\messageitem.cpp.obj
-NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\messageWidget\recentsessionwidget.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\qmainwindow.cpp.obj
+NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\recentsessionwidget.cpp.obj
+NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\recentSessionWidget\sessionitem.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\toollabel.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\window\util\util.cpp.obj
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp.obj
@@ -444,7 +486,7 @@ NIMQtClient.exe: D:\programming\QT\install\5.14.1\msvc2017\lib\Qt5Gui.lib
 NIMQtClient.exe: D:\programming\QT\install\5.14.1\msvc2017\lib\Qt5Core.lib
 NIMQtClient.exe: nim_sdk\wrapper\nim_wrapper_util\nim_wrapper_util.lib
 NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable NIMQtClient.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable NIMQtClient.exe"
 	"D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\NIMQtClient.dir --rc="D:\Windows Kits\10\bin\10.0.17134.0\x86\rc.exe" --mt="D:\Windows Kits\10\bin\10.0.17134.0\x86\mt.exe" --manifests -- D:\programming\VisualStudio2017\IDE\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\NIMQtClient.dir\objects1.rsp @<<
  /out:NIMQtClient.exe /implib:NIMQtClient.lib /pdb:D:\programming\Clion\projects\NIMQtClient\cmake-build-debug-visual-studio2017\NIMQtClient.pdb /version:0.0 /machine:X86 /INCREMENTAL:NO /subsystem:console  D:\programming\QT\install\5.14.1\msvc2017\lib\Qt5Widgets.lib nim_sdk\wrapper\nim_wrapper_util\nim_wrapper_util.lib nim_sdk\wrapper\nim_cpp_wrapper\nim_cpp_wrapper.lib nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_cpp_wrapper.lib nim_sdk\wrapper\nim_chatroom_cpp_wrapper\nim_chatroom_cpp_wrapper.lib D:\programming\QT\install\5.14.1\msvc2017\lib\Qt5Gui.lib D:\programming\QT\install\5.14.1\msvc2017\lib\Qt5Core.lib nim_sdk\wrapper\nim_wrapper_util\nim_wrapper_util.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
@@ -453,8 +495,6 @@ NIMQtClient.exe: CMakeFiles\NIMQtClient.dir\objects1.rsp
 	echo >nul && "D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E copy D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/../../bin/Qt5Core.dll D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017
 	echo >nul && "D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E copy D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/../../bin/Qt5Gui.dll D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017
 	echo >nul && "D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E copy D:/programming/QT/install/5.14.1/msvc2017/lib/cmake/../../bin/Qt5Widgets.dll D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017
-	echo >nul && "D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E copy D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_cpp_wrapper/nim_cpp_wrapper.dll D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017
-	echo >nul && "D:\programming\Clion\install\CLion 2021.1.1\bin\cmake\win\bin\cmake.exe" -E copy D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017/nim_sdk/wrapper/nim_chatroom_cpp_wrapper/nim_chatroom_cpp_wrapper.dll D:/programming/Clion/projects/NIMQtClient/cmake-build-debug-visual-studio2017
 
 # Rule to build all files generated by this target.
 CMakeFiles\NIMQtClient.dir\build: NIMQtClient.exe

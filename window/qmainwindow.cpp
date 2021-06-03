@@ -12,10 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     this->setStyleSheet("background:#ded5da;");
 
     // 注册信号槽传递时可能传递的数据
-    qRegisterMetaType<Message>("Message");      // 注册消息传递的数据类型
-    qRegisterMetaType<nim::SessionData>("nim::SessionData");      // 注册消息传递的数据类型
-    qRegisterMetaType<nim::SendMessageArc>("nim::SendMessageArc");
-    qRegisterMetaType<nim::IMMessage>("nim::IMMessage");    // 收发消息
+    qRegisterMetaType<Message>("Message");                          // 注册消息传递的数据类型
+    qRegisterMetaType<nim::SessionData>("nim::SessionData");        // 注册消息传递的数据类型
+    qRegisterMetaType<nim::SendMessageArc>("nim::SendMessageArc");  // 发送消息回调结果
+    qRegisterMetaType<nim::IMMessage>("nim::IMMessage");            // 收发消息
+    qRegisterMetaType<nim::UserNameCard>("nim::UserNameCard");      // 用户个人信息
 
     // 注册消息发送成功与否回调
     RegisterSendMsg();
@@ -86,6 +87,13 @@ void MainWindow::SetConnect() {
     connect(this, &MainWindow::receiveMsgSignal,
             recentSessionWidget, &RecentSessionWidget::receiveMsgSignal);
     // 连接“”到联系人界面中
+
+    // 连接最近会话中打开聊天窗口的信号到本类中打开聊天界面
+    connect(recentSessionWidget, &RecentSessionWidget::OpenChattingWindowSignal, this, &MainWindow::OpenChattingWindowFromRecentSessionSlot);
+
+    // 连接好友列表中打开聊天窗口的信号到本类中打开聊天界面
+    connect(friendListWidget, &FriendListWidget::OpenChattingWindowSignal, this, &MainWindow::OpenChattingWindowFromFriendListsSlot);
+
 }
 
 // 关闭窗口事件处理，这里处理为退出登录，到登录界面
@@ -121,8 +129,7 @@ void MainWindow::RegisterSendMsg() {
 }
 // 消息发送成功与否回调函数
 void MainWindow::OnSendMsgCallback(const nim::SendMessageArc& messageArc) {
-
-    emit sendMsgCallbackSignal(messageArc);
+    emit sendMsgCallbackSignal(messageArc);     // ChattingWindow::sendMsgCallbackSlot
 }
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,10 +145,45 @@ void MainWindow::RegisterReceiveMsg() {
 }
 // 接收消息回调函数
 void MainWindow::OnReceiveMsgCallback(const nim::IMMessage &message) {
-    emit receiveMsgSignal(message);
+    emit receiveMsgSignal(message);     // ChattingWindow::receiveMsgSlot
 }
 ////////////////////////////////////////////////////////////////////////////////////
 
+// 从好友列表中双击某一个好友打开聊天界面
+void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard) {
+
+}
+
+// 从最近会话中双击某一个会话打开聊天界面
+void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData) {
+
+    if(chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
+        // 如果与该好友的聊天界面已经存在，则直接打开
+//        chattingWindows[QString::fromStdString(sessionData.id_)]->show();
+        chattingWindows[QString::fromStdString(sessionData.id_)]->showNormal();     // 让最小化的窗口显示出来
+        chattingWindows[QString::fromStdString(sessionData.id_)]->raise();  // 让该聊天窗口置顶显示
+        return;
+    }
+    // 与该好友的聊天界面不存在，则新建聊天界面并打开
+    auto *chattingWindow = new ChattingWindow(sessionData);
+    // 将最近发送的消息成功与否信号传递到聊天窗口中
+    connect(this, &MainWindow::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
+    // 当其他用户发送来新的消息后所有的聊天窗口界面都会收到该消息。
+    connect(this, &MainWindow::receiveMsgSignal, chattingWindow, &ChattingWindow::receiveMsgSlot);
+    // 当聊天窗口主动关闭时，需要通知该界面，将该聊天窗口从所有已经打开的聊天窗口列表中删除
+    connect(chattingWindow, &ChattingWindow::closeChattingWindowSignal, this, &MainWindow::CloseChattingWindowSlot);
+    chattingWindow->show();
+    chattingWindows.insert(QString::fromStdString(sessionData.id_), chattingWindow);
+}
+
+void MainWindow::CloseChattingWindowSlot(QString id) {
+    if (!chattingWindows.contains(id)) {
+        qDebug() << "[error]: close window error, the closed window '" << id << "' not in all opened windows: " << chattingWindows.keys();
+        return;
+    }
+    // 删除该聊天窗口
+    chattingWindows.remove(id);
+}
 
 
 

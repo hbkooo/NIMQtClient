@@ -45,7 +45,7 @@ public:
      */
     static void QuerySession(nim::NIMSessionType to_type, const std::string& session_id, const QuerySessionInfoCallback& cb);
 
-    /** @fn static void UpdateSession(nim::NIMSessionType to_type,
+    /** @fn static void UpdateSessionSignal(nim::NIMSessionType to_type,
                                       const std::string& session_id,
                                       const std::string& ext,
                                       const UpdateSessionInfoCallback& cb)
