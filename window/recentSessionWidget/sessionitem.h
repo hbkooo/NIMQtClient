@@ -27,17 +27,26 @@ public:
 
     const nim::SessionData& getSessionData() const {return sessionData;}
 
-    // 更新该条目的信息
-    void update(const nim::SessionData &data);
+    void setSessionData(const nim::SessionData &data) { sessionData = data; }
+    void setFriendProfile(const nim::FriendProfile &profile) { friendProfile = profile; }
+    void setUserNameCard(const nim::UserNameCard &nameCard) { userNameCard = nameCard; }
+    // 更新该条目的显示信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
+    void updateItem();
 
 private:
-    // 根据一条消息记录创建一个会话列表的item
-    // QWidget* make_one_item(const Message &msg);
+    // 初始化控件
+    void InitControl();
+    void SetLayout();
+    void SetConnect() const;
+    // 更新聊天窗口的头像图标
+    void updateHeaderPhotoIcon();
 
 private:
 
     // 该条目显示的信息
-    nim::SessionData sessionData;
+    nim::SessionData sessionData;       // 该条目的会话数据
+    nim::FriendProfile friendProfile;   // 该条目与登录的用户之间的好友关系
+    nim::UserNameCard userNameCard;     // 该条目用户的名片信息
 
     QLabel *header_label = nullptr;         // 用户头像
     QLabel *name_label = nullptr;           // 用户姓名标签
@@ -45,7 +54,17 @@ private:
     QLabel *date_time_label = nullptr;      // 最后一条聊天消息的聊天时间
     QHBoxLayout *main_layout = nullptr;     // 最终的主布局包括左边的用户头像和上面的剩下的布局
 
+private:
+    /// API 获取用户信息操作
+    // 获取本地用户信息
+    void GetUserNameCard(const std::string & account);
+    // 获取服务器用户信息
+    void GetUserNameCardOnLine(const std::string & account);
+    //  获取用户信息回调
+    void OnGetUserCard(const std::list<nim::UserNameCard> &json_result);
+
 signals:
+    void updateItemSignal();     // SessionItem::updateItem
 
 };
 

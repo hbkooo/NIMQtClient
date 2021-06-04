@@ -17,6 +17,9 @@ MainWindow::MainWindow(QString accID_, QWidget *parent)
     qRegisterMetaType<nim::SendMessageArc>("nim::SendMessageArc");  // 发送消息回调结果
     qRegisterMetaType<nim::IMMessage>("nim::IMMessage");            // 收发消息
     qRegisterMetaType<nim::UserNameCard>("nim::UserNameCard");      // 用户个人信息
+    qRegisterMetaType<nim::FriendProfile>("nim::FriendProfile");    // 好友关系信息
+    qRegisterMetaType<QMap<QString, nim::UserNameCard>>("QMap<QString, nim::UserNameCard>");      // 用户个人信息
+    qRegisterMetaType<QMap<QString, nim::FriendProfile>>("QMap<QString, nim::FriendProfile>");      // 用户个人信息
 
     // 注册消息发送成功与否回调
     RegisterSendMsg();
@@ -27,6 +30,9 @@ MainWindow::MainWindow(QString accID_, QWidget *parent)
     SetConnect();
     SetLayout();
 
+    // 首先初始化好友列表，再初始化最近会话列表
+    friendListWidget->InitFriendList();
+    recentSessionWidget->InitSessionList();
 }
 
 MainWindow::~MainWindow()
@@ -42,8 +48,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::InitControl() {
 
-    InitRecentSessionWidget();
-    InitFriendsWidget();
+    recentSessionWidget = new RecentSessionWidget();
+    friendListWidget = new FriendListWidget();
 
     // 新建堆栈窗口，并将两个窗口添加进去，设置当前显示的窗口为“最近会话”窗口
     mainStackedWidget = new QStackedWidget();
@@ -65,16 +71,6 @@ void MainWindow::InitControl() {
 
 }
 
-// 初始化消息列表控件
-void MainWindow::InitRecentSessionWidget()
-{
-    recentSessionWidget = new RecentSessionWidget();
-}
-
-void MainWindow::InitFriendsWidget() {
-    friendListWidget = new FriendListWidget();
-}
-
 void MainWindow::SetLayout() {
     layout = new QVBoxLayout();
     layout->setSpacing(0);
@@ -86,14 +82,27 @@ void MainWindow::SetLayout() {
 }
 
 void MainWindow::SetConnect() {
-    // 连接最近会话变化时的信号传递到本类中，以将最新的会话传递给打开的聊天界面
-    connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal, this, &MainWindow::SessionChangedSlot);
+    // 连接最近会话变化时的信号传递到本类中，以将最新的会话数据传递给打开的聊天界面
+    connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal,
+            this, &MainWindow::SessionChangedSlot);
+
     // 连接最近会话中打开聊天窗口的信号到本类中打开聊天界面
     connect(recentSessionWidget, &RecentSessionWidget::OpenChattingWindowSignal,
             this, &MainWindow::OpenChattingWindowFromRecentSessionSlot);
     // 连接好友列表中打开聊天窗口的信号到本类中打开聊天界面
-    connect(friendListWidget, &FriendListWidget::OpenChattingWindowSignal, this, &MainWindow::OpenChattingWindowFromFriendListsSlot);
+    connect(friendListWidget, &FriendListWidget::OpenChattingWindowSignal,
+            this, &MainWindow::OpenChattingWindowFromFriendListsSlot);
 
+    // 当在好友列表控件中加载完毕好友数据和用户数据后，将这些数据发送给最近会话窗口中，方便最近会话的每一个条目的显示更新
+    connect(friendListWidget, &FriendListWidget::InitFriendProfileMapSignal,
+            recentSessionWidget, &RecentSessionWidget::InitFriendProfileMapSlot);
+    connect(friendListWidget, &FriendListWidget::InitUserNameCardMapSignal,
+            recentSessionWidget, &RecentSessionWidget::InitUserNameCardMapSlot);
+    // 好友列表控件中好友信息变化、或者用户数据发生变化，通知信号到最近会话控件中
+    connect(friendListWidget, &FriendListWidget::UpdateFriendProfileSignal,
+            recentSessionWidget, &RecentSessionWidget::UpdateFriendProfileSlot);
+    connect(friendListWidget, &FriendListWidget::UpdateUserNameCardSignal,
+            recentSessionWidget, &RecentSessionWidget::UpdateUserNameCardSlot);
 }
 
 // 关闭窗口事件处理，这里处理为退出登录，到登录界面
@@ -149,7 +158,7 @@ void MainWindow::OnReceiveMsgCallback(const nim::IMMessage &message) {
 }
 ////////////////////////////////////////////////////////////////////////////////////
 
-// 最近会话变动，需要将会话传递给聊天界面中
+// 最近会话变动，需要将会话数据传递给聊天界面中
 void MainWindow::SessionChangedSlot(const nim::SessionData &sessionData) {
     if(chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
         chattingWindows[QString::fromStdString(sessionData.id_)]->setSessionData(sessionData);
@@ -164,17 +173,18 @@ void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &
         chattingWindows[QString::fromStdString(userNameCard.GetAccId())]->raise();          // 让该聊天窗口置顶显示
         return;
     }
-    // 如果从好友列表里打开与该用户的聊天窗口，则需要向最近会话列表里插入与该好友的会话记录（如果最近的会话列表里没有该用户的话），创建一个会话数据；
+    // 如果从好友列表里打开与该用户的聊天窗口，则需要向最近会话列表里插入与该好友的会话记录（如果最近的会话列表里没有该用户的话），
+    // 创建一个会话数据；
     // 如果最近会话列表里有与该用户的会话记录，则获取到该会话数据。
-    auto sessionItems = recentSessionWidget->getAllSessionItems();
-    for(auto *sessionItem: sessionItems) {
-        if(sessionItem->getSessionData().id_ == userNameCard.GetAccId()) {
-            // 如果最近会话里有与该用户的会话，则获取到该会话数据，并使用该会话数据打开聊天窗口。然后直接返回即可。
-            OpenChattingWindowFromRecentSessionSlot(sessionItem->getSessionData());
-            return;
-        }
+    auto sessionItemMap = recentSessionWidget->getAllSessionItemMap();
+    if(sessionItemMap.contains(QString::fromStdString(userNameCard.GetAccId()))) {
+        // 如果最近会话里有与该用户的会话，则获取到该会话数据，并使用该会话数据打开聊天窗口。然后直接返回即可。
+        OpenChattingWindowFromRecentSessionSlot(
+                sessionItemMap[QString::fromStdString(userNameCard.GetAccId())]->getSessionData()
+                );
+        return;
     }
-    // 说明最近会话列表里没有雨该用户的会话，则需要自己创建一个新的会话并创建聊天窗口。
+    // 说明最近会话列表里没有与该用户的会话，则需要自己创建一个新的会话并创建聊天窗口。
     nim::SessionData session;
     session.id_ = userNameCard.GetAccId();
     session.type_ = nim::kNIMSessionTypeP2P;
@@ -239,7 +249,6 @@ void MainWindow::CloseChattingWindowSlot(const QString& id) {
         delete window;
     }
 }
-
 
 
 
