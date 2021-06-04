@@ -6,6 +6,13 @@
 
 ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
         sessionData(data), QWidget(parent) {
+
+    // 默认构造的用户好友关系中，accID为空，设置为非好友关系。用户调用 set 方法后可以获得该属性的值。
+    friendProfile.SetAccId("");
+    friendProfile.SetRelationship(nim::kNIMFriendFlagNotFriend);
+    // 默认设置的用户信息的 accID 为空。用户调用 set 方法后可以获得该属性的值。
+    userNameCard.SetAccId("");
+
     setWindowTitle(QString::fromStdString(data.id_));
     setMinimumSize(790, 900);
     setStyleSheet("background:#ffffff");
@@ -20,10 +27,14 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
     SetLayout();
     messageTextEdit->installEventFilter(this);
 
+    // Qt窗口在Close()指令后调用CloseEven()，最后判断是否关闭
+    // 若关闭，则Hide()窗口，并不是真正的释放内存。若不关闭则不作任何操作
+    setAttribute(Qt::WA_QuitOnClose);       // 实现窗口在Close()后自动释放内存需要设置该属性。
+
 }
 
 ChattingWindow::~ChattingWindow() {
-
+    qDebug() << "[info]: In ~ChattingWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
 }
 
 void ChattingWindow::InitHeader() {
@@ -139,7 +150,73 @@ void ChattingWindow::SetConnect() {
     connect(this, &ChattingWindow::updateMsgListWidgetSignal, this, &ChattingWindow::updateMsgListWidgetSlot);
     connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingWindow::valueChangeSlot);
     connect(this, &ChattingWindow::noMoreMessageSignal, this, &ChattingWindow::noMoreMessageSlot);
+    connect(this, &ChattingWindow::updateChattingWindowSignal, this, &ChattingWindow::updateChattingWindow);
 }
+
+// 更新聊天窗口的头像图标
+void ChattingWindow::updateHeaderPhotoIcon() {
+    if (userNameCard.GetIconUrl().empty()) {
+        userNameCard.SetIconUrl(":/default_header/dh1");
+    }
+    QPixmap map(QString::fromStdString(userNameCard.GetIconUrl()));
+    if (map.isNull()) {
+        // 头像加载失败
+        map.load(":/default_header/dh1");
+    }
+    headerPhotoLabel->setPixmap(PixmapToRound(map.scaled(headerPhotoLabel->size()), headerPhotoLabel->height()/2));
+}
+
+// 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
+void ChattingWindow::updateChattingWindow() {
+    /**
+     * 设置聊天窗口的标题，对好友的备注或者是好友自己创建账号时的昵称
+     * 首先判断是否为好友关系，即获取好友列表里的每一项 FriendProfile，判断是存在该用户，如果有该用户则与其为好友关系；
+     * 是好友关系的话则获取 FriendProfile 的 alias_ 字段获取对好友的备注昵称。
+     * 如果昵称备注为空，则需要获取用户 UserNameCard 的 nickname_ 昵称字段。
+     * 如果用户的昵称字段 nickname_ 也为空，则直接显示用户的 accID。
+     */
+
+    if(userNameCard.GetAccId().empty() || userNameCard.GetAccId() != sessionData.id_) {
+        // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
+        // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
+        // 获取用户信息，然后再更新界面信息。
+        GetUserNameCard(userNameCard.GetAccId());
+        qDebug() << "userNameCard 无效，重新获取 ...";
+        return;
+    }
+
+    // 用户名片信息有效，首先使用该名片信息更新界面数据
+    QString name = QString::fromStdString(userNameCard.GetName());
+    if (name != "") {
+        // 用户昵称不为空
+        accountLabel->setText(name);
+    } else {
+        // 用户昵称为空，则用户名设置为用户的 accID
+        accountLabel->setText(QString::fromStdString(userNameCard.GetAccId()));
+    }
+    // 用户状态设置为用户的签名信息
+    stateLabel->setText(QString::fromStdString(userNameCard.GetSignature()));
+
+    // 不论二者是否为好友关系，聊天窗口的头像是一样的。所以现在即可更新聊天窗口的头像
+    updateHeaderPhotoIcon();
+
+    // 首先判断是否为好友关系。如果是好友关系则聊天窗口标题设置为好友关系里设置的备注
+    if(friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
+        qDebug() << "二者是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+        // 如果是好友关系
+        QString alias = QString::fromStdString(friendProfile.GetAlias());
+        if(alias != "") {
+            // 备注不为空，则直接设置为备注信息
+            accountLabel->setText(alias);
+        }
+    } else {
+        // 非好友关系
+        stateLabel->setText("非好友");     // 状态设置为非好友
+        qDebug() << "二者不是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+    }
+
+}
+
 
 /**
  * 在消息列表头部插入一条消息
@@ -158,7 +235,7 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
     }
 
     // 首先插入聊天消息
-    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_);
+    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_, userNameCard);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
@@ -207,7 +284,7 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     }
 
     // 插入具体的聊天消息
-    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_);
+    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_, userNameCard);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
@@ -289,6 +366,13 @@ void ChattingWindow::mouseReleaseEvent(QMouseEvent *event) {
     }
     QWidget::mouseReleaseEvent(event);
 }
+
+void ChattingWindow::closeEvent(QCloseEvent *event) {
+//    qDebug() << "ChattingWindow : get close event...";
+    emit closeChattingWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
+//    event->ignore();
+    QWidget::closeEvent(event);
+}
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -328,22 +412,24 @@ void ChattingWindow::QueryMsgOnline(int64_t from_time,
 
 void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::string& id,
                                         nim::NIMSessionType to_type, const nim::QueryMsglogResult& result) {
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
-    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
-    qDebug() << "query message size: " << result.msglogs_.size();
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
+    //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
     if (result.msglogs_.empty()){
         hasMoreMessage = false;
         emit noMoreMessageSignal();     // 没有更多的聊天消息了
         return;
     }
-    qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
+//        qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
     for(const auto& msg: result.msglogs_) {
         // 将消息添加进所有的消息列表中。
         // 这里消息的顺序是按时间逆序排列的，也就是说最新的一条消息在数组的第一条，最久远的消息在数组的最后一条
         chattingMsg.append(msg);
-        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
-                << ", content: " << QString::fromStdString(msg.content_);
+        if(msg.sender_accid_ == "hbk5") {
+            qDebug() << "[info]: IMMessage: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
+        }
+        //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
+        //                << ", content: " << QString::fromStdString(msg.content_);
     }
     emit updateMsgListWidgetSignal(result.msglogs_.size());
 }
@@ -461,5 +547,40 @@ void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
     }
     chattingListWidget->setItemWidget(listItem, label);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////根据用户 id 查询用户详细信息 ///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+void ChattingWindow::GetUserNameCard(const std::string & account) {
+    std::list<std::string> account_list;
+    account_list.push_back(account);
+    nim::User::GetUserNameCard(account_list,[this](auto &&PH1) {
+        OnGetUserCard(std::forward<decltype(PH1)>(PH1));
+    });
+}
+
+void ChattingWindow::GetUserNameCardOnLine(const std::string & account) {
+    std::list<std::string> account_list;
+    account_list.push_back(account);
+    nim::User::GetUserNameCardOnline(account_list,[this](auto &&PH1) {
+        OnGetUserCard(std::forward<decltype(PH1)>(PH1));
+    });
+}
+
+void ChattingWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
+    if(json_result.empty()) {
+        // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
+        // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
+        userNameCard.SetAccId(sessionData.id_);
+    } else {
+        userNameCard = json_result.front();
+    }
+    emit updateChattingWindowSignal();      // ChattingWindow::updateChattingWindow
+}
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 

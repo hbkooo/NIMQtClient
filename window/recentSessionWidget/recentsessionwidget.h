@@ -11,7 +11,7 @@
 #include <algorithm>
 
 #include "client.h"
-#include "messageitem.h"
+#include "sessionitem.h"
 #include "chattingWidget/chattingwindow.h"
 
 /**
@@ -25,9 +25,16 @@ class RecentSessionWidget : public QListWidget
 public:
     explicit RecentSessionWidget(QListWidget *parent = nullptr);
 
-    void addOneItem(const nim::SessionData &data);  // 向列表中新增一个item消息
+    /**
+     * 新增一条最近会话 item
+     * @param data 最近会话数据
+     * @param row 插入的行数，如果是-1则插入到最后，否则插入到第 row 行
+     */
+    void AddSessionItem(const nim::SessionData &data, int row= -1);  // 向列表中新增一个item消息
     void removeOneItem(int row);          // 删除列表中第row行的item消息
-    void UpdateItem(const nim::SessionData &sessionData, int total_unread_counts);      //向某个位置添加一个条目
+    void UpdateSessionItem(const nim::SessionData &sessionData);      //向某个位置添加一个条目
+
+    const QList<SessionItem*> & getAllSessionItems() const { return sessionItems; }
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event) override;     //鼠标双击事件
@@ -53,18 +60,18 @@ private:
     // 未读数清零
     void RestUnread(const std::string &id, nim::NIMSessionType type);
 
-//private:
-//    QList<MessageItem*> messageItems;                   // 所有的条目信息
+private:
+    QList<SessionItem*> sessionItems;                   // 所有的条目信息
 
 signals:
     void UpdateSessionListSignal();
-    void AddOneMsg(const nim::SessionData &data);
-    void UpdateMsg(const nim::SessionData &sessionData, int total_unread_counts);
+    // 新增一个会话，调用槽函数为 RecentSessionWidget::AddSessionItem
+    void AddOneSessionSignal(const nim::SessionData &data, int row);
+    // 更新某一个会话,调用槽函数为 RecentSessionWidget::UpdateSessionItem, MainWindow::SessionChangedSlot
+    void UpdateSessionSignal(const nim::SessionData &sessionData);
 
-    // 发送消息之后会有一个消息回调。发送到ChattingWindow::sendMsgCallbackSlot中。其实该信号触发于MainWindow::sendMsgCallbackSlot。
-    void sendMsgCallbackSignal(const nim::SendMessageArc& messageArc);
-    // APP收到一条消息，需要将消息转发给对应的聊天窗口中。发送到ChattingWindow::receiveMsgSlot中。其实该信号触发于MainWindow::receiveMsgSlot中。
-    void receiveMsgSignal(const nim::IMMessage &msg);
+    // 双击某一个会话 item ，需要打开与该好友的聊天界面
+    void OpenChattingWindowSignal(const nim::SessionData &sessionData);
 
 public slots:
 //    void UpdateSessionListSlot();

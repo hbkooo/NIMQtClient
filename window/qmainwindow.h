@@ -9,11 +9,13 @@
 #include <QTabWidget>
 #include <QToolButton>
 #include <QStackedWidget>
+#include <QMap>
 
-#include "messageWidget/message.h"
-#include "messageWidget/messageitem.h"
-#include "messageWidget/recentsessionwidget.h"
+#include "recentSessionWidget/message.h"
+#include "recentSessionWidget/sessionitem.h"
+#include "recentSessionWidget/recentsessionwidget.h"
 #include "friendsWidget/friendlistwidget.h"
+#include "chattingWidget/chattingwindow.h"
 #include "toollabel.h"
 
 #include "client.h"
@@ -23,7 +25,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QString accID_, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 protected:
@@ -65,8 +67,29 @@ private:
     // APP收到一条消息，需要将消息转发给对应的聊天窗口中,RecentSessionWidget::receiveMsgSignal
     void receiveMsgSignal(const nim::IMMessage &msg);
 
+private:
+    /**
+     * 在主界面中管理所有已经打开的聊天窗口。
+     * 因为聊天窗口可能是从最近会话中打开，也可能从联系人中打开
+     * 不过针对每一个联系人会话，只能存在一个聊天窗口。
+     * 所以统一在主界面中管理所有的聊天窗口
+     * 其中 QString 表示联系人的唯一  accID ，ChattingWindow* 表示与该联系人打开的聊天窗口
+     */
+    QMap<QString, ChattingWindow*> chattingWindows;
+
+    QString accID;      // 登录成功的该用户 id
+
 public slots:
     void toolLabelChecked();                    // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
+
+    // 最近会话变动，需要将会话传递给聊天界面中
+    void SessionChangedSlot(const nim::SessionData &sessionData);
+    // 从好友列表中双击某一个好友打开聊天界面
+    void OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard);
+    // 从最近会话中双击某一个会话打开聊天界面
+    void OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData);
+    // 关闭某一个聊天界面
+    void CloseChattingWindowSlot(const QString& id);
 };
 
 #endif // WIDGET_H

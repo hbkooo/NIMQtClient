@@ -5,8 +5,11 @@
 #ifndef NIMQTCLIENT_CLIENT_H
 #define NIMQTCLIENT_CLIENT_H
 
+#include <QObject>
 #include <string>
 #include "nim_cpp_wrapper/nim_cpp_api.h"
+
+extern nim::UserNameCard SELF_USER_NAME_CARD;
 
 const extern std::string app_key;
 
@@ -21,5 +24,6 @@ void Logout();
 
 // 发送文本消息
 void sendTextMessage(const std::string &receiver, const std::string &content);
+
 
 #endif //NIMQTCLIENT_CLIENT_H

@@ -1,11 +1,11 @@
-#include "messageitem.h"
+#include "sessionitem.h"
 
 #include <QBitmap>
 #include <QPainter>
 #include <utility>
 
 
-MessageItem::MessageItem(nim::SessionData data, QWidget *parent)
+SessionItem::SessionItem(nim::SessionData data, QWidget *parent)
     :sessionData(std::move(data)) ,QWidget(parent)
 {
     // 用户头像
@@ -75,7 +75,12 @@ MessageItem::MessageItem(nim::SessionData data, QWidget *parent)
 
 }
 
-void MessageItem::update(const nim::SessionData &data) {
+
+SessionItem::~SessionItem() {
+    qDebug() << "[info]: In ~SessionItem, delete session id is " << QString::fromStdString(sessionData.id_);
+}
+
+void SessionItem::update(const nim::SessionData &data) {
     sessionData = data;
     // 更新用户名
     name_label->setText(QString::fromStdString(sessionData.id_));
@@ -84,6 +89,7 @@ void MessageItem::update(const nim::SessionData &data) {
     // 更新最后一条消息的时间
     date_time_label->setText(FormatTimeInRecentSession(sessionData.msg_timetag_));
 }
+
 
 
 
