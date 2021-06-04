@@ -11,7 +11,7 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
     friendProfile.SetAccId("");
     friendProfile.SetRelationship(nim::kNIMFriendFlagNotFriend);
     // 默认设置的用户信息的 accID 为空。用户调用 set 方法后可以获得该属性的值。
-    userNameCard.SetAccId("");
+    userNameCard.SetAccId(  "");
 
     setWindowTitle(QString::fromStdString(data.id_));
     setMinimumSize(790, 900);
@@ -180,7 +180,7 @@ void ChattingWindow::updateChattingWindow() {
         // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
         // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
         // 获取用户信息，然后再更新界面信息。
-        GetUserNameCard(userNameCard.GetAccId());
+        GetUserNameCard(sessionData.id_);
         qDebug() << "userNameCard 无效，重新获取 ...";
         return;
     }

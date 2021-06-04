@@ -34,7 +34,11 @@ public:
     void removeOneItem(int row);          // 删除列表中第row行的item消息
     void UpdateSessionItem(const nim::SessionData &sessionData);      //向某个位置添加一个条目
 
-    const QList<SessionItem*> & getAllSessionItems() const { return sessionItems; }
+    const QMap<QString, SessionItem*> & getAllSessionItemMap() const { return sessionItemMap; }
+    void setUserNameCardMap(const QMap<QString, nim::UserNameCard> &userNameMap) { userNameCardMap = userNameMap; }
+    void setFriendProfileMap(const QMap<QString, nim::FriendProfile> &friendProMap) { friendProfileMap = friendProMap; }
+
+    void InitSessionList();
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event) override;     //鼠标双击事件
@@ -61,7 +65,10 @@ private:
     void RestUnread(const std::string &id, nim::NIMSessionType type);
 
 private:
-    QList<SessionItem*> sessionItems;                   // 所有的条目信息
+    // 键都是用户的唯一标识符，accID。来判断该用户信息是否已经保存，或者可以立即更新该用户的信息
+    QMap<QString, SessionItem*> sessionItemMap;         // 所有的会话条目
+    QMap<QString, nim::UserNameCard> userNameCardMap;       // 所有的用户的详细信息，可能并不是该用户的好友
+    QMap<QString, nim::FriendProfile> friendProfileMap;     // 该用户的好友关系列表
 
 signals:
     void UpdateSessionListSignal();
@@ -75,6 +82,10 @@ signals:
 
 public slots:
 //    void UpdateSessionListSlot();
+    void InitUserNameCardMapSlot(const QMap<QString, nim::UserNameCard> &userNameMap);
+    void InitFriendProfileMapSlot(const QMap<QString, nim::FriendProfile> &friendProMap);
+    void UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard);
+    void UpdateFriendProfileSlot(const nim::FriendProfile &friendProfile);
 
 };
 
