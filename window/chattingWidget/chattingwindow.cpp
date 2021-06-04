@@ -235,7 +235,15 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
     }
 
     // 首先插入聊天消息
-    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_, userNameCard);
+    // 插入具体的聊天消息
+    ChattingItem *item;
+    if (sessionData.id_ == msg.sender_accid_) {
+        // 会话id与消息的发送者id一致，则说明该条消息是好友发来的。
+        item = new ChattingItem(true, userNameCard);
+    } else {
+        // 否则说明该消息是自己发送给好友的
+        item = new ChattingItem(false, SELF_USER_NAME_CARD);
+    }
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
@@ -284,7 +292,14 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     }
 
     // 插入具体的聊天消息
-    auto *item = new ChattingItem(sessionData.id_ != msg.sender_accid_, userNameCard);
+    ChattingItem *item;
+    if(sessionData.id_ == msg.sender_accid_) {
+        // 会话id与消息的发送者id一致，则说明该条消息是好友发来的。
+        item = new ChattingItem(true, userNameCard);
+    } else {
+        // 否则说明该消息是自己发送给好友的
+        item = new ChattingItem(false, SELF_USER_NAME_CARD);
+    }
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
