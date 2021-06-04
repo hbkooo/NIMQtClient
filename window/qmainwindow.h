@@ -33,11 +33,6 @@ protected:
 
 private:
     void InitControl();
-
-    // 初始化消息列表控件
-    void InitRecentSessionWidget();
-    void InitFriendsWidget();
-
     void SetLayout();
     void SetConnect();
 
@@ -56,7 +51,7 @@ private:
 
     QStackedWidget *mainStackedWidget;          // 主界面的堆栈窗口
     RecentSessionWidget *recentSessionWidget;   // 消息列表控件
-    FriendListWidget *friendListWidget;         // 好友列表
+    FriendListWidget *friendListWidget = nullptr;         // 好友列表
 
     QVBoxLayout *layout;                        // 界面的主布局
 
@@ -90,6 +85,7 @@ public slots:
     void OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData);
     // 关闭某一个聊天界面
     void CloseChattingWindowSlot(const QString& id);
+
 };
 
 #endif // WIDGET_H

@@ -58,6 +58,8 @@ private:
 
     void SetLayout();
     void SetConnect();
+
+    // 更新聊天窗口的头像图标
     void updateHeaderPhotoIcon();
 
     // 更新中间聊天消息

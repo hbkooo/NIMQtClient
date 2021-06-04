@@ -8,8 +8,8 @@ RecentSessionWidget::RecentSessionWidget(QListWidget *parent) : QListWidget(pare
     connect(this, &RecentSessionWidget::AddOneSessionSignal, this, &RecentSessionWidget::AddSessionItem);
     connect(this, &RecentSessionWidget::UpdateSessionSignal, this, &RecentSessionWidget::UpdateSessionItem);
 
-    // 获取当前所有的最近会话列表
-    QueryAllRecentSession();
+//    // 获取当前所有的最近会话列表
+//    QueryAllRecentSession();
     // 监听最近会话状态的变化
     ListenRecentSessionChange();
 
@@ -24,6 +24,11 @@ void RecentSessionWidget::InitControl() {
     this->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);   // 让内容连续地滚动，而不是整行整行的滚动
 }
 
+void RecentSessionWidget::InitSessionList() {
+    // 获取当前所有的最近会话列表
+    QueryAllRecentSession();
+}
+
 void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData) {
     qDebug() << "[info]: session of '" << QString::fromStdString(sessionData.id_) << "' has changed!";
     //<< QString::fromStdString(nim::SessionData::ToJsonString(sessionData));
@@ -35,20 +40,30 @@ void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData)
             if (i == 0) {
                 // 如果已经在第一个了，则直接更新界面信息即可
                 auto *sessionItem = dynamic_cast<SessionItem *>(this->itemWidget(item));
-                sessionItem->update(sessionData);
+                sessionItem->setSessionData(sessionData);
+                sessionItem->updateItem();
                 return;
             }
             // 将item从ListWidget中取出，这时listWidget的数量会少一。
             // 取出item后，与item关联绑定的自定义widget也会调用析构函数，所以下面需要重新新建一个自定义的widget，重新将其与item绑定。
             item = takeItem(i);
 
+            // 重新新建一个item对象
             auto *sessionItem = new SessionItem(sessionData);
+            QString accID = QString::fromStdString(sessionData.id_);
+            if(userNameCardMap.contains(accID)) {
+                sessionItem->setUserNameCard(userNameCardMap[accID]);
+            }
+            if(friendProfileMap.contains(accID)) {
+                sessionItem->setFriendProfile(friendProfileMap[accID]);
+            }
+            sessionItem->updateItem();
+
             this->insertItem(0, item);
             this->setItemWidget(item, sessionItem);
 
-            // 更新保存的所有 sessionItems 列表
-            sessionItems.takeAt(i);
-            sessionItems.insert(0, sessionItem);
+            // 更新保存的所有 sessionItemMap 列表
+            sessionItemMap.insert(QString::fromStdString(sessionData.id_), sessionItem);
             return;
         }
     }
@@ -61,10 +76,19 @@ void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData)
  */
 void RecentSessionWidget::AddSessionItem(const nim::SessionData &data, int row) {
     qDebug() << "[info]: add one session of: " << QString::fromStdString(data.id_);
-    if (data.id_ == "hbk5") {
-        qDebug() << "[info]: SessionData: " << QString::fromStdString(nim::SessionData::ToJsonString(data));
-    }
+    //    if (data.id_ == "hbk5") {
+    //        qDebug() << "[info]: SessionData: " << QString::fromStdString(nim::SessionData::ToJsonString(data));
+    //    }
     auto *sessionItem = new SessionItem(data);
+    QString accID = QString::fromStdString(data.id_);
+    if(userNameCardMap.contains(accID)) {
+        sessionItem->setUserNameCard(userNameCardMap[accID]);
+    }
+    if(friendProfileMap.contains(accID)) {
+        sessionItem->setFriendProfile(friendProfileMap[accID]);
+    }
+    sessionItem->updateItem();
+
     auto *listItem = new QListWidgetItem();
     // 必须设置，设置每一个条目显示的宽、高
     listItem->setSizeHint(QSize(350, sessionItem->size().height()));
@@ -72,14 +96,12 @@ void RecentSessionWidget::AddSessionItem(const nim::SessionData &data, int row) 
     listItem->setData(Qt::UserRole, QString::fromStdString(data.id_));
     if(row == -1 || row >= count()) {
         this->addItem(listItem);
-        sessionItems.append(sessionItem);
     } else {
         this->insertItem(row, listItem);
-        sessionItems.insert(row, sessionItem);
     }
+    sessionItemMap.insert(QString::fromStdString(data.id_), sessionItem);
+
     this->setItemWidget(listItem, sessionItem);
-//    auto *w = new QWidget(nullptr);
-//    w->setAttribute(Qt::WA_DeleteOnClose);
 
 }
 
@@ -96,9 +118,10 @@ void RecentSessionWidget::removeOneItem(int row) {
 //        qDebug() << "get messageItem ..., rest count is " << this->count();
         if (msgItem != nullptr)
             delete msgItem;
+        sessionItemMap.remove(item->data(Qt::UserRole).toString());
     }
     delete item;
-    sessionItems.takeAt(row);
+
 }
 
 //鼠标双击事件
@@ -152,13 +175,12 @@ void RecentSessionWidget::OnRecentSessionChangeCallback(nim::NIMResCode resCode,
                                                         const nim::SessionData &sessionData, int total_unread_counts) {
     if (resCode == nim::kNIMResSuccess) {
         // 最近会话更新变动，有可能是之前的会话聊天信息变动，也有可能是有了新的好友聊天，产生了新的会话
-        for(auto *session: sessionItems) {
-            if (session->getSessionData().id_ == sessionData.id_) {
-                emit UpdateSessionSignal(sessionData);       // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangedSlot
-                return;
-            }
+        if(sessionItemMap.contains(QString::fromStdString(sessionData.id_))) {
+            // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangedSlot
+            emit UpdateSessionSignal(sessionData);
+        } else {
+            emit AddOneSessionSignal(sessionData, 0);       // RecentSessionWidget::AddSessionItem
         }
-        emit AddOneSessionSignal(sessionData, 0);       // RecentSessionWidget::AddSessionItem
     }
 }
 
@@ -183,10 +205,56 @@ void RecentSessionWidget::OnDeleteRecentSessionCallback(nim::NIMResCode code, co
     qDebug() << "\ndelete session: " << QString::fromStdString(nim::SessionData::ToJsonString(result));
 }
 
+// 未读数清零
 void RecentSessionWidget::RestUnread(const std::string &id, nim::NIMSessionType type) {
     nim::Session::SetUnreadCountZeroAsync(type, id, nim::Session::SetUnreadCountZeroCallback());
     nim::MsgLog::BatchStatusReadAsync(id, type, nim::MsgLog::BatchStatusReadCallback());
 }
+
+void RecentSessionWidget::InitUserNameCardMapSlot(const QMap<QString, nim::UserNameCard> &userNameMap) {
+    qDebug() << "[info]: receive All user name card in " << __FUNCTION__ ;
+    userNameCardMap = userNameMap;
+}
+
+void RecentSessionWidget::InitFriendProfileMapSlot(const QMap<QString, nim::FriendProfile> &friendProMap) {
+    qDebug() << "[info]: receive All friend profile in " << __FUNCTION__ ;
+    friendProfileMap = friendProMap;
+}
+
+void RecentSessionWidget::UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard) {
+    qDebug() << "[info]: receive update user name card in " << __FUNCTION__ ;
+    QString accID = QString::fromStdString(userNameCard.GetAccId());
+    userNameCardMap.insert(accID, userNameCard);
+    if(sessionItemMap.contains(accID)) {
+        // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
+        auto *session = sessionItemMap[accID];
+        session->setUserNameCard(userNameCard);
+        if(friendProfileMap.contains(accID)) {
+            session->setFriendProfile(friendProfileMap[accID]);
+        }
+        session->updateItem();
+    }
+}
+
+void RecentSessionWidget::UpdateFriendProfileSlot(const nim::FriendProfile &friendProfile) {
+    qDebug() << "[info]: receive update friend profile in " << __FUNCTION__ ;
+    // TODO
+    QString accID = QString::fromStdString(friendProfile.GetAccId());
+    friendProfileMap.insert(accID, friendProfile);
+    if(sessionItemMap.contains(accID)) {
+        // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
+        auto *session = sessionItemMap[accID];
+        session->setFriendProfile(friendProfile);
+        if(userNameCardMap.contains(accID)) {
+            session->setUserNameCard(userNameCardMap[accID]);
+        }
+        session->updateItem();
+    }
+}
+
+
+
+
 
 
 

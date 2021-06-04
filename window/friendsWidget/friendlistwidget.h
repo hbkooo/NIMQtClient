@@ -21,6 +21,8 @@ public:
     explicit FriendListWidget(QListWidget *parent = nullptr);
     ~FriendListWidget() override;
 
+    void InitFriendList();
+
     const QMap<QString, nim::UserNameCard>& getUserNameCardMap() const { return userNameCardMap; }
     const QMap<QString, nim::FriendProfile>& getFriendProfileMap() const { return friendProfileMap; }
 
@@ -36,7 +38,8 @@ private:
     //////////////////////////// 好友列表操作 ///////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     // 获取好友列表
-    void InitFriendList();
+    void GetFriendList();
+
     // 获取好友列表回调
     void OnGetFriendList(nim::NIMResCode res_code, const std::list<nim::FriendProfile>& user_profile_list);
 
@@ -79,13 +82,22 @@ private:
 public:
     signals:
     void AddOneFriendSignal(const nim::UserNameCard &userNameCard);         // 新增一个好友条目信号
-    void UpdateFriendSignal(const nim::UserNameCard &userNameCard);         // 更新好友条目的信息信号
 
     void OpenChattingWindowSignal(const nim::UserNameCard &userNameCard);         // 双击某一个好友 item ，需要打开与该好友的聊天界面
 
+    // 初始化加载完毕用户名片和好友列表后发送信号
+    void InitUserNameCardMapSignal(const QMap<QString, nim::UserNameCard> &userNameMap);
+    void InitFriendProfileMapSignal(const QMap<QString, nim::FriendProfile> &friendProMap);
+    // 用户名片发生变化或者好友关系发生变化后发送信号
+    // FriendListWidget::UpdateUserNameCardSlot、RecentSessionWidget::UpdateUserNameCardSlot
+    void UpdateUserNameCardSignal(const nim::UserNameCard &userNameCard);
+    // FriendListWidget::UpdateFriendProfileSlot、RecentSessionWidget::UpdateFriendProfileSlot、
+    void UpdateFriendProfileSignal(const nim::FriendProfile &friendProfile);
+
 public slots:
-    void AddOneFriendSlot(const nim::UserNameCard &userNameCard);       // 新增一个好友条目槽函数
-    void UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard);       // 更新好友条目的槽函数
+    void AddOneFriendSlot(const nim::UserNameCard &userNameCard);               // 新增一个好友条目槽函数
+    void UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard);         // 更新用户信息的槽函数
+    void UpdateFriendProfileSlot(const nim::FriendProfile &friendProfile);      // 更新好友条目的槽函数
 };
 
 
