@@ -20,7 +20,7 @@ class ChattingItem : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ChattingItem(bool isRight_, const nim::UserNameCard &nameCard, QWidget *parent = nullptr);
+    explicit ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, QWidget *parent = nullptr);
 
     ~ChattingItem() override;
 
