@@ -9,16 +9,11 @@
 修改使用MSVC编译的Qt资源包路径[CMAKE_PREFIX_PATH](CMakeLists.txt#L5)
 
 ## 编译运行
-`
+```bash
 mkdir build
-
 cd build
-
 cmake ..
-
 cmake --build . --target NIMQtClient
-
 copy ..\\nim_sdk\\bin\\* Debug
-
 Debug\\NIMQtClient.exe
-`
+```
