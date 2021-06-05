@@ -54,7 +54,8 @@ file(GLOB WINDOW_SOURCE_FILES
         window/userinfo/*.cpp
         window/recentSessionWidget/*.cpp
         window/friendsWidget/*.cpp
-        window/chattingWidget/*.cpp)
+        window/chattingWidget/*.cpp
+        window/addFriend/*.cpp)
 file(GLOB WINDOW_HEADER_FILES
         window/*.h
         window/util/*.h
@@ -62,7 +63,8 @@ file(GLOB WINDOW_HEADER_FILES
         window/userinfo/*.h
         window/recentSessionWidget/*.h
         window/friendsWidget/*.h
-        window/chattingWidget/*.h)
+        window/chattingWidget/*.h
+        window/addFriend/*.h)
 
 message(${WINDOW_SOURCE_FILES})
 
