@@ -4,6 +4,10 @@
 
 #include "chattingwindow.h"
 
+QString ChattingWindow::NO_MORE_MSG_TAG = "noMoreInfo";
+QString ChattingWindow::TIME_INFO_TAG = "timeInfo";
+QString ChattingWindow::NORMAL_MSG_TAG = "normalMsg";
+
 ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
         sessionData(data), QWidget(parent) {
 
@@ -246,12 +250,14 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
     }
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
     chattingListWidget->insertItem(0, listItem);
     chattingListWidget->setItemWidget(listItem, item);
 //    chattingListWidget->scrollToItem(listItem);
 
     if (extIndex != -1) {
+        // chattingMsg 是按时间倒序排序的消息列表
         if(chattingMsg.size() == extIndex+1) {
             // 最后一条消息，则一定添加时间提示
             AddPromptTimeInfo(msg.timetag_, false);
@@ -284,9 +290,15 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
         AddPromptTimeInfo(msg.timetag_);
     } else {
         auto *lastItem = chattingListWidget->item(chattingListWidget->count()-1);
-        auto *lastChattingItem = dynamic_cast<ChattingItem*>(chattingListWidget->itemWidget(lastItem));
-        if(IsInsertTimePromptInfo(msg.timetag_, lastChattingItem->getIMMessage().timetag_)) {
-            // 此消息与上一条记录消息相差5分钟之多，需要插入此消息的时间提示
+        if (lastItem->data(Qt::UserRole).toString() == NORMAL_MSG_TAG) {
+            // 如果上一条消息是正常的收发消息，则可以将 itemWidget 转化为 ChattingItem 控件
+            auto *lastChattingItem = dynamic_cast<ChattingItem*>(chattingListWidget->itemWidget(lastItem));
+            if(IsInsertTimePromptInfo(msg.timetag_, lastChattingItem->getIMMessage().timetag_)) {
+                // 此消息与上一条记录消息相差5分钟之多，需要插入此消息的时间提示
+                AddPromptTimeInfo(msg.timetag_);
+            }
+        } else if(lastItem->data(Qt::UserRole).toString() == NO_MORE_MSG_TAG) {
+            // 上一条消息是一个 “没有更多聊天记录” 的提示信息，说明这是发送的第一条消息，所以首先需要插入聊天时间
             AddPromptTimeInfo(msg.timetag_);
         }
     }
@@ -302,6 +314,7 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     }
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
     chattingListWidget->addItem(listItem);
     chattingListWidget->setItemWidget(listItem, item);
@@ -432,7 +445,7 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
     if (result.msglogs_.empty()){
         hasMoreMessage = false;
-        emit noMoreMessageSignal();     // 没有更多的聊天消息了
+        emit noMoreMessageSignal();     // 没有更多的聊天消息了,ChattingWindow::noMoreMessageSlot
         return;
     }
 //        qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
@@ -535,6 +548,7 @@ void ChattingWindow::noMoreMessageSlot() {
     label->setStyleSheet("font-size:14px;"
                          "color:#898989;");
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NO_MORE_MSG_TAG);
     listItem->setSizeHint(QSize(0, label->sizeHint().height()));
     chattingListWidget->insertItem(0, listItem);
     chattingListWidget->setItemWidget(listItem, label);
@@ -553,7 +567,7 @@ void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
     label->setStyleSheet("font-size:14px;"
                          "color:#898989;");
     auto *listItem = new QListWidgetItem();
-    listItem->setData(Qt::UserRole, "timeInfo");        // 添加一个标记，区分是消息还是提示时间
+    listItem->setData(Qt::UserRole, TIME_INFO_TAG);        // 添加一个标记，区分是消息还是提示时间
     listItem->setSizeHint(QSize(0, label->sizeHint().height()));
     if(end) {
         chattingListWidget->addItem(listItem);

@@ -36,6 +36,7 @@
         <file alias="up_focus">res/img/up_focus.png</file>
         <file alias="down_normal">res/img/down_normal.png</file>
         <file alias="down_focus">res/img/down_focus.png</file>
+        <file alias="add_friend">res/img/add_friend.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="listWidget">res/css/listWidget.css</file>

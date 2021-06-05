@@ -18,7 +18,7 @@ SessionItem::SessionItem(nim::SessionData data, QWidget *parent)
     SetLayout();
     SetConnect();
 
-    this->setFixedHeight(68);               // 头像高40 + 上边界10 + 下边界10
+    this->setFixedHeight(68);               // 头像高48 + 上边界10 + 下边界10
     this->setStyleSheet("background:transparent;"); //只有设置了透明背景之后在hover的时候背景才可以看到，不然该item中的控件背景还是白色的
 
 }

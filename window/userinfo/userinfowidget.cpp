@@ -208,7 +208,7 @@ void UserInfoWidget::InitControl() {
                                        "QComboBox:focus {"
                                        "border-color:#238efa;}");
 
-        // 修改按钮
+        // 取消按钮
         cancelButton = new QPushButton("取消");
         connect(cancelButton, &QPushButton::clicked, this, [this](){
             changeSaveButton->setText("修改");

@@ -46,9 +46,15 @@ MainWindow::~MainWindow()
             delete chattingWindow;
         }
     }
+    // 释放修改个人信息窗口资源
     if(userInfoWidget != nullptr) {
         delete userInfoWidget;
         userInfoWidget = nullptr;
+    }
+    // 释放添加好友窗口资源
+    if(addFriendWidget != nullptr) {
+        delete addFriendWidget;
+        addFriendWidget = nullptr;
     }
 }
 
@@ -73,6 +79,7 @@ void MainWindow::InitControl() {
 
     headerPhotoLabel = new ClickableLabel("头像");
     headerPhotoLabel->setFixedSize(68, 68);
+    headerPhotoLabel->setToolTip("查看、修改个人信息");
     // 鼠标移上去变手型
     headerPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -126,6 +133,17 @@ void MainWindow::InitControl() {
     }
     toolLabels[1]->setChecked();
 
+    // 添加好友
+    addFriendLabel = new ClickableLabel("添加好友");
+    addFriendLabel->setContentsMargins(8, 16, 8, 16);
+    addFriendLabel->setFixedSize(46, 62);
+    addFriendLabel->setToolTip("添加好友");
+    QPixmap pixmap(":/res/add_friend");
+    addFriendLabel->setPixmap(pixmap.scaled(30, 30));
+    addFriendLabel->setStyleSheet("QLabel:hover {"
+                                  "background:rgb(213,203,208);"
+                                  "}");
+
 }
 
 void MainWindow::SetLayout() {
@@ -136,6 +154,11 @@ void MainWindow::SetLayout() {
         toolLabelLayout->addWidget(toolLabel);
     }
 
+    auto *bottomToolLayout = new QHBoxLayout();
+    bottomToolLayout->setContentsMargins(8, 0, 8, 0);
+    bottomToolLayout->addWidget(addFriendLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addStretch();
+
     layout = new QVBoxLayout();
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -145,6 +168,8 @@ void MainWindow::SetLayout() {
     layout->addLayout(toolLabelLayout);
     layout->addWidget(MakeSplitWidget("#d0c9cc", 1));
     layout->addWidget(mainStackedWidget);
+    layout->addWidget(MakeSplitWidget("#d0c9cc", 1));
+    layout->addLayout(bottomToolLayout);
     setLayout(layout);
 }
 
@@ -152,6 +177,9 @@ void MainWindow::SetConnect() {
 
     // 点击头像，打开修改个人信息界面
     connect(headerPhotoLabel, &ClickableLabel::clicked, this, &MainWindow::ClickHeaderPhotoSlot);
+
+    // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
+    connect(addFriendLabel, &ClickableLabel::clicked, this, &MainWindow::ClickAddFriendLabelSlot);
 
     // 连接最近会话变化时的信号传递到本类中，以将最新的会话数据传递给打开的聊天界面
     connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal,
@@ -245,8 +273,20 @@ void MainWindow::ClickHeaderPhotoSlot() {
         connect(userInfoWidget, &UserInfoWidget::ChangeUserCardSuccessSignal, this, &MainWindow::updateMyHeader);
     }
     userInfoWidget->ShowNormal();
+    userInfoWidget->raise();
 }
 
+// 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
+void MainWindow::ClickAddFriendLabelSlot() {
+    // qDebug() << "打开添加好友控件 ...";
+    if(addFriendWidget == nullptr) {
+        addFriendWidget = new AddFriendWidget();
+    }
+    addFriendWidget->showNormal();
+    addFriendWidget->raise();
+}
+
+// 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
 void MainWindow::toolLabelChecked() {
     auto *label = (ToolLabel*) sender();
             foreach(ToolLabel* toolLabel, toolLabels) {
@@ -368,5 +408,6 @@ void MainWindow::CloseChattingWindowSlot(const QString& id) {
         delete window;
     }
 }
+
 
 
