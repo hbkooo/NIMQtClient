@@ -19,7 +19,7 @@ Debug\\NIMQtClient.exe
 ```
 
 ## 测试登录用户
-username: hbk
+目前注册功能暂未完善，提供以下测试用户
 |username|hbk |hbk1|hbk2|hbk3|hbk4|hbk5|
 |-------:|:--:|:--:| --:| --:| --:|---:|
 |password|123456 |123456|123456|123456| 123456|123456|
