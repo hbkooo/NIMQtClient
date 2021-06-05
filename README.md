@@ -17,3 +17,9 @@ cmake --build . --target NIMQtClient
 copy ..\\nim_sdk\\bin\\* Debug
 Debug\\NIMQtClient.exe
 ```
+
+## 测试登录用户
+username: hbk
+|username|hbk |hbk1|hbk2|hbk3|hbk4|hbk5|
+|-------:|:--:|:--:| --:| --:| --:|---:|
+|password|123456 |123456|123456|123456| 123456|123456|
