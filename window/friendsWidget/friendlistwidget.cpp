@@ -123,6 +123,7 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
                 qDebug() << "解析 添加好友 成功: "
                         << "add accID: " << QString::fromStdString(addEvent.accid_);
                 nim::FriendProfile profile(addEvent.accid_);
+                profile.SetRelationship(nim::kNIMFriendFlagNormal);
                 friendProfileMap.insert(QString::fromStdString(profile.GetAccId()), profile);
                 // 获取用户好友名片并添加到好友列表中。需要在线获取好友信息
                 // 这个是查询服务器同步好友数据，用在好友关系监听中，当有好友添加、或者好友列表同步与更新时调用这个获取在线好友信息
