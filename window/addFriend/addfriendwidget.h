@@ -18,6 +18,8 @@
 
 #include "client.h"
 
+// TODO 处理已经是好友关系的好友又重新添加好友
+
 class AddFriendWidget : public QWidget {
 Q_OBJECT
 
