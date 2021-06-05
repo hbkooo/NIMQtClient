@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_cpp_wrapper_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_audio_cpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_http_cpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_cpp_wrapper_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_cpp_wrapper_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_cpp_wrapper_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_audio_cpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\nim_sdk\wrapper\nim_tools_cpp_wrapper\nim_tools_http_cpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\programming\Clion\projects\NIMQtClient\nim_sdk\wrapper\nim_tools_cpp_wrapper\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{972ED62C-1074-36F6-BF27-D15F947FA293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EC547EE2-BC9A-3C81-A3D2-4E3AF8BCF29D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

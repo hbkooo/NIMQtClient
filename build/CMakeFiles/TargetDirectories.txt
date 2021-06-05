@@ -1,0 +1,17 @@
+D:/programming/Clion/projects/NIMQtClient/build/CMakeFiles/NIMQtClient.dir
+D:/programming/Clion/projects/NIMQtClient/build/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/CMakeFiles/ALL_BUILD.dir
+D:/programming/Clion/projects/NIMQtClient/build/CMakeFiles/ZERO_CHECK.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/CMakeFiles/ALL_BUILD.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_wrapper_util/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_wrapper_util/CMakeFiles/nim_wrapper_util.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_wrapper_util/CMakeFiles/ALL_BUILD.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_cpp_wrapper/CMakeFiles/nim_cpp_wrapper.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_cpp_wrapper/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_chatroom_cpp_wrapper/CMakeFiles/nim_chatroom_cpp_wrapper.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_chatroom_cpp_wrapper/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_chatroom_cpp_wrapper/CMakeFiles/ALL_BUILD.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_tools_cpp_wrapper/CMakeFiles/nim_tools_cpp_wrapper.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_tools_cpp_wrapper/CMakeFiles/INSTALL.dir
+D:/programming/Clion/projects/NIMQtClient/build/nim_sdk/wrapper/nim_tools_cpp_wrapper/CMakeFiles/ALL_BUILD.dir

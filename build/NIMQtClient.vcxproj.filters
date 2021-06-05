@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\NIMQtClient_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\src\client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\src\init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\src\login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\src\message_send_receive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\frienditem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\friendlistwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\login\loginwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\login\registerwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\qmainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\recentsessionwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\sessionitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\userinfo\userinfowidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\util\clickablelabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\util\toollabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\window\util\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\NIMQtClient_autogen\EWIEGA46WW\qrc_Qrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\NIMQtClient_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\NIMQtClient_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\programming\Clion\projects\NIMQtClient\build\NIMQtClient_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\src\client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\chattingWidget\chattingwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\frienditem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\friendsWidget\friendlistwidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\login\loginwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\login\registerwidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\qmainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\recentsessionwidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\recentSessionWidget\sessionitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\userinfo\userinfowidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\util\clickablelabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\util\toollabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\programming\Clion\projects\NIMQtClient\window\util\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\programming\Clion\projects\NIMQtClient\build\CMakeFiles\2f32d8c051d30167cccc62746bd3a3f7\qrc_Qrc.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\programming\Clion\projects\NIMQtClient\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\programming\Clion\projects\NIMQtClient\Qrc.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2E442D87-8244-39B6-92AE-158FEFC093BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{972ED62C-1074-36F6-BF27-D15F947FA293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EC547EE2-BC9A-3C81-A3D2-4E3AF8BCF29D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
