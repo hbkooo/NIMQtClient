@@ -11,9 +11,14 @@
 ## 编译运行
 `
 mkdir build
+
 cd build
+
 cmake ..
+
 cmake --build . --target NIMQtClient
+
 copy ..\\nim_sdk\\bin\\* Debug
+
 Debug\\NIMQtClient.exe
 `
