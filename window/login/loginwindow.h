@@ -88,6 +88,8 @@ private:
     void LoginSuccessSignal();
     void LoginFailedSignal(QString errorInfo);
 
+    void GetLoginUserNameCardSuccessSignal();
+
 public slots:
     bool eventFilter(QObject *obj, QEvent *ev) override;     // 注册监听器
     void OnLoginClicked();

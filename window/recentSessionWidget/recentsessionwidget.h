@@ -74,7 +74,7 @@ signals:
     void UpdateSessionListSignal();
     // 新增一个会话，调用槽函数为 RecentSessionWidget::AddSessionItem
     void AddOneSessionSignal(const nim::SessionData &data, int row);
-    // 更新某一个会话,调用槽函数为 RecentSessionWidget::UpdateSessionItem, MainWindow::SessionChangedSlot
+    // 更新某一个会话,调用槽函数为 RecentSessionWidget::UpdateSessionItem, MainWindow::SessionChangToChattingWindowSlot
     void UpdateSessionSignal(const nim::SessionData &sessionData);
 
     // 双击某一个会话 item ，需要打开与该好友的聊天界面

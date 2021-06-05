@@ -91,3 +91,16 @@ QString FormatTimeInRecentSession(int64_t msg_time_tag)
     // 不是上面的几种情况，则返回月份和日期
     return time.date().toString("MM-dd");
 }
+
+/**
+ * 创建一个空白的控件，当做分割线
+ * @param backgroundColor 该分割线控件的颜色
+ * @param width 该分割线控件的厚度
+ * @return
+ */
+QWidget* MakeSplitWidget(const QString& backgroundColor, int width) {
+    auto *splitWidget = new QWidget();
+    splitWidget->setStyleSheet("background:" + backgroundColor);
+    splitWidget->setFixedHeight(width);
+    return splitWidget;
+}

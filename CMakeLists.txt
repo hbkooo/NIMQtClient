@@ -51,6 +51,7 @@ file(GLOB WINDOW_SOURCE_FILES
         window/*.cpp
         window/util/*.cpp
         window/login/*.cpp
+        window/userinfo/*.cpp
         window/recentSessionWidget/*.cpp
         window/friendsWidget/*.cpp
         window/chattingWidget/*.cpp)
@@ -58,6 +59,7 @@ file(GLOB WINDOW_HEADER_FILES
         window/*.h
         window/util/*.h
         window/login/*.h
+        window/userinfo/*.h
         window/recentSessionWidget/*.h
         window/friendsWidget/*.h
         window/chattingWidget/*.h)

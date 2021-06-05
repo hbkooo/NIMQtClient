@@ -156,13 +156,16 @@ void LoginWindow::InitControl() {
     loginBtn = new QPushButton("登 录");
     loginBtn->setFixedSize(300,50);
     loginBtn->setStyleSheet("QPushButton { font-size:20px;"
+                            "font-weight: bold;"
                             "color:white;"
                             "border: none;"
-                            "background-color:#238efa;}"
-                            "QPushButton:hover {"
+                            "border-radius: 6px;"
                             "background-color:#4ca6ff;}"
+                            "QPushButton:hover {"
+                            "background-color:#238efa;}"
                             "QPushButton:pressed {"
-                            "background-color:#1f7ddb;}"
+                            "background-color:#1f7ddb;"
+                            "border: 2px solid #80BDFF;}"
                             "QPushButton:focus{outline: none;}" // 获取焦点时不显示虚线框
                             );
 
@@ -298,6 +301,7 @@ void LoginWindow::LoginSuccessSlot() {
     if (mainWindow == nullptr) {
         mainWindow = new MainWindow(usernameLE->text());
         connect(mainWindow, &MainWindow::LogoutSignal, this, &LoginWindow::OnLogoutSlot);
+        connect(this, &LoginWindow::GetLoginUserNameCardSuccessSignal, mainWindow, &MainWindow::updateMyHeader);
     }
     SELF_USER_NAME_CARD.SetAccId(usernameLE->text().toStdString());
     GetUserNameCard(usernameLE->text().toStdString());
@@ -371,12 +375,16 @@ void LoginWindow::GetUserNameCardOnLine(const std::string & account) {
 }
 
 void LoginWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
+    qDebug() << "获取登录用户信息数量为：" << json_result.size();
     if(json_result.empty()) {
         // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
         // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
         qDebug() << "[error]: 获取用户 '" << usernameLE->text() << "' 信息失败 ...";
     } else {
+        qDebug() << "[info]: 登录成功的用户信息为：" << QString::fromStdString(json_result.front().ToJsonString());
         SELF_USER_NAME_CARD = json_result.front();
+        // 获取用户信息成功，修改主界面的显示信息。MainWindow::updateMyHeader
+        emit GetLoginUserNameCardSuccessSignal();
         qDebug() << "[info]: 登录成功的用户信息为：" << QString::fromStdString(SELF_USER_NAME_CARD.ToJsonString());
     }
 }

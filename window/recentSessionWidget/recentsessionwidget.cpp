@@ -176,7 +176,7 @@ void RecentSessionWidget::OnRecentSessionChangeCallback(nim::NIMResCode resCode,
     if (resCode == nim::kNIMResSuccess) {
         // 最近会话更新变动，有可能是之前的会话聊天信息变动，也有可能是有了新的好友聊天，产生了新的会话
         if(sessionItemMap.contains(QString::fromStdString(sessionData.id_))) {
-            // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangedSlot
+            // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangToChattingWindowSlot
             emit UpdateSessionSignal(sessionData);
         } else {
             emit AddOneSessionSignal(sessionData, 0);       // RecentSessionWidget::AddSessionItem

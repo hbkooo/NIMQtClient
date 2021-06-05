@@ -29,6 +29,13 @@
         <file alias="nick_error">res/img/nick_error.png</file>
         <file alias="cb_checked">res/img/checkbox_checked.png</file>
         <file alias="cb_unchecked">res/img/checkbox_unchecked.png</file>
+        <file alias="boy">res/img/boy.png</file>
+        <file alias="girl">res/img/girl.png</file>
+        <file alias="drop_down">res/img/drop_down.png</file>
+        <file alias="up_normal">res/img/up_normal.png</file>
+        <file alias="up_focus">res/img/up_focus.png</file>
+        <file alias="down_normal">res/img/down_normal.png</file>
+        <file alias="down_focus">res/img/down_focus.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="listWidget">res/css/listWidget.css</file>

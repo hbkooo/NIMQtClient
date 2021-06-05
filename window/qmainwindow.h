@@ -16,7 +16,9 @@
 #include "recentSessionWidget/recentsessionwidget.h"
 #include "friendsWidget/friendlistwidget.h"
 #include "chattingWidget/chattingwindow.h"
-#include "toollabel.h"
+#include "util/toollabel.h"
+#include "util/clickablelabel.h"
+#include "userinfo/userinfowidget.h"
 
 #include "client.h"
 
@@ -28,6 +30,8 @@ public:
     explicit MainWindow(QString accID_, QWidget *parent = nullptr);
     ~MainWindow() override;
 
+    void updateMyHeader();      // 更新主界面的用户头信息
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 
@@ -35,6 +39,9 @@ private:
     void InitControl();
     void SetLayout();
     void SetConnect();
+
+    // 更新用户的头像
+    void updateHeaderPhotoIcon();
 
 private:
     // 登录成功后注册全局回调，此回调主要是判断聊天时消息是否发送成功
@@ -46,21 +53,18 @@ private:
 
 private:
 
-    QHBoxLayout *toolLabelLayout;               // 不同按钮选项卡的按钮的布局
+    ClickableLabel *headerPhotoLabel;           // 用户头像
+    QLabel *nameLabel;                          // 用户昵称或 accID，如果昵称为空，则显示 accID
+    QLabel *signatureLabel;                     // 用户签名
+    QWidget *headerWidget;                      // 用户头信息的综合控件
+
     QList<ToolLabel*> toolLabels;               // 选项卡中的按钮控件列表
 
     QStackedWidget *mainStackedWidget;          // 主界面的堆栈窗口
     RecentSessionWidget *recentSessionWidget;   // 消息列表控件
-    FriendListWidget *friendListWidget = nullptr;         // 好友列表
+    FriendListWidget *friendListWidget;         // 好友列表
 
     QVBoxLayout *layout;                        // 界面的主布局
-
-    signals:
-    void LogoutSignal();                        // 退出登录信号，发送到LoginWindow::OnLogoutSlot槽函数
-    // 发送消息之后会有一个消息回调,RecentSessionWidget::sendMsgCallbackSignal
-    void sendMsgCallbackSignal(const nim::SendMessageArc& messageArc);
-    // APP收到一条消息，需要将消息转发给对应的聊天窗口中,RecentSessionWidget::receiveMsgSignal
-    void receiveMsgSignal(const nim::IMMessage &msg);
 
 private:
     /**
@@ -74,11 +78,27 @@ private:
 
     QString accID;      // 登录成功的该用户 id
 
+    UserInfoWidget *userInfoWidget = nullptr;       // 显示、修改用户信息窗口
+
+signals:
+    void LogoutSignal();                        // 退出登录信号，发送到LoginWindow::OnLogoutSlot槽函数
+    // 发送消息之后会有一个消息回调,RecentSessionWidget::sendMsgCallbackSignal
+    void sendMsgCallbackSignal(const nim::SendMessageArc& messageArc);
+    // APP收到一条消息，需要将消息转发给对应的聊天窗口中,RecentSessionWidget::receiveMsgSignal
+    void receiveMsgSignal(const nim::IMMessage &msg);
+
 public slots:
+
+    // 点击用户头像槽函数。主要实现打开用户详细信息界面，然后用户可以修改
+    void ClickHeaderPhotoSlot();
+
     void toolLabelChecked();                    // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
 
-    // 最近会话变动，需要将会话传递给聊天界面中
-    void SessionChangedSlot(const nim::SessionData &sessionData);
+    // 如果《好友名片》或者《好友关系》或者《最近会话》发生变化，需要将好友数据传递给已经打开的聊天界面中
+    void UserCardChangeToChattingWindowSlot(const nim::UserNameCard &nameCard);
+    void FriendProfileChangeToChattingWindowSlot(const nim::FriendProfile &friendProfile);
+    void SessionChangToChattingWindowSlot(const nim::SessionData &sessionData);
+
     // 从好友列表中双击某一个好友打开聊天界面
     void OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard);
     // 从最近会话中双击某一个会话打开聊天界面

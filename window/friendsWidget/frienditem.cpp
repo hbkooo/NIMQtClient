@@ -56,7 +56,7 @@ void FriendItem::InitControl() {
 
 void FriendItem::SetLayout() {
 
-    // 一个竖直布局包括上面的用户名时间布局和下面的最后一条消息控件
+    // 一个竖直布局包括上面的用户名和下面的签名
     auto *vLayout = new QVBoxLayout();
     vLayout->setSpacing(0);
     vLayout->setMargin(0);

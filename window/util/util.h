@@ -4,7 +4,8 @@
 
 #ifndef NIMQTCLIENT_UTIL_H
 #define NIMQTCLIENT_UTIL_H
-#include "QPixmap"
+#include <QPixmap>
+#include <QWidget>
 
 /**
  * 生成圆形的图片头像
@@ -35,5 +36,13 @@ QString FormatTimeInfoInChattingWindow(int64_t msg_time_tag);
  * @return 返回格式化后的时间字符串
  */
 QString FormatTimeInRecentSession(int64_t msg_time_tag);
+
+/**
+ * 创建一个空白的控件，当做分割线
+ * @param backgroundColor 该分割线控件的颜色
+ * @param width 该分割线控件的厚度
+ * @return
+ */
+QWidget* MakeSplitWidget(const QString& backgroundColor, int width);
 
 #endif //NIMQTCLIENT_UTIL_H

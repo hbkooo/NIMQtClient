@@ -13,6 +13,7 @@ FriendListWidget::FriendListWidget(QListWidget *parent) :
     InitControl();
     SetConnect();
     ListenFriendListChange();       // 监听好友列表变化
+    ListenUserNameCardChanged();    // 监听用户信息变化
 }
 
 FriendListWidget::~FriendListWidget() {
@@ -159,11 +160,6 @@ void FriendListWidget::OnGetUserCard(const std::list<nim::UserNameCard> &json_re
     // 如果查找的用户 accID 不存在，则还会有回调在这里，只不过不存在查询的这条用户 accID 的数据。
     qDebug() << "获取用户详细信息：" << json_result.size() << " 个";
     for (auto &info: json_result) {
-        //        qDebug() << QString::fromStdString(info.ToJsonString())
-        //                << ", icon: " << QString::fromStdString(info.GetIconUrl());
-        //        if (info.GetAccId() == "hbk5") {
-        //            qDebug() << "[info]: hbk5's UserNameCard: " << QString::fromStdString(info.ToJsonString());
-        //        }
         userNameCardMap.insert(QString::fromStdString(info.GetAccId()), info);      // 插入一条用户信息数据
         if(!friendItemsMap.contains(QString::fromStdString(info.GetAccId()))
             && friendProfileMap.contains(QString::fromStdString(info.GetAccId()))) {
@@ -171,7 +167,9 @@ void FriendListWidget::OnGetUserCard(const std::list<nim::UserNameCard> &json_re
             // 则说明该用户是好友，则向好友列表中新增一个好友条目
             emit AddOneFriendSignal(info);      // 向好友列表中新增一个好友条目, FriendListWidget::AddOneFriendSlot
         }
-        emit UpdateUserNameCardSignal(info);    // RecentSessionWidget::UpdateUserNameCardSlot.使用一条一条的发送
+        // RecentSessionWidget::UpdateUserNameCardSlot.使用一条一条的发送
+        // FriendListWidget::UpdateUserNameCardSlot
+        emit UpdateUserNameCardSignal(info);
     }
     // 将所有的用户信息数据发送给最近会话控件中。RecentSessionWidget::InitUserNameCardMapSlot
     // 不使用发送全部的map数据。因为如果在这里又有其他请求用户名片的操作，则最近会话控件里的map会被这个map所替换
@@ -189,18 +187,24 @@ void FriendListWidget::ListenUserNameCardChanged() {
 // 用户信息变化监听回调
 void FriendListWidget::OnUserInfoChange(const std::list<nim::UserNameCard> &info_list) {
     // TODO 用户信息变化，监听变化并修改.。需要通知修改最近会话列表和打开的聊天窗口
+
     for (auto &info : info_list) {
         //用户名或头像变化了
-        if (info.ExistValue(nim::kUserNameCardKeyName)
-            || info.ExistValue(nim::kUserNameCardKeyIconUrl)) {
+        qDebug() << "[info]: user " <<  QString::fromStdString(info.GetAccId()) << " changed ...";
+        // 发送信号，将修改的用户信息发送出去.
+        // RecentSessionWidget::UpdateUserNameCardSlot  FriendListWidget::UpdateUserNameCardSlot
+        emit UpdateUserNameCardSignal(info);
 
-        }
-        //用户其他信息变化了
-        if (info.ExistValue(nim::kUserNameCardKeyAll) ||
-            info.ExistValue(nim::kUserNameCardKeyName) ||
-            info.ExistValue(nim::kUserNameCardKeyIconUrl)) {
-
-        }
+        //        if (info.ExistValue(nim::kUserNameCardKeyName)
+        //            || info.ExistValue(nim::kUserNameCardKeyIconUrl)) {
+        //
+        //        }
+        //        //用户其他信息变化了
+        //        if (info.ExistValue(nim::kUserNameCardKeyAll) ||
+        //            info.ExistValue(nim::kUserNameCardKeyName) ||
+        //            info.ExistValue(nim::kUserNameCardKeyIconUrl)) {
+        //
+        //        }
 
     }
 }
