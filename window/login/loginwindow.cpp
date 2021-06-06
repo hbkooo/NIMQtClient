@@ -304,7 +304,7 @@ void LoginWindow::LoginSuccessSlot() {
         connect(this, &LoginWindow::GetLoginUserNameCardSuccessSignal, mainWindow, &MainWindow::updateMyHeader);
     }
     SELF_USER_NAME_CARD.SetAccId(usernameLE->text().toStdString());
-    GetUserNameCard(usernameLE->text().toStdString());
+    GetUserNameCardOnLine(usernameLE->text().toStdString());
     mainWindow->show();
     this->hide();
 

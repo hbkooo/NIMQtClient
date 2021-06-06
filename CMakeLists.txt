@@ -54,7 +54,8 @@ file(GLOB WINDOW_SOURCE_FILES
         window/userinfo/*.cpp
         window/recentSessionWidget/*.cpp
         window/friendsWidget/*.cpp
-        window/chattingWidget/*.cpp)
+        window/chattingWidget/*.cpp
+        window/addFriend/*.cpp)
 file(GLOB WINDOW_HEADER_FILES
         window/*.h
         window/util/*.h
@@ -62,11 +63,18 @@ file(GLOB WINDOW_HEADER_FILES
         window/userinfo/*.h
         window/recentSessionWidget/*.h
         window/friendsWidget/*.h
-        window/chattingWidget/*.h)
+        window/chattingWidget/*.h
+        window/addFriend/*.h)
 
 message(${WINDOW_SOURCE_FILES})
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES} ${HEADER_FILES} ${WINDOW_SOURCE_FILES} ${WINDOW_HEADER_FILES} Qrc.qrc)
+add_executable(${PROJECT_NAME} main.cpp
+        ${SOURCE_FILES}
+        ${HEADER_FILES}
+        ${WINDOW_SOURCE_FILES}
+        ${WINDOW_HEADER_FILES}
+        Qrc.qrc
+        logo.rc)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 

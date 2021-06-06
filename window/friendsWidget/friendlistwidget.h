@@ -94,6 +94,9 @@ public:
     // FriendListWidget::UpdateFriendProfileSlot、RecentSessionWidget::UpdateFriendProfileSlot、
     void UpdateFriendProfileSignal(const nim::FriendProfile &friendProfile);
 
+    // 删除好友的信号
+    void DeleteFriendSuccessSignal(const QString &accID);
+
 public slots:
     void AddOneFriendSlot(const nim::UserNameCard &userNameCard);               // 新增一个好友条目槽函数
     void UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard);         // 更新用户信息的槽函数

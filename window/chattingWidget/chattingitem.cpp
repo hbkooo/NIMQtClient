@@ -11,7 +11,9 @@
  */
 ChattingItem::ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, QWidget *parent) :
         isLeft(isLeft_), userNameCard(nameCard), QWidget(parent) {
+
     InitControl();
+    SetConnect();
     SetLayout();
 }
 
@@ -42,10 +44,16 @@ void ChattingItem::InitControl() {
 //    qDebug() << "messageContentLabel size : " << messageContentLabel->size();
 //    qDebug() << "messageContentLabel size : " << messageContentLabel->sizeHint();
 
-    headPhotoLabel = new QLabel();
+    headPhotoLabel = new ClickableLabel();
+    headPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));
     headPhotoLabel->setFixedSize(40, 40);
     updateHeaderPhotoIcon();
 
+}
+
+void ChattingItem::SetConnect() {
+    // 点击聊天消息的头像显示信息槽函数
+    connect(headPhotoLabel, &ClickableLabel::clicked, this, &ChattingItem::ClickedHeaderPhotoLabelSlot);
 }
 
 void ChattingItem::SetLayout() {
@@ -87,3 +95,8 @@ void ChattingItem::updateContent(const nim::IMMessage &msg) {
     messageContentLabel->setText(QString::fromStdString(msg.content_));
 }
 
+// 点击聊天消息的头像显示信息槽函数
+void ChattingItem::ClickedHeaderPhotoLabelSlot() {
+    // 发送信号提示显示用户的名片信息。ChattingWindow::ShowHeaderPhotoLabelSlot
+    emit ShowHeaderPhotoLabelSignal(userNameCard);
+}

@@ -20,6 +20,7 @@ FriendListWidget::~FriendListWidget() {
 
 }
 
+// 该方法在外部调用，初始化好友列表
 void FriendListWidget::InitFriendList() {
     GetFriendList();               // 初始化好友列表
 }
@@ -84,7 +85,10 @@ void FriendListWidget::OnGetFriendList(nim::NIMResCode res_code,
     }
     // 将好友列表数据发送给最近会话控件中。RecentSessionWidget::InitFriendProfileMapSlot
     emit InitFriendProfileMapSignal(friendProfileMap);
+    // 在初始化好友列表之后，获取好友的用户信息可以直接调用 GetUserNameCard 查询本地用户即可。
     GetUserNameCard(accounts);
+    // 这个是查询服务器同步好友数据，用在好友关系监听中，当有好友添加、或者好友列表同步与更新时调用这个获取在线好友信息
+    // GetUserNameCardOnLine(accounts);
 }
 
 // 好友列表变化监听
@@ -103,22 +107,67 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
         case nim::kNIMFriendChangeTypeDel: {
             nim::FriendDelEvent delete_event;
             if (nim::Friend::ParseFriendDelEvent(change_event, delete_event)) {
-                qDebug() << "解析删除成功...";
+                qDebug() << "解析 删除 成功: " << QString::fromStdString(delete_event.accid_);
+                // 删除成功，发送删除好友成功的信号
+                emit DeleteFriendSuccessSignal(QString::fromStdString(delete_event.accid_));
+            } else {
+                qDebug() << "解析 删除 失败...";
             }
             break;
         }
         case nim::kNIMFriendChangeTypeRequest: {
-            qDebug() << "加好友/处理好友请求";
+            // qDebug() << "加好友/处理好友请求";
             // 别人加好友会在这里收到通知
+            nim::FriendAddEvent addEvent;
+            if(nim::Friend::ParseFriendAddEvent(change_event, addEvent)) {
+                qDebug() << "解析 添加好友 成功: "
+                        << "add accID: " << QString::fromStdString(addEvent.accid_);
+                nim::FriendProfile profile(addEvent.accid_);
+                profile.SetRelationship(nim::kNIMFriendFlagNormal);
+                friendProfileMap.insert(QString::fromStdString(profile.GetAccId()), profile);
+                // 获取用户好友名片并添加到好友列表中。需要在线获取好友信息
+                // 这个是查询服务器同步好友数据，用在好友关系监听中，当有好友添加、或者好友列表同步与更新时调用这个获取在线好友信息
+                GetUserNameCardOnLine({QString::fromStdString(profile.GetAccId())});
+            } else {
+                qDebug() << "解析 添加好友 失败...";
+            }
             break;
         }
         case nim::kNIMFriendChangeTypeSyncList: {
             qDebug() << "好友列表同步与更新";
             // 登录完成之后，会访问云端好友关系，并在这里更新。可能更新后的结果与本地已有结果不同...
+            nim::FriendProfileSyncEvent profileSyncEvent;
+            if(nim::Friend::ParseFriendProfileSyncEvent(change_event, profileSyncEvent)) {
+                qDebug() << "解析 好友列表同步与更新 成功...";
+                QList<QString> accountIncreased;
+                for(const auto &profile: profileSyncEvent.profiles_) {
+                    auto accID = QString::fromStdString(profile.GetAccId());
+                    friendProfileMap.insert(accID, profile);
+                    if(userNameCardMap.contains(accID)) {
+                        // 好友列表里没有新增的这些好友名片，所以需要重新获取好友名片后续并会自动考虑是否新增到好友列表中
+                        accountIncreased.append(accID);
+                    }
+                }
+                // 这个是查询服务器同步好友数据，用在好友关系监听中，当有好友添加、或者好友列表同步与更新时调用这个获取在线好友信息
+                // 获取同步更新来的好友中本地没有的好友关系的好友名片，并新增到好友列表中。需要在线获取好友信息
+                GetUserNameCardOnLine(accountIncreased);
+                // GetUserNameCard(accountIncreased);   // 不可调用这个方法，这个方法无法在线获取好友信息，会查询不到好友
+            } else {
+                qDebug() << "解析 好友列表同步与更新 失败...";
+            }
             break;
         }
         case nim::kNIMFriendChangeTypeUpdate: {
             qDebug() << "更新好友";
+            nim::FriendProfileUpdateEvent friendProfileUpdateEvent;
+            if(nim::Friend::ParseFriendProfileUpdateEvent(change_event, friendProfileUpdateEvent)) {
+                qDebug() << "解析 更新好友 成功...";
+                const auto &profile = friendProfileUpdateEvent.profile_;
+                friendProfileMap.insert(QString::fromStdString(profile.GetAccId()), profile);
+                // 更新好友关系并不需要重新获取好友的用户信息
+            } else {
+                qDebug() << "解析 更新好友 失败...";
+            }
             break;
         }
         default:
@@ -135,7 +184,7 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
 // 获取本地用户信息
 void FriendListWidget::GetUserNameCard(const QList<QString> &accounts) {
     std::list<std::string> account_list;
-//    qDebug() << accounts;
+    qDebug() << accounts;
     for (const auto &account: accounts) {
         account_list.push_back(account.toStdString());
     }
@@ -226,6 +275,9 @@ void FriendListWidget::OnUpdateMyInfo(nim::NIMResCode res) {
 //////////////////////////////////////////////////////////////////////////////////////
 
 void FriendListWidget::AddOneFriendSlot(const nim::UserNameCard &userNameCard) {
+    if(friendItemsMap.contains(QString::fromStdString(userNameCard.GetAccId()))) {
+        return;
+    }
     auto *friendItem = new FriendItem(userNameCard);
 
     friendItemsMap.insert(QString::fromStdString(userNameCard.GetAccId()), friendItem);

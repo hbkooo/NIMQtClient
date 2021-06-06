@@ -4,6 +4,10 @@
 
 #include "chattingwindow.h"
 
+QString ChattingWindow::NO_MORE_MSG_TAG = "noMoreInfo";
+QString ChattingWindow::TIME_INFO_TAG = "timeInfo";
+QString ChattingWindow::NORMAL_MSG_TAG = "normalMsg";
+
 ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
         sessionData(data), QWidget(parent) {
 
@@ -39,7 +43,9 @@ ChattingWindow::~ChattingWindow() {
 
 void ChattingWindow::InitHeader() {
 
-    headerPhotoLabel = new QLabel("头像");
+    headerPhotoLabel = new ClickableLabel("头像");
+    headerPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));       // 鼠标移上去变手型
+    headerPhotoLabel->setToolTip("查看详细信息");
     headerPhotoLabel->setFixedSize(48, 48);
     QPixmap map(":/default_header/dh1");
     headerPhotoLabel->setPixmap(PixmapToRound(map.scaled(headerPhotoLabel->size()), 24));
@@ -146,10 +152,17 @@ void ChattingWindow::SetLayout() {
 }
 
 void ChattingWindow::SetConnect() {
+    // 点击聊天窗口的头像
+    connect(headerPhotoLabel, &ClickableLabel::clicked, this, &ChattingWindow::ClickedHeaderPhotoLabelSlot);
+    // 点击发送信息按钮
     connect(sendButton, &QPushButton::clicked, this, &ChattingWindow::sendMessageSlot);
+    // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
     connect(this, &ChattingWindow::updateMsgListWidgetSignal, this, &ChattingWindow::updateMsgListWidgetSlot);
+    // 主要监听聊天记录中垂直滚动条滑动到最上端之后继续从云端获取加载聊天记录
     connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingWindow::valueChangeSlot);
+    // 云端已经没有聊天记录了，更新界面显示“已加载全部聊天记录”提示
     connect(this, &ChattingWindow::noMoreMessageSignal, this, &ChattingWindow::noMoreMessageSlot);
+    // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。
     connect(this, &ChattingWindow::updateChattingWindowSignal, this, &ChattingWindow::updateChattingWindow);
 }
 
@@ -180,7 +193,7 @@ void ChattingWindow::updateChattingWindow() {
         // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
         // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
         // 获取用户信息，然后再更新界面信息。
-        GetUserNameCard(sessionData.id_);
+        GetUserNameCardOnLine(sessionData.id_);
         qDebug() << "userNameCard 无效，重新获取 ...";
         return;
     }
@@ -217,7 +230,6 @@ void ChattingWindow::updateChattingWindow() {
 
 }
 
-
 /**
  * 在消息列表头部插入一条消息
  * @param msg 消息
@@ -244,14 +256,18 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
         // 否则说明该消息是自己发送给好友的
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
+    // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
     chattingListWidget->insertItem(0, listItem);
     chattingListWidget->setItemWidget(listItem, item);
 //    chattingListWidget->scrollToItem(listItem);
 
     if (extIndex != -1) {
+        // chattingMsg 是按时间倒序排序的消息列表
         if(chattingMsg.size() == extIndex+1) {
             // 最后一条消息，则一定添加时间提示
             AddPromptTimeInfo(msg.timetag_, false);
@@ -284,9 +300,15 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
         AddPromptTimeInfo(msg.timetag_);
     } else {
         auto *lastItem = chattingListWidget->item(chattingListWidget->count()-1);
-        auto *lastChattingItem = dynamic_cast<ChattingItem*>(chattingListWidget->itemWidget(lastItem));
-        if(IsInsertTimePromptInfo(msg.timetag_, lastChattingItem->getIMMessage().timetag_)) {
-            // 此消息与上一条记录消息相差5分钟之多，需要插入此消息的时间提示
+        if (lastItem->data(Qt::UserRole).toString() == NORMAL_MSG_TAG) {
+            // 如果上一条消息是正常的收发消息，则可以将 itemWidget 转化为 ChattingItem 控件
+            auto *lastChattingItem = dynamic_cast<ChattingItem*>(chattingListWidget->itemWidget(lastItem));
+            if(IsInsertTimePromptInfo(msg.timetag_, lastChattingItem->getIMMessage().timetag_)) {
+                // 此消息与上一条记录消息相差5分钟之多，需要插入此消息的时间提示
+                AddPromptTimeInfo(msg.timetag_);
+            }
+        } else if(lastItem->data(Qt::UserRole).toString() == NO_MORE_MSG_TAG) {
+            // 上一条消息是一个 “没有更多聊天记录” 的提示信息，说明这是发送的第一条消息，所以首先需要插入聊天时间
             AddPromptTimeInfo(msg.timetag_);
         }
     }
@@ -300,12 +322,30 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
         // 否则说明该消息是自己发送给好友的
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
+    // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
     listItem->setSizeHint(QSize(0, item->sizeHint().height()));
     chattingListWidget->addItem(listItem);
     chattingListWidget->setItemWidget(listItem, item);
     chattingListWidget->scrollToItem(listItem);
+}
+
+// 点击聊天窗口的头像显示信息槽函数
+void ChattingWindow::ClickedHeaderPhotoLabelSlot() {
+    ShowHeaderPhotoLabelSlot(userNameCard);
+}
+
+// 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
+void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard) {
+    if(userInfoWidget == nullptr) {
+        userInfoWidget = new UserInfoWidget(nameCard);
+    }
+    // 需要设置显示的名片信息
+    userInfoWidget->setUserNameCard(nameCard);
+    userInfoWidget->ShowNormal();
 }
 
 // 发送消息
@@ -432,7 +472,7 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
     if (result.msglogs_.empty()){
         hasMoreMessage = false;
-        emit noMoreMessageSignal();     // 没有更多的聊天消息了
+        emit noMoreMessageSignal();     // 没有更多的聊天消息了,ChattingWindow::noMoreMessageSlot
         return;
     }
 //        qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
@@ -446,7 +486,7 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
         //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
         //                << ", content: " << QString::fromStdString(msg.content_);
     }
-    emit updateMsgListWidgetSignal(result.msglogs_.size());
+    emit updateMsgListWidgetSignal(result.msglogs_.size());     // ChattingWindow::updateMsgListWidgetSlot
 }
 
 // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
@@ -535,6 +575,7 @@ void ChattingWindow::noMoreMessageSlot() {
     label->setStyleSheet("font-size:14px;"
                          "color:#898989;");
     auto *listItem = new QListWidgetItem();
+    listItem->setData(Qt::UserRole, NO_MORE_MSG_TAG);
     listItem->setSizeHint(QSize(0, label->sizeHint().height()));
     chattingListWidget->insertItem(0, listItem);
     chattingListWidget->setItemWidget(listItem, label);
@@ -553,7 +594,7 @@ void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
     label->setStyleSheet("font-size:14px;"
                          "color:#898989;");
     auto *listItem = new QListWidgetItem();
-    listItem->setData(Qt::UserRole, "timeInfo");        // 添加一个标记，区分是消息还是提示时间
+    listItem->setData(Qt::UserRole, TIME_INFO_TAG);        // 添加一个标记，区分是消息还是提示时间
     listItem->setSizeHint(QSize(0, label->sizeHint().height()));
     if(end) {
         chattingListWidget->addItem(listItem);

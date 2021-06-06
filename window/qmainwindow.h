@@ -19,6 +19,7 @@
 #include "util/toollabel.h"
 #include "util/clickablelabel.h"
 #include "userinfo/userinfowidget.h"
+#include "addFriend/addfriendwidget.h"
 
 #include "client.h"
 
@@ -64,6 +65,8 @@ private:
     RecentSessionWidget *recentSessionWidget;   // 消息列表控件
     FriendListWidget *friendListWidget;         // 好友列表
 
+    ClickableLabel *addFriendLabel;             // 添加好友
+
     QVBoxLayout *layout;                        // 界面的主布局
 
 private:
@@ -79,6 +82,7 @@ private:
     QString accID;      // 登录成功的该用户 id
 
     UserInfoWidget *userInfoWidget = nullptr;       // 显示、修改用户信息窗口
+    AddFriendWidget *addFriendWidget = nullptr;     // 添加好友窗口
 
 signals:
     void LogoutSignal();                        // 退出登录信号，发送到LoginWindow::OnLogoutSlot槽函数
@@ -91,8 +95,11 @@ public slots:
 
     // 点击用户头像槽函数。主要实现打开用户详细信息界面，然后用户可以修改
     void ClickHeaderPhotoSlot();
+    // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
+    void ClickAddFriendLabelSlot();
 
-    void toolLabelChecked();                    // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
+    // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
+    void toolLabelChecked();
 
     // 如果《好友名片》或者《好友关系》或者《最近会话》发生变化，需要将好友数据传递给已经打开的聊天界面中
     void UserCardChangeToChattingWindowSlot(const nim::UserNameCard &nameCard);
