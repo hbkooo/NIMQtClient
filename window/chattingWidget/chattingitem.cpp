@@ -34,6 +34,7 @@ void ChattingItem::InitControl() {
 //    sizePolicy.setHeightForWidth(messageContentLabel->sizePolicy().hasHeightForWidth());
 //    messageContentLabel->setSizePolicy(sizePolicy);
 
+    messageContentLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     messageContentLabel->setMaximumWidth(500);
     messageContentLabel->setContentsMargins(20, 10, 20, 10);
     messageContentLabel->setWordWrap(true);         // 设置自动换行
