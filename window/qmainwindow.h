@@ -66,6 +66,7 @@ private:
     FriendListWidget *friendListWidget;         // 好友列表
 
     ClickableLabel *addFriendLabel;             // 添加好友
+    ClickableLabel *liveVideoLabel;             // 直播聊天室按钮
 
     QVBoxLayout *layout;                        // 界面的主布局
 
@@ -97,6 +98,8 @@ public slots:
     void ClickHeaderPhotoSlot();
     // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
     void ClickAddFriendLabelSlot();
+    // 点击直播聊天室按钮。
+    void ClickLiveVideoLabelSlot();
 
     // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
     void toolLabelChecked();

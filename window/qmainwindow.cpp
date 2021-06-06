@@ -138,9 +138,20 @@ void MainWindow::InitControl() {
     addFriendLabel->setContentsMargins(8, 16, 8, 16);
     addFriendLabel->setFixedSize(46, 62);
     addFriendLabel->setToolTip("添加好友");
-    QPixmap pixmap(":/res/add_friend");
-    addFriendLabel->setPixmap(pixmap.scaled(30, 30));
+    QPixmap addFriendPixmap(":/res/add_friend");
+    addFriendLabel->setPixmap(addFriendPixmap.scaled(30, 30));
     addFriendLabel->setStyleSheet("QLabel:hover {"
+                                  "background:rgb(213,203,208);"
+                                  "}");
+
+    // 添加好友
+    liveVideoLabel = new ClickableLabel("直播聊天室");
+    liveVideoLabel->setContentsMargins(8, 16, 8, 16);
+    liveVideoLabel->setFixedSize(46, 62);
+    liveVideoLabel->setToolTip("直播聊天室");
+    QPixmap livePixmap(":/res/live_video");
+    liveVideoLabel->setPixmap(livePixmap.scaled(30, 30));
+    liveVideoLabel->setStyleSheet("QLabel:hover {"
                                   "background:rgb(213,203,208);"
                                   "}");
 
@@ -157,6 +168,7 @@ void MainWindow::SetLayout() {
     auto *bottomToolLayout = new QHBoxLayout();
     bottomToolLayout->setContentsMargins(8, 0, 8, 0);
     bottomToolLayout->addWidget(addFriendLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addWidget(liveVideoLabel, 0, Qt::AlignVCenter);
     bottomToolLayout->addStretch();
 
     layout = new QVBoxLayout();
@@ -178,8 +190,10 @@ void MainWindow::SetConnect() {
     // 点击头像，打开修改个人信息界面
     connect(headerPhotoLabel, &ClickableLabel::clicked, this, &MainWindow::ClickHeaderPhotoSlot);
 
-    // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
+    // 点击最下方工具栏的添加好友按钮。实现打开添加好友界面，搜索添加好友
     connect(addFriendLabel, &ClickableLabel::clicked, this, &MainWindow::ClickAddFriendLabelSlot);
+    // 点击最下方工具栏的直播聊天时按钮。
+    connect(liveVideoLabel, &ClickableLabel::clicked, this, &MainWindow::ClickLiveVideoLabelSlot);
 
     // 连接最近会话变化时的信号传递到本类中，以将最新的会话数据传递给打开的聊天界面
     connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal,
@@ -284,6 +298,41 @@ void MainWindow::ClickAddFriendLabelSlot() {
     }
     addFriendWidget->showNormal();
     addFriendWidget->raise();
+}
+
+// 点击直播聊天室按钮。
+void MainWindow::ClickLiveVideoLabelSlot() {
+    // 聊天室的功能必须配合自己的服务端才可以使用。
+    // 首先创建聊天室必须而且只能在服务端创建！！！客户端无法创建。
+    // 而只有创建了聊天室之后才可以返回获取到聊天室的 room_id.
+    // 所以客户端也无法直接获取room_id，只能通过与自己的服务器通信，从自己的服务器上获取所有已经创建的聊天室id，
+    // 然后客户端就可以从这些聊天室id中选择进入哪一个聊天室。
+    /**
+     * 创建聊天室必须而且只能在服务端创建！！！客户端无法创建。
+     * 创建聊天室必须而且只能在服务端创建！！！客户端无法创建。
+     * 创建聊天室必须而且只能在服务端创建！！！客户端无法创建。
+     * 开发流程：
+     *   1、客户端请求新建聊天室
+     *          首先客户端发送请求到自己的服务器，服务器端调用 https://api.netease.im/nimserver/chatroom/create.action ，
+     *      创建聊天室请求与云信通信，在云信上创建聊天室，然后云信返回给服务端创建的聊天室id。
+     *          服务端收到云信返回的聊天室id后，保存该聊天室id，并将该聊天室id再返回给客户端。
+     *          客户端收到聊天室id后即可进入该聊天室。
+     *   2、客户端选择进入聊天室
+     *          首先客户端向自己的服务端发送请求，请求服务端已经保存的所有创建的聊天室信息，然后将这些聊天室信息（包括room_id、
+     *      聊天室名称等）发送给客户端。
+     *          客户端收到这些聊天室信息后，选择某一个聊天室进入聊天室。
+     */
+
+    //获取聊天室登录信息 void(int error_code, const std::string& result)
+    nim::PluginIn::ChatRoomRequestEnterAsync(123, [this](int error_code, const std::string& result){
+        if(error_code == nim::kNIMResSuccess) {
+
+        }
+        qDebug() << "[info]: 进入聊天室结果， error_code is " << error_code << "\n"
+                << "result is " << QString::fromStdString(result);
+        nim_chatroom::ChatRoom::Enter(123, result);
+    });
+
 }
 
 // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口

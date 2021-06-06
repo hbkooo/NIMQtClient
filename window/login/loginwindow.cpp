@@ -27,9 +27,13 @@ LoginWindow::~LoginWindow() {
     if(mainWindow != nullptr) {
         delete mainWindow;
     }
+
+    // 清理聊天室资源
+    nim_chatroom::ChatRoom::Cleanup();
+
+    // 退出程序，清理加载的 nim 云信资源
     nim::Client::Logout(nim::kNIMLogoutAppExit, [](nim::NIMResCode res_code){
         qDebug() << "[info]: exit APP, logout callback, result code is " << res_code;
-        // 退出程序
         nim::Client::Cleanup();
     });
 }

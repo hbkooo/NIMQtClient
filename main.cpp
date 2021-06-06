@@ -1,8 +1,6 @@
 
 #include <QApplication>
 #include <QDebug>
-#include<QPixmap>
-#include <iostream>
 
 #include "window/qmainwindow.h"
 #include "login/loginwindow.h"
@@ -14,16 +12,6 @@
 #define TEST "NOT NIM_SDK_DLL_IMPORT"
 #endif
 
-void initData(MainWindow &w) {
-    QDateTime time = QDateTime::currentDateTime().addDays(-16);
-    Message msg = {QPixmap(":/header/header1"),
-                   "韩冰凯",
-                   {"在干嘛呢？"},
-                   time.addYears(-1).toTime_t()};
-//    w.addMessageItem(msg);  // 新增一个会话item
-
-}
-
 int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
@@ -32,6 +20,8 @@ int main(int argc, char *argv[]) {
         qDebug() << "sdk init failed ...";
         return -1;
     }
+    // 初始化聊天室资源
+    InitChatRoom();
 
     LoginWindow login;
     login.show();
