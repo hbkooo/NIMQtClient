@@ -3,11 +3,13 @@
 //
 
 #include <util/util.h>
+
+#include <utility>
 #include "userinfowidget.h"
 
 
-UserInfoWidget::UserInfoWidget(const nim::UserNameCard &nameCard, QWidget *parent) :
-        userNameCard(nameCard), QWidget(parent) {
+UserInfoWidget::UserInfoWidget(nim::UserNameCard nameCard, QWidget *parent) :
+        userNameCard(std::move(nameCard)), QWidget(parent) {
     qDebug() << "[info]: create widget, " << __FUNCTION__;
 
     this->setFixedSize(520, 680);
@@ -25,7 +27,7 @@ UserInfoWidget::UserInfoWidget(const nim::UserNameCard &nameCard, QWidget *paren
 
 UserInfoWidget::~UserInfoWidget() {
     qDebug() << "[info]: In " << __FUNCTION__;
-    if(birthCalendarWidget != nullptr) {
+    if (birthCalendarWidget != nullptr) {
         delete birthCalendarWidget;
         birthCalendarWidget = nullptr;
     }
@@ -123,7 +125,7 @@ void UserInfoWidget::InitControl() {
                                  "QDateEdit:focus { border-color:#238efa; }"
                                  "QDateEdit::down-arrow:focus {image:url(:/res/down_focus);}"
                                  "QDateEdit::up-arrow:focus {image:url(:/res/up_focus);}"
-                                 );
+    );
     birthDateEdit->installEventFilter(this);
 
     birthCalendarWidget = new QCalendarWidget();
@@ -169,81 +171,79 @@ void UserInfoWidget::InitControl() {
                                  "QTextEdit:focus {"
                                  "border-color:#238efa;}");
 
-    if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
-        // 是自己的用户信息，则可以修改
+    //if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
+    //    // 是自己的用户信息，则可以修改
+    // 修改昵称信息
+    changeNameLabel = new QLabel("昵称");
+    changeNameLabel->setCursor(QCursor(Qt::IBeamCursor));
+    changeNameLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    changeNameEdit = new QLineEdit();
+    changeNameEdit->setFixedHeight(EditHeight);
+    changeNameEdit->setTextMargins(EditMargins);
+    changeNameEdit->setStyleSheet("QLineEdit { border: 1px solid #e5e5e5;"
+                                  "border-radius: 6px;"
+                                  "font-size:18px;"
+                                  "color:#2c2c2c; }"
+                                  "QLineEdit:focus {"
+                                  "border-color:#238efa;}");
 
-        // 修改昵称信息
-        changeNameLabel = new QLabel("昵称");
-        changeNameLabel->setCursor(QCursor(Qt::IBeamCursor));
-        changeNameLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
-        changeNameEdit = new QLineEdit();
-        changeNameEdit->setFixedHeight(EditHeight);
-        changeNameEdit->setTextMargins(EditMargins);
-        changeNameEdit->setStyleSheet("QLineEdit { border: 1px solid #e5e5e5;"
-                                      "border-radius: 6px;"
-                                      "font-size:18px;"
-                                      "color:#2c2c2c; }"
-                                      "QLineEdit:focus {"
-                                      "border-color:#238efa;}");
+    // 修改性别信息
+    changeGenderLabel = new QLabel("性别");
+    changeGenderLabel->setCursor(QCursor(Qt::IBeamCursor));
+    changeGenderLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
-        // 修改性别信息
-        changeGenderLabel = new QLabel("性别");
-        changeGenderLabel->setCursor(QCursor(Qt::IBeamCursor));
-        changeGenderLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    changeGenderBox = new QComboBox();
+    changeGenderBox->setView(new QListView());
+    changeGenderBox->setFixedHeight(EditHeight);
+    changeGenderBox->setSizePolicy(changeNameEdit->sizePolicy());
+    changeGenderBox->addItem("男");
+    changeGenderBox->addItem("女");
+    changeGenderBox->setStyleSheet("QComboBox{border:1px solid #e5e5e5;"
+                                   "border-radius: 6px;"
+                                   "padding: 5px 10px;"
+                                   "font-size:18px;"
+                                   "}"
+                                   "QComboBox QAbstractItemView::item{min-height: 30px;}"       // 下拉选项高度
+                                   "QComboBox::down-arrow{image:url(:/res/drop_down);}"         // 下拉箭头
+                                   "QComboBox::drop-down{border:0px;}"                          // 去除下拉按钮边框
+                                   "QComboBox:focus {"
+                                   "border-color:#238efa;}");
 
-        changeGenderBox = new QComboBox();
-        changeGenderBox->setView(new QListView());
-        changeGenderBox->setFixedHeight(EditHeight);
-        changeGenderBox->setSizePolicy(changeNameEdit->sizePolicy());
-        changeGenderBox->addItem("男");
-        changeGenderBox->addItem("女");
-        changeGenderBox->setStyleSheet("QComboBox{border:1px solid #e5e5e5;"
-                                       "border-radius: 6px;"
-                                       "padding: 5px 10px;"
-                                       "font-size:18px;"
-                                       "}"
-                                       "QComboBox QAbstractItemView::item{min-height: 30px;}"       // 下拉选项高度
-                                       "QComboBox::down-arrow{image:url(:/res/drop_down);}"         // 下拉箭头
-                                       "QComboBox::drop-down{border:0px;}"                          // 去除下拉按钮边框
-                                       "QComboBox:focus {"
-                                       "border-color:#238efa;}");
+    // 取消按钮
+    cancelButton = new QPushButton("取消");
+    connect(cancelButton, &QPushButton::clicked, this, [this]() {
+        changeSaveButton->setText("修改");
+        updateEditEnable(false);
+    });
+    cancelButton->setFixedSize(120, 40);
+    cancelButton->setStyleSheet("QPushButton { font-size:20px;"
+                                "color:white;"
+                                "border: none;"
+                                "border-radius: 6px;"
+                                "background-color:#6C757D;}"
+                                "QPushButton:hover {"
+                                "background-color:#5A6268;}"
+                                "QPushButton:pressed {"
+                                "background-color:#545B62;"
+                                "border: 2px solid #B6BABE;}"
+                                "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
 
-        // 取消按钮
-        cancelButton = new QPushButton("取消");
-        connect(cancelButton, &QPushButton::clicked, this, [this](){
-            changeSaveButton->setText("修改");
-            updateEditEnable(false);
-        });
-        cancelButton->setFixedSize(120, 40);
-        cancelButton->setStyleSheet("QPushButton { font-size:20px;"
-                                        "color:white;"
-                                        "border: none;"
-                                        "border-radius: 6px;"
-                                        "background-color:#6C757D;}"
-                                        "QPushButton:hover {"
-                                        "background-color:#5A6268;}"
-                                        "QPushButton:pressed {"
-                                        "background-color:#545B62;"
-                                        "border: 2px solid #B6BABE;}"
-                                        "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
-
-        // 修改按钮
-        changeSaveButton = new QPushButton("修改");
-        connect(changeSaveButton, &QPushButton::clicked, this, &UserInfoWidget::ChangeSaveUserCardSlot);
-        changeSaveButton->setFixedSize(120, 40);
-        changeSaveButton->setStyleSheet("QPushButton { font-size:20px;"
-                                        "color:white;"
-                                        "border: none;"
-                                        "border-radius: 6px;"
-                                        "background-color:#4ca6ff;}"
-                                        "QPushButton:hover {"
-                                        "background-color:#238efa;}"
-                                        "QPushButton:pressed {"
-                                        "background-color:#1f7ddb;"
-                                        "border: 2px solid #80BDFF;}"
-                                        "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
-
-    }
+    // 修改按钮
+    changeSaveButton = new QPushButton("修改");
+    connect(changeSaveButton, &QPushButton::clicked, this, &UserInfoWidget::ChangeSaveUserCardSlot);
+    changeSaveButton->setFixedSize(120, 40);
+    changeSaveButton->setStyleSheet("QPushButton { font-size:20px;"
+                                    "color:white;"
+                                    "border: none;"
+                                    "border-radius: 6px;"
+                                    "background-color:#4ca6ff;}"
+                                    "QPushButton:hover {"
+                                    "background-color:#238efa;}"
+                                    "QPushButton:pressed {"
+                                    "background-color:#1f7ddb;"
+                                    "border: 2px solid #80BDFF;}"
+                                    "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
+    //}
 
 }
 
@@ -274,29 +274,31 @@ void UserInfoWidget::SetLayout() {
     mainLayout->setContentsMargins(26, 0, 26, 0);
     mainLayout->setSpacing(0);
     mainLayout->addWidget(headerWidget);
-    if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
-        // 修改用户昵称
-        changeNameLayout = new QHBoxLayout();
-        changeNameLayout->addWidget(changeNameLabel);
-        changeNameLayout->addSpacing(30);
-        changeNameLayout->addWidget(changeNameEdit);
 
-        mainLayout->addSpacing(SpaceBetweenWidget);
-        mainLayout->addLayout(changeNameLayout);
-        changeNameLabel->hide();
-        changeNameEdit->hide();
+    //if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
+    // 修改用户昵称
+    changeNameLayout = new QHBoxLayout();
+    changeNameLayout->addWidget(changeNameLabel);
+    changeNameLayout->addSpacing(30);
+    changeNameLayout->addWidget(changeNameEdit);
 
-        // 修改用户性别
-        changeGenderLayout = new QHBoxLayout();
-        changeGenderLayout->addWidget(changeGenderLabel);
-        changeGenderLayout->addSpacing(30);
-        changeGenderLayout->addWidget(changeGenderBox);
+    mainLayout->addSpacing(SpaceBetweenWidget);
+    mainLayout->addLayout(changeNameLayout);
+    changeNameLabel->hide();
+    changeNameEdit->hide();
 
-        mainLayout->addSpacing(SpaceBetweenWidget);
-        mainLayout->addLayout(changeGenderLayout);
-        changeGenderLabel->hide();
-        changeGenderBox->hide();
-    }
+    // 修改用户性别
+    changeGenderLayout = new QHBoxLayout();
+    changeGenderLayout->addWidget(changeGenderLabel);
+    changeGenderLayout->addSpacing(30);
+    changeGenderLayout->addWidget(changeGenderBox);
+
+    mainLayout->addSpacing(SpaceBetweenWidget);
+    mainLayout->addLayout(changeGenderLayout);
+    changeGenderLabel->hide();
+    changeGenderBox->hide();
+    //}
+
     mainLayout->addSpacing(SpaceBetweenWidget);
     mainLayout->addLayout(birthLayout);
     mainLayout->addSpacing(SpaceBetweenWidget);
@@ -305,15 +307,17 @@ void UserInfoWidget::SetLayout() {
     mainLayout->addLayout(emailLayout);
     mainLayout->addSpacing(SpaceBetweenWidget);
     mainLayout->addLayout(signatureLayout);
-    if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
-        mainLayout->addSpacing(SpaceBetweenWidget);
-        auto *btnLayout = new QHBoxLayout();
-        btnLayout->addStretch();
-        btnLayout->addWidget(cancelButton);
-        btnLayout->addSpacing(SpaceBetweenWidget);
-        btnLayout->addWidget(changeSaveButton);
-        mainLayout->addLayout(btnLayout);
-    }
+
+    //if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
+    mainLayout->addSpacing(SpaceBetweenWidget);
+    auto *btnLayout = new QHBoxLayout();
+    btnLayout->addStretch();
+    btnLayout->addWidget(cancelButton);
+    btnLayout->addSpacing(SpaceBetweenWidget);
+    btnLayout->addWidget(changeSaveButton);
+    mainLayout->addLayout(btnLayout);
+    //}
+
     mainLayout->addStretch();
     setLayout(mainLayout);
 }
@@ -331,6 +335,7 @@ void UserInfoWidget::ShowNormal() {
     updateEditEnable(false);
     updateWindow();
     this->showNormal();
+    this->raise();
 }
 
 void UserInfoWidget::updateMyHeader() {
@@ -363,6 +368,11 @@ void UserInfoWidget::updateCenter() {
     if (userNameCard.GetAccId() == SELF_USER_NAME_CARD.GetAccId()) {
         changeNameEdit->setText(QString::fromStdString(userNameCard.GetName()));
         changeGenderBox->setCurrentIndex(userNameCard.GetGender());
+        // 其他几个关于修改信息的控件在 updateEditEnable 中设置其可见性。
+        changeSaveButton->setVisible(true);
+    } else {
+        // 其他几个关于修改信息的控件在 updateEditEnable 中设置其可见性。
+        changeSaveButton->setVisible(false);
     }
     birthDateEdit->setDate(QDate::fromString(QString::fromStdString(userNameCard.GetBirth()),
                                              "yyyy-MM-dd"));
@@ -375,11 +385,15 @@ void UserInfoWidget::updateCenter() {
 void UserInfoWidget::updateHeaderPhotoIcon() {
     if (userNameCard.GetIconUrl().empty()) {
         userNameCard.SetIconUrl(":/default_header/dh9");
+        qDebug() << "[info]: In " << __FUNCTION__ << ": user name card head is empty, set :/default_header/dh9";
     }
     QPixmap map(QString::fromStdString(SELF_USER_NAME_CARD.GetIconUrl()));
     if (map.isNull()) {
         // 头像加载失败
         map.load(":/default_header/dh9");
+        qDebug() << "[info]: In " << __FUNCTION__ << ": user name card head "
+                << QString::fromStdString(SELF_USER_NAME_CARD.GetIconUrl())
+                << " load null, set :/default_header/dh9";
     }
     headerPhotoLabel->setPixmap(
             PixmapToRound(
@@ -390,10 +404,17 @@ void UserInfoWidget::updateHeaderPhotoIcon() {
 
 // 修改边界框是否可修改
 void UserInfoWidget::updateEditEnable(bool state) {
+    // 只有点击了修改，才有可能传入 true。
+    // 也就是只有userNameCard 与登录成功的用户相同时才可以点击修改。
+
     changeNameLabel->setVisible(state);
     changeNameEdit->setVisible(state);
     changeGenderLabel->setVisible(state);
     changeGenderBox->setVisible(state);
+    cancelButton->setVisible(state);
+    if (!state) {
+        changeSaveButton->setText("修改");
+    }
 
     birthDateEdit->setEnabled(state);
     mobileEdit->setEnabled(state);
@@ -401,10 +422,7 @@ void UserInfoWidget::updateEditEnable(bool state) {
     signatureEdit->setEnabled(state);
 //    signatureEdit->setReadOnly(!state);
 //    signatureEdit->setFocusPolicy(Qt::ClickFocus);
-    if(!state) {
-        changeSaveButton->setText("修改");
-    }
-    cancelButton->setVisible(state);
+
 }
 
 void UserInfoWidget::ChangeSaveUserCardSlot() {
@@ -461,8 +479,8 @@ bool UserInfoWidget::eventFilter(QObject *obj, QEvent *ev) {
             if (!birthCalendarWidget->isVisible()) {
                 auto mobileLoc = birthDateEdit->geometry();
                 auto thisLoc = this->geometry();
-                birthCalendarWidget->setGeometry(mobileLoc.x()+thisLoc.x(),
-                                                 mobileLoc.y()+thisLoc.y()-birthCalendarWidget->height(),
+                birthCalendarWidget->setGeometry(mobileLoc.x() + thisLoc.x(),
+                                                 mobileLoc.y() + thisLoc.y() - birthCalendarWidget->height(),
                                                  0, 0);
                 // birthCalendarWidget->setVisible(true);
             }

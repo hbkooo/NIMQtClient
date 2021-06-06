@@ -149,7 +149,18 @@ void AddFriendWidget::ClickedSearchButtonSlot() {
         ShowResultOfAddFriendSlot("账户为空");
         return;
     }
-    AddFriendRequest(accIDLineEdit->text(), requestMsgLineEdit->text());
+    if(!IsFriend(accIDLineEdit->text().toStdString())) {
+        AddFriendRequest(accIDLineEdit->text(), requestMsgLineEdit->text());
+    } else {
+        ShowResultOfAddFriendSlot("你与 “"+accIDLineEdit->text()+"” 已经是好友！");
+    }
+
+}
+
+// 判断是否为好友关系。该接口为同步接口，会堵塞SDK线程，谨慎使用
+bool AddFriendWidget::IsFriend(const std::string& accID) {
+    // 该接口为同步接口，会堵塞SDK线程，谨慎使用
+    return nim::Friend::QueryFriendshipBlock(accID);
 }
 
 // 请求添加好友

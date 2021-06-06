@@ -43,7 +43,9 @@ ChattingWindow::~ChattingWindow() {
 
 void ChattingWindow::InitHeader() {
 
-    headerPhotoLabel = new QLabel("头像");
+    headerPhotoLabel = new ClickableLabel("头像");
+    headerPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));       // 鼠标移上去变手型
+    headerPhotoLabel->setToolTip("查看详细信息");
     headerPhotoLabel->setFixedSize(48, 48);
     QPixmap map(":/default_header/dh1");
     headerPhotoLabel->setPixmap(PixmapToRound(map.scaled(headerPhotoLabel->size()), 24));
@@ -150,10 +152,17 @@ void ChattingWindow::SetLayout() {
 }
 
 void ChattingWindow::SetConnect() {
+    // 点击聊天窗口的头像
+    connect(headerPhotoLabel, &ClickableLabel::clicked, this, &ChattingWindow::ClickedHeaderPhotoLabelSlot);
+    // 点击发送信息按钮
     connect(sendButton, &QPushButton::clicked, this, &ChattingWindow::sendMessageSlot);
+    // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
     connect(this, &ChattingWindow::updateMsgListWidgetSignal, this, &ChattingWindow::updateMsgListWidgetSlot);
+    // 主要监听聊天记录中垂直滚动条滑动到最上端之后继续从云端获取加载聊天记录
     connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingWindow::valueChangeSlot);
+    // 云端已经没有聊天记录了，更新界面显示“已加载全部聊天记录”提示
     connect(this, &ChattingWindow::noMoreMessageSignal, this, &ChattingWindow::noMoreMessageSlot);
+    // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。
     connect(this, &ChattingWindow::updateChattingWindowSignal, this, &ChattingWindow::updateChattingWindow);
 }
 
@@ -184,7 +193,7 @@ void ChattingWindow::updateChattingWindow() {
         // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
         // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
         // 获取用户信息，然后再更新界面信息。
-        GetUserNameCard(sessionData.id_);
+        GetUserNameCardOnLine(sessionData.id_);
         qDebug() << "userNameCard 无效，重新获取 ...";
         return;
     }
@@ -221,7 +230,6 @@ void ChattingWindow::updateChattingWindow() {
 
 }
 
-
 /**
  * 在消息列表头部插入一条消息
  * @param msg 消息
@@ -248,6 +256,8 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
         // 否则说明该消息是自己发送给好友的
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
+    // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
@@ -312,6 +322,8 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
         // 否则说明该消息是自己发送给好友的
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
+    // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
@@ -319,6 +331,21 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     chattingListWidget->addItem(listItem);
     chattingListWidget->setItemWidget(listItem, item);
     chattingListWidget->scrollToItem(listItem);
+}
+
+// 点击聊天窗口的头像显示信息槽函数
+void ChattingWindow::ClickedHeaderPhotoLabelSlot() {
+    ShowHeaderPhotoLabelSlot(userNameCard);
+}
+
+// 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
+void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard) {
+    if(userInfoWidget == nullptr) {
+        userInfoWidget = new UserInfoWidget(nameCard);
+    }
+    // 需要设置显示的名片信息
+    userInfoWidget->setUserNameCard(nameCard);
+    userInfoWidget->ShowNormal();
 }
 
 // 发送消息
@@ -459,7 +486,7 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
         //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
         //                << ", content: " << QString::fromStdString(msg.content_);
     }
-    emit updateMsgListWidgetSignal(result.msglogs_.size());
+    emit updateMsgListWidgetSignal(result.msglogs_.size());     // ChattingWindow::updateMsgListWidgetSlot
 }
 
 // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示

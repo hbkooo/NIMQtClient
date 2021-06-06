@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QDebug>
 
+#include "util/clickablelabel.h"
 #include "util/util.h"
 #include "client.h"
 
@@ -33,11 +34,12 @@ public:
 
 private:
     void InitControl();
+    void SetConnect();
     void SetLayout();
 
 private:
     QLabel *messageContentLabel;
-    QLabel *headPhotoLabel;
+    ClickableLabel *headPhotoLabel;
 
 private:
     // 消息数据
@@ -46,6 +48,13 @@ private:
 private:
 
     bool isLeft;       // 消息是否在左边，如果消息的发送者和接收者一样，则在左边
+
+    signals:
+    void ShowHeaderPhotoLabelSignal(const nim::UserNameCard &nameCard);
+
+public slots:
+    // 点击聊天消息的头像显示信息槽函数
+    void ClickedHeaderPhotoLabelSlot();
 
 };
 

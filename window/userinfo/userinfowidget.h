@@ -28,24 +28,31 @@ class UserInfoWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit UserInfoWidget(const nim::UserNameCard &nameCard, QWidget *parent = nullptr);
+    explicit UserInfoWidget(nim::UserNameCard nameCard, QWidget *parent = nullptr);
 
     ~UserInfoWidget() override;
 
-    void updateWindow();
+    void setUserNameCard(const nim::UserNameCard &nameCard) { userNameCard = nameCard; }
 
-    void ShowNormal();
+    void ShowNormal();      // 显示界面信息
 
 private:
 
     void InitControl();
+
     void SetLayout();
+
     void SetConnect();
+
+    // 更新界面数据
+    void updateWindow();
 
     // 更新头部信息
     void updateMyHeader();
+
     // 更新中间信息
     void updateCenter();
+
     // 更新用户的头像
     void updateHeaderPhotoIcon();
 
@@ -53,9 +60,10 @@ private:
 
 private:
     // 修改用户信息资料
-    void UpdateMyUserNameCard(const nim::UserNameCard& info);
+    void UpdateMyUserNameCard(const nim::UserNameCard &info);
+
     // 修改用户信息资料回调
-    void OnUpdateMyInfo(const nim::UserNameCard& nameCard, nim::NIMResCode res);
+    void OnUpdateMyInfo(const nim::UserNameCard &nameCard, nim::NIMResCode res);
 
 private:
     ClickableLabel *headerPhotoLabel;           // 用户头像
@@ -96,10 +104,13 @@ private:
 
 protected:
     bool eventFilter(QObject *obj, QEvent *ev) override;
-    signals:
+
+signals:
+
     void ChangeUserCardSuccessSignal();                // 修改用户名片成功信号
 
 public slots:
+
     void ChangeSaveUserCardSlot();              // 修改按钮槽函数
 
 };

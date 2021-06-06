@@ -26,7 +26,9 @@
 #include <QDate>
 
 #include "chattingitem.h"
+#include "userinfo/userinfowidget.h"
 #include "util/util.h"
+#include "util/clickablelabel.h"
 #include "client.h"
 
 /**
@@ -102,7 +104,7 @@ private:
 
 private:
     // 头部控件
-    QLabel *headerPhotoLabel;           // 头像
+    ClickableLabel *headerPhotoLabel;   // 头像
     QLabel *accountLabel;               // 用户名
     QLabel *stateLabel;                 // 用户在线状态
 
@@ -133,6 +135,8 @@ private:
     // 默认构造的userNameCard 的accID为空，所以如果使用时为空，则说明创建窗口时没有调用set方法，需要在这聊天窗口中重新获取用户信息
     nim::UserNameCard userNameCard;
 
+    UserInfoWidget *userInfoWidget = nullptr;       // 查看用户详细信息界面
+
 private:
     // 拖动头部可以移动窗口
     QPoint pressPoint;
@@ -155,6 +159,10 @@ protected:
 
 
 public slots:
+    // 点击聊天窗口的头像显示信息槽函数
+    void ClickedHeaderPhotoLabelSlot();
+    // 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
+    void ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard);
     // 点击发送按钮后发送消息槽函数
     void sendMessageSlot();
     // 刚进入聊天界面后，当从服务端获取消息记录后更新聊天界面

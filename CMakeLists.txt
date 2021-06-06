@@ -68,7 +68,13 @@ file(GLOB WINDOW_HEADER_FILES
 
 message(${WINDOW_SOURCE_FILES})
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES} ${HEADER_FILES} ${WINDOW_SOURCE_FILES} ${WINDOW_HEADER_FILES} Qrc.qrc)
+add_executable(${PROJECT_NAME} main.cpp
+        ${SOURCE_FILES}
+        ${HEADER_FILES}
+        ${WINDOW_SOURCE_FILES}
+        ${WINDOW_HEADER_FILES}
+        Qrc.qrc
+        logo.rc)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 

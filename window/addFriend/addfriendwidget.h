@@ -5,6 +5,7 @@
 #ifndef NIMQTCLIENT_ADDFRIENDWIDGET_H
 #define NIMQTCLIENT_ADDFRIENDWIDGET_H
 
+#include <string>
 #include <QWidget>
 #include <QObject>
 #include <QLabel>
@@ -49,6 +50,9 @@ private:
     QVBoxLayout *mainLayout;        // 主界面布局
 
 private:
+    // 判断是否为好友关系。该接口为同步接口，会堵塞SDK线程，谨慎使用
+    bool IsFriend(const std::string& accID);
+
     // 添加好友
     void AddFriendRequest(const QString &accID, const QString& msg="");
     // 添加好友回调
