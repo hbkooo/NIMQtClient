@@ -39,6 +39,12 @@
         <file alias="add_friend">res/img/add_friend.png</file>
         <file alias="video_com">res/img/video_com.png</file>
         <file alias="audio_com">res/img/audio_com.png</file>
+        <file alias="open_video">res/img/open_video.png</file>
+        <file alias="close_video">res/img/close_video.png</file>
+        <file alias="open_audio">res/img/open_audio.png</file>
+        <file alias="close_audio">res/img/close_audio.png</file>
+        <file alias="open_voice">res/img/open_voice.png</file>
+        <file alias="close_voice">res/img/close_voice.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="listWidget">res/css/listWidget.css</file>
