@@ -4,6 +4,7 @@
 #include "client.h"
 
 const std::string app_key = "3f60bf50f8c77e3e9d91ac890f36b0e5";
+//const std::string app_key = "go9dnk49bkd9jd9vmel1kglw0803mgq3";
 
 bool InitInstance(const std::string& appKey) {
 

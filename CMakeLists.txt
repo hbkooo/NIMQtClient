@@ -36,6 +36,7 @@ if (NOT CMAKE_PREFIX_PATH)
 endif ()
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
+include_directories(nim_sdk/audio_video/api)
 include_directories(nim_sdk/include)
 include_directories(nim_sdk/wrapper)
 add_subdirectory(nim_sdk/wrapper)
@@ -48,6 +49,7 @@ file(GLOB HEADER_FILES src/*.h)
 
 #aux_source_directory(window WINDOW_SOURCE_FILES)
 file(GLOB WINDOW_SOURCE_FILES
+        src/rtc/*.cpp
         window/*.cpp
         window/util/*.cpp
         window/login/*.cpp
@@ -57,6 +59,7 @@ file(GLOB WINDOW_SOURCE_FILES
         window/chattingWidget/*.cpp
         window/addFriend/*.cpp)
 file(GLOB WINDOW_HEADER_FILES
+        src/rtc/*.h
         window/*.h
         window/util/*.h
         window/login/*.h
@@ -80,6 +83,8 @@ target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 
 set(NIM_LIBRARY nim_wrapper_util nim_cpp_wrapper nim_tools_cpp_wrapper nim_chatroom_cpp_wrapper)
 target_link_libraries(${PROJECT_NAME} ${NIM_LIBRARY})
+
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/nim_sdk/audio_video/lib/x86/nertc_sdk.lib)
 
 if (WIN32)
     set(DEBUG_SUFFIX)

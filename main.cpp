@@ -7,6 +7,7 @@
 #include "window/qmainwindow.h"
 #include "login/loginwindow.h"
 #include "src/client.h"
+#include "chattingWidget/videocommunicatewidget.h"
 
 #ifdef NIM_SDK_DLL_IMPORT
 #define TEST "NIM_SDK_DLL_IMPORT"
@@ -35,6 +36,9 @@ int main(int argc, char *argv[]) {
 
     LoginWindow login;
     login.show();
+//
+//    VideoCommunicateWidget videoCommunicateWidget;
+//    videoCommunicateWidget.show();
 
     return QApplication::exec();
 }
