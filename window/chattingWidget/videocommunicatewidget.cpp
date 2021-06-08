@@ -28,6 +28,7 @@ VideoCommunicateWidget::~VideoCommunicateWidget() {
 }
 
 void VideoCommunicateWidget::AddOneVideoCom(uid_t uid, const nim::UserNameCard &nameCard) {
+    qDebug() << "[info]: add one video com ...";
     auto *otherVideo = new VideoWidget();
     otherVideo->setMinimumSize(100, 90);
     otherVideo->setMaximumSize(200, 150);
