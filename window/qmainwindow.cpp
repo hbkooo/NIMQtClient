@@ -124,7 +124,7 @@ void MainWindow::InitControl() {
     mainStackedWidget->setCurrentIndex(1);
 
     // 创建与上面窗口对应的选项卡按钮，点击不同的选项卡切换到不同的窗口
-    QStringList stringListTool = {"联系人", "消息"};
+    QStringList stringListTool = {"联系人", "消息", "群聊"};
     for(int i = 0; i < stringListTool.size(); ++i) {
         auto *toolLabel = new ToolLabel(stringListTool.at(i));
         toolLabel->setObjectName(QString::number(i));
