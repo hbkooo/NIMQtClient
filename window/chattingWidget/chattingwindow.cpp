@@ -475,7 +475,6 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
         emit noMoreMessageSignal();     // 没有更多的聊天消息了,ChattingWindow::noMoreMessageSlot
         return;
     }
-//        qDebug() << "\nmsg: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
     for(const auto& msg: result.msglogs_) {
         // 将消息添加进所有的消息列表中。
         // 这里消息的顺序是按时间逆序排列的，也就是说最新的一条消息在数组的第一条，最久远的消息在数组的最后一条
