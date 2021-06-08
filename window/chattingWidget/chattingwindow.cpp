@@ -409,7 +409,7 @@ void ChattingWindow::VideoCommunicateLabelSlot() {
     qDebug() << "[info]: starting create chat room : " << chatRoomName;
 
     videoComWidget = new VideoCommunicateWidget(chatRoomName);
-    videoComWidget->AddOneVideoCom(userNameCard);
+    videoComWidget->AddOneVideoCom(2, userNameCard);
     connect(videoComWidget, &VideoCommunicateWidget::CloseVideoWidgetSignal, this, [this]() {
         videoComWidget = nullptr;
     });
