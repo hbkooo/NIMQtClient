@@ -39,6 +39,10 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
 
 ChattingWindow::~ChattingWindow() {
     qDebug() << "[info]: In ~ChattingWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
+    if(videoComWidget != nullptr) {
+        qDebug() << "[info]: 释放视频聊天窗口...";
+        delete videoComWidget;
+    }
 }
 
 void ChattingWindow::InitHeader() {
@@ -394,9 +398,21 @@ void ChattingWindow::AudioCommunicateLabelSlot() {
 // 点击视频通话按钮槽函数
 void ChattingWindow::VideoCommunicateLabelSlot() {
     qDebug() << "[info]: 开始视频通话 ...";
-    if(videoComWidget == nullptr) {
-        videoComWidget = new VideoCommunicateWidget();
+    QString chatRoomName;
+    // 房间名取二者唯一标识 accID 中较小的一个
+    // 因为 accID 在系统中是唯一的，所以创建的房间名称也就是唯一的，不可能存在相同的房间名称。
+    if(SELF_USER_NAME_CARD.GetAccId() > userNameCard.GetAccId()) {
+        chatRoomName = QString::fromStdString(userNameCard.GetAccId());
+    } else {
+        chatRoomName = QString::fromStdString(SELF_USER_NAME_CARD.GetAccId());
     }
+    qDebug() << "[info]: starting create chat room : " << chatRoomName;
+
+    videoComWidget = new VideoCommunicateWidget(chatRoomName);
+    videoComWidget->AddOneVideoCom(userNameCard);
+    connect(videoComWidget, &VideoCommunicateWidget::CloseVideoWidgetSignal, this, [this]() {
+        videoComWidget = nullptr;
+    });
     videoComWidget->showNormal();
     videoComWidget->raise();
 }
