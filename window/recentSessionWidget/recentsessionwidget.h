@@ -69,6 +69,7 @@ private:
     QMap<QString, SessionItem*> sessionItemMap;         // 所有的会话条目
     QMap<QString, nim::UserNameCard> userNameCardMap;       // 所有的用户的详细信息，可能并不是该用户的好友
     QMap<QString, nim::FriendProfile> friendProfileMap;     // 该用户的好友关系列表
+    QMap<QString, nim::TeamInfo> teamInfoMap;               // 该用户的好友关系列表
 
 signals:
     void UpdateSessionListSignal();
@@ -86,6 +87,7 @@ public slots:
     void InitFriendProfileMapSlot(const QMap<QString, nim::FriendProfile> &friendProMap);
     void UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard);
     void UpdateFriendProfileSlot(const nim::FriendProfile &friendProfile);
+    void UpdateTeamInfoSlot(const nim::TeamInfo &teamInfo);
 
 };
 
