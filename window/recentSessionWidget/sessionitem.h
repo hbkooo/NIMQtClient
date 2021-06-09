@@ -30,6 +30,7 @@ public:
     void setSessionData(const nim::SessionData &data) { sessionData = data; }
     void setFriendProfile(const nim::FriendProfile &profile) { friendProfile = profile; }
     void setUserNameCard(const nim::UserNameCard &nameCard) { userNameCard = nameCard; }
+    void setTeamInfo(const nim::TeamInfo &info) { teamInfo = info; }
     // 更新该条目的显示信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
     void updateItem();
 
@@ -39,14 +40,16 @@ private:
     void SetLayout();
     void SetConnect() const;
     // 更新聊天窗口的头像图标
-    void updateHeaderPhotoIcon();
+    void updateP2PHeaderPhotoIcon();
+    void updateTeamHeaderPhotoIcon();
 
 private:
 
-    // 该条目显示的信息
+    // 该条目显示的信息。可能是与好友的聊天会话，也可能是群会话
     nim::SessionData sessionData;       // 该条目的会话数据
     nim::FriendProfile friendProfile;   // 该条目与登录的用户之间的好友关系
     nim::UserNameCard userNameCard;     // 该条目用户的名片信息
+    nim::TeamInfo teamInfo;             // 该条目群消息
 
     QLabel *header_label = nullptr;         // 用户头像
     QLabel *name_label = nullptr;           // 用户姓名标签

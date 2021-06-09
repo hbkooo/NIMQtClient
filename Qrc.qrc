@@ -16,6 +16,7 @@
         <file alias="dh8">res/faces/default/head_portrait_8.png</file>
         <file alias="dh9">res/faces/default/head_portrait_9.png</file>
         <file alias="dh10">res/faces/default/head_portrait_10.png</file>
+        <file alias="default_team">res/faces/default/default_team.png</file>
     </qresource>
     <qresource prefix="/res">
         <file alias="user_normal">res/img/user_normal.png</file>
@@ -45,6 +46,10 @@
         <file alias="close_audio">res/img/close_audio.png</file>
         <file alias="open_voice">res/img/open_voice.png</file>
         <file alias="close_voice">res/img/close_voice.png</file>
+        <file alias="create_team">res/img/create_team.png</file>
+        <file alias="search_team">res/img/search_team.png</file>
+        <file alias="rb_checked">res/img/radio_checked.png</file>
+        <file alias="rb_unchecked">res/img/radio_unchecked.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="listWidget">res/css/listWidget.css</file>

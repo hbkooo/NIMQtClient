@@ -17,6 +17,13 @@ MainWindow::MainWindow(QString accID_, QWidget *parent)
     qRegisterMetaType<nim::IMMessage>("nim::IMMessage");            // 收发消息
     qRegisterMetaType<nim::UserNameCard>("nim::UserNameCard");      // 用户个人信息
     qRegisterMetaType<nim::FriendProfile>("nim::FriendProfile");    // 好友关系信息
+    qRegisterMetaType<nim::TeamInfo>("nim::TeamInfo");              // 群信息
+    qRegisterMetaType<SessionData>("SessionData");                  // 注册消息传递的数据类型
+    qRegisterMetaType<SendMessageArc>("SendMessageArc");            // 发送消息回调结果
+    qRegisterMetaType<IMMessage>("IMMessage");                      // 收发消息
+    qRegisterMetaType<UserNameCard>("UserNameCard");                // 用户个人信息
+    qRegisterMetaType<FriendProfile>("FriendProfile");              // 好友关系信息
+    qRegisterMetaType<TeamInfo>("TeamInfo");                        // 群信息
     qRegisterMetaType<QMap<QString, nim::UserNameCard>>("QMap<QString, nim::UserNameCard>");      // 用户个人信息
     qRegisterMetaType<QMap<QString, nim::FriendProfile>>("QMap<QString, nim::FriendProfile>");      // 用户个人信息
 
@@ -53,6 +60,11 @@ MainWindow::~MainWindow() {
     if (addFriendWidget != nullptr) {
         delete addFriendWidget;
         addFriendWidget = nullptr;
+    }
+    // 释放创建群聊窗口资源
+    if (createTeamWidget != nullptr) {
+        delete createTeamWidget;
+        createTeamWidget = nullptr;
     }
 }
 
@@ -114,15 +126,18 @@ void MainWindow::InitControl() {
     recentSessionWidget = new RecentSessionWidget();
     // 好友列表控件
     friendListWidget = new FriendListWidget();
+    // 群聊列表控件
+    teamListWidget = new TeamListWidget();
 
     // 新建堆栈窗口，并将两个窗口添加进去，设置当前显示的窗口为“最近会话”窗口
     mainStackedWidget = new QStackedWidget();
     mainStackedWidget->addWidget(friendListWidget);
     mainStackedWidget->addWidget(recentSessionWidget);
+    mainStackedWidget->addWidget(teamListWidget);
     mainStackedWidget->setCurrentIndex(1);
 
     // 创建与上面窗口对应的选项卡按钮，点击不同的选项卡切换到不同的窗口
-    QStringList stringListTool = {"联系人", "消息"};
+    QStringList stringListTool = {"联系人", "消息", "群聊"};
     for (int i = 0; i < stringListTool.size(); ++i) {
         auto *toolLabel = new ToolLabel(stringListTool.at(i));
         toolLabel->setObjectName(QString::number(i));
@@ -136,11 +151,33 @@ void MainWindow::InitControl() {
     addFriendLabel->setContentsMargins(8, 16, 8, 16);
     addFriendLabel->setFixedSize(46, 62);
     addFriendLabel->setToolTip("添加好友");
-    QPixmap pixmap(":/res/add_friend");
-    addFriendLabel->setPixmap(pixmap.scaled(30, 30));
+    QPixmap addFriendPixmap(":/res/add_friend");
+    addFriendLabel->setPixmap(addFriendPixmap.scaled(30, 30));
     addFriendLabel->setStyleSheet("QLabel:hover {"
                                   "background:rgb(213,203,208);"
                                   "}");
+
+    // 创建群聊
+    createTeamLabel = new ClickableLabel("创建群聊");
+    createTeamLabel->setContentsMargins(8, 16, 8, 16);
+    createTeamLabel->setFixedSize(46, 62);
+    createTeamLabel->setToolTip("创建群聊");
+    QPixmap createTeamPixmap(":/res/create_team");
+    createTeamLabel->setPixmap(createTeamPixmap.scaled(30, 30));
+    createTeamLabel->setStyleSheet("QLabel:hover {"
+                                   "background:rgb(213,203,208);"
+                                   "}");
+
+    // 搜索群聊
+    searchTeamLabel = new ClickableLabel("搜索群聊");
+    searchTeamLabel->setContentsMargins(8, 16, 8, 16);
+    searchTeamLabel->setFixedSize(46, 62);
+    searchTeamLabel->setToolTip("搜索群聊");
+    QPixmap searchTeamPixmap(":/res/search_team");
+    searchTeamLabel->setPixmap(searchTeamPixmap.scaled(30, 30));
+    searchTeamLabel->setStyleSheet("QLabel:hover {"
+                                   "background:rgb(213,203,208);"
+                                   "}");
 
 }
 
@@ -155,6 +192,8 @@ void MainWindow::SetLayout() {
     auto *bottomToolLayout = new QHBoxLayout();
     bottomToolLayout->setContentsMargins(8, 0, 8, 0);
     bottomToolLayout->addWidget(addFriendLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addWidget(createTeamLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addWidget(searchTeamLabel, 0, Qt::AlignVCenter);
     bottomToolLayout->addStretch();
 
     layout = new QVBoxLayout();
@@ -178,6 +217,10 @@ void MainWindow::SetConnect() {
 
     // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
     connect(addFriendLabel, &ClickableLabel::clicked, this, &MainWindow::ClickAddFriendLabelSlot);
+    // 点击创建群聊按钮。
+    connect(createTeamLabel, &ClickableLabel::clicked, this, &MainWindow::ClickCreateTeamLabelSlot);
+    // 点击搜索群聊按钮。
+    connect(searchTeamLabel, &ClickableLabel::clicked, this, &MainWindow::ClickSearchTeamLabelSlot);
 
     // 连接最近会话变化时的信号传递到本类中，以将最新的会话数据传递给打开的聊天界面
     connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal,
@@ -200,10 +243,15 @@ void MainWindow::SetConnect() {
             recentSessionWidget, &RecentSessionWidget::UpdateFriendProfileSlot);
     connect(friendListWidget, &FriendListWidget::UpdateUserNameCardSignal,
             recentSessionWidget, &RecentSessionWidget::UpdateUserNameCardSlot);
+    // 群消息发生变化
+    connect(teamListWidget, &TeamListWidget::UpdateTeamInfoSignal,
+            recentSessionWidget, &RecentSessionWidget::UpdateTeamInfoSlot);
+
     connect(friendListWidget, &FriendListWidget::UpdateUserNameCardSignal,
             this, &MainWindow::UserCardChangeToChattingWindowSlot);
     connect(friendListWidget, &FriendListWidget::UpdateFriendProfileSignal,
             this, &MainWindow::FriendProfileChangeToChattingWindowSlot);
+    // TODO 打开的群消息聊天界面
 }
 
 // 设置用户头像
@@ -284,6 +332,26 @@ void MainWindow::ClickAddFriendLabelSlot() {
     }
     addFriendWidget->showNormal();
     addFriendWidget->raise();
+}
+
+// 点击创建群聊按钮。
+void MainWindow::ClickCreateTeamLabelSlot() {
+     // qDebug() << "打开创建群聊控件 ...";
+    if (createTeamWidget == nullptr) {
+        createTeamWidget = new CreateTeamWidget();
+    }
+    createTeamWidget->setFriendProfileMap(friendListWidget->getFriendProfileMap());
+    createTeamWidget->setUserNameCardMap(friendListWidget->getUserNameCardMap());
+    createTeamWidget->updateWindow();
+
+    createTeamWidget->showNormal();
+    createTeamWidget->raise();
+}
+
+// 点击搜索群聊按钮。
+void MainWindow::ClickSearchTeamLabelSlot() {
+     qDebug() << "打开搜索群聊控件 ...";
+
 }
 
 // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口

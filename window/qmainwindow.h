@@ -15,11 +15,13 @@
 #include "recentSessionWidget/sessionitem.h"
 #include "recentSessionWidget/recentsessionwidget.h"
 #include "friendsWidget/friendlistwidget.h"
+#include "addFriend/addfriendwidget.h"
 #include "chattingWidget/chattingwindow.h"
 #include "util/toollabel.h"
 #include "util/clickablelabel.h"
 #include "userinfo/userinfowidget.h"
-#include "addFriend/addfriendwidget.h"
+#include "teamWidget/teamlistwidget.h"
+#include "teamWidget/createteamwidget.h"
 
 #include "client.h"
 
@@ -64,8 +66,11 @@ private:
     QStackedWidget *mainStackedWidget;          // 主界面的堆栈窗口
     RecentSessionWidget *recentSessionWidget;   // 消息列表控件
     FriendListWidget *friendListWidget;         // 好友列表
+    TeamListWidget *teamListWidget;             // 群聊列表
 
     ClickableLabel *addFriendLabel;             // 添加好友
+    ClickableLabel *createTeamLabel;            // 创建群
+    ClickableLabel *searchTeamLabel;            // 搜索群
 
     QVBoxLayout *layout;                        // 界面的主布局
 
@@ -83,6 +88,7 @@ private:
 
     UserInfoWidget *userInfoWidget = nullptr;       // 显示、修改用户信息窗口
     AddFriendWidget *addFriendWidget = nullptr;     // 添加好友窗口
+    CreateTeamWidget *createTeamWidget = nullptr;   // 创建群聊窗口
 
 signals:
     void LogoutSignal();                        // 退出登录信号，发送到LoginWindow::OnLogoutSlot槽函数
@@ -97,6 +103,10 @@ public slots:
     void ClickHeaderPhotoSlot();
     // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
     void ClickAddFriendLabelSlot();
+    // 点击创建群聊按钮。
+    void ClickCreateTeamLabelSlot();
+    // 点击搜索群聊按钮。
+    void ClickSearchTeamLabelSlot();
 
     // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
     void toolLabelChecked();

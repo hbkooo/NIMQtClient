@@ -75,6 +75,7 @@ void FriendListWidget::GetFriendList() {
 // 获取好友列表回调
 void FriendListWidget::OnGetFriendList(nim::NIMResCode res_code,
                                        const std::list<nim::FriendProfile> &user_profile_list) {
+    qDebug() << "===============================";
     qDebug() << "[info]: 获取 " << user_profile_list.size() << " 个好友 ";
     QList<QString> accounts;
     for (auto &friendProfile: user_profile_list) {
@@ -89,6 +90,7 @@ void FriendListWidget::OnGetFriendList(nim::NIMResCode res_code,
     GetUserNameCard(accounts);
     // 这个是查询服务器同步好友数据，用在好友关系监听中，当有好友添加、或者好友列表同步与更新时调用这个获取在线好友信息
     // GetUserNameCardOnLine(accounts);
+    qDebug() << "===============================";
 }
 
 // 好友列表变化监听

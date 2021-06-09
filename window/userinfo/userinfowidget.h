@@ -24,6 +24,7 @@
 #include "util/clickablelabel.h"
 #include "client.h"
 
+
 class UserInfoWidget : public QWidget {
 Q_OBJECT
 

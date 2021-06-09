@@ -57,6 +57,9 @@ void RecentSessionWidget::UpdateSessionItem(const nim::SessionData &sessionData)
             if(friendProfileMap.contains(accID)) {
                 sessionItem->setFriendProfile(friendProfileMap[accID]);
             }
+            if(teamInfoMap.contains(accID)) {
+                sessionItem->setTeamInfo(teamInfoMap[accID]);
+            }
             sessionItem->updateItem();
 
             this->insertItem(0, item);
@@ -86,6 +89,9 @@ void RecentSessionWidget::AddSessionItem(const nim::SessionData &data, int row) 
     }
     if(friendProfileMap.contains(accID)) {
         sessionItem->setFriendProfile(friendProfileMap[accID]);
+    }
+    if(teamInfoMap.contains(accID)) {
+        sessionItem->setTeamInfo(teamInfoMap[accID]);
     }
     sessionItem->updateItem();
 
@@ -145,6 +151,7 @@ void RecentSessionWidget::QueryAllRecentSession() {
 }
 
 void RecentSessionWidget::OnQuerySessionListCallback(int unread_count, const nim::SessionDataList &session_list) {
+    qDebug() << "===============================";
     qDebug() << "[info]: 最近会话一共有 " << unread_count << " 条";
     auto sessions = session_list.sessions_;
     // 按时间降序排列
@@ -162,6 +169,7 @@ void RecentSessionWidget::OnQuerySessionListCallback(int unread_count, const nim
         //      所以不管谁发给谁，会话 id_ 都是相较于本地用户的远程用户的accid
         emit AddOneSessionSignal(session_data, -1);     // RecentSessionWidget::AddSessionItem
     }
+    qDebug() << "===============================";
 }
 
 void RecentSessionWidget::ListenRecentSessionChange() {
@@ -175,6 +183,7 @@ void RecentSessionWidget::OnRecentSessionChangeCallback(nim::NIMResCode resCode,
                                                         const nim::SessionData &sessionData, int total_unread_counts) {
     if (resCode == nim::kNIMResSuccess) {
         // 最近会话更新变动，有可能是之前的会话聊天信息变动，也有可能是有了新的好友聊天，产生了新的会话
+        // 或者是创建了新的群，或者是有群消息
         if(sessionItemMap.contains(QString::fromStdString(sessionData.id_))) {
             // RecentSessionWidget::UpdateSessionItem 和 MainWindow::SessionChangToChattingWindowSlot
             emit UpdateSessionSignal(sessionData);
@@ -248,6 +257,19 @@ void RecentSessionWidget::UpdateFriendProfileSlot(const nim::FriendProfile &frie
         if(userNameCardMap.contains(accID)) {
             session->setUserNameCard(userNameCardMap[accID]);
         }
+        session->updateItem();
+    }
+}
+
+void RecentSessionWidget::UpdateTeamInfoSlot(const nim::TeamInfo &teamInfo) {
+    qDebug() << "[info]: receive update team info in " << __FUNCTION__ ;
+    // TODO
+    QString teamID = QString::fromStdString(teamInfo.GetTeamID());
+    teamInfoMap.insert(teamID, teamInfo);
+    if(sessionItemMap.contains(teamID)) {
+        // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
+        auto *session = sessionItemMap[teamID];
+        session->setTeamInfo(teamInfo);
         session->updateItem();
     }
 }

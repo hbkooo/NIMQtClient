@@ -6,8 +6,7 @@
 
 
 SessionItem::SessionItem(nim::SessionData data, QWidget *parent)
-    :sessionData(std::move(data)) ,QWidget(parent)
-{
+        : sessionData(std::move(data)), QWidget(parent) {
     // 默认构造的用户好友关系中，accID为空，设置为非好友关系。用户调用 set 方法后可以获得该属性的值。
     friendProfile.SetAccId("");
     friendProfile.SetRelationship(nim::kNIMFriendFlagNotFriend);
@@ -28,9 +27,6 @@ void SessionItem::InitControl() {
     // 用户头像
     header_label = new QLabel("头像");
     header_label->setFixedSize(48, 48);
-    QPixmap map(":/default_header/dh1");
-    map = PixmapToRound(map.scaled(header_label->size()), 24);
-    header_label->setPixmap(map);
 
     // 创建用户姓名标签
     name_label = new QLabel("用户名字");
@@ -108,9 +104,9 @@ void SessionItem::updateItem() {
     date_time_label->setText(FormatTimeInRecentSession(sessionData.msg_timetag_));
 
     // 下面需要更新会话显示的头像和用户名，这两个信息根据会话聊天类型不同存储的位置也不同
-    if(sessionData.type_ == nim::kNIMSessionTypeP2P) {
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
         // P2P的点对点双用户聊天会话
-        if(userNameCard.GetAccId().empty() || userNameCard.GetAccId() != sessionData.id_) {
+        if (userNameCard.GetAccId().empty() || userNameCard.GetAccId() != sessionData.id_) {
             // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
             // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
             // 获取用户信息，然后再更新界面信息。
@@ -130,20 +126,26 @@ void SessionItem::updateItem() {
         }
 
         // 不论二者是否为好友关系，聊天窗口的头像是一样的。所以现在即可更新聊天窗口的头像
-        updateHeaderPhotoIcon();
+        updateP2PHeaderPhotoIcon();
 
         // 判断二者是否为好友关系。如果是好友关系则会话用户名设置为好友关系里设置的备注
-        if(friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
+        if (friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
             // 如果是好友关系
             QString alias = QString::fromStdString(friendProfile.GetAlias());
-            if(alias != "") {
+            if (alias != "") {
                 // 备注不为空，则直接设置为备注信息
                 name_label->setText(alias);
             }
         }
-    } else if(sessionData.type_ == nim::kNIMSessionTypeTeam) {
+    } else if (sessionData.type_ == nim::kNIMSessionTypeTeam) {
         // 群组聊天
         // TODO
+        updateTeamHeaderPhotoIcon();
+        if (teamInfo.GetName().empty()) {
+            name_label->setText(QString::fromStdString(teamInfo.GetTeamID()));
+        } else {
+            name_label->setText(QString::fromStdString(teamInfo.GetName()));
+        }
 
     } else {
         // 超大群组聊天
@@ -154,7 +156,8 @@ void SessionItem::updateItem() {
 
 
 // 更新聊天窗口的头像图标
-void SessionItem::updateHeaderPhotoIcon() {
+void SessionItem::updateP2PHeaderPhotoIcon() {
+    // P2P 用户
     if (userNameCard.GetIconUrl().empty()) {
         userNameCard.SetIconUrl(":/default_header/dh1");
     }
@@ -163,31 +166,45 @@ void SessionItem::updateHeaderPhotoIcon() {
         // 头像加载失败
         map.load(":/default_header/dh1");
     }
-    header_label->setPixmap(PixmapToRound(map.scaled(header_label->size()), header_label->height()/2));
+    header_label->setPixmap(PixmapToRound(map.scaled(header_label->size()), header_label->height() / 2));
 }
 
+void SessionItem::updateTeamHeaderPhotoIcon() {
+    // 群聊
+    if (teamInfo.GetIcon().empty()) {
+        teamInfo.SetIcon(":/default_header/default_team");
+    }
+    QPixmap map(QString::fromStdString(teamInfo.GetIcon()));
+    if (map.isNull()) {
+        // 头像加载失败
+        map.load(":/default_header/default_team");
+    }
+    header_label->setPixmap(PixmapToRound(
+            map.scaled(header_label->size()),
+            header_label->height() / 2));
+}
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////根据用户 id 查询用户详细信息 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
-void SessionItem::GetUserNameCard(const std::string & account) {
+void SessionItem::GetUserNameCard(const std::string &account) {
     std::list<std::string> account_list;
     account_list.push_back(account);
-    nim::User::GetUserNameCard(account_list,[this](auto &&PH1) {
+    nim::User::GetUserNameCard(account_list, [this](auto &&PH1) {
         OnGetUserCard(std::forward<decltype(PH1)>(PH1));
     });
 }
 
-void SessionItem::GetUserNameCardOnLine(const std::string & account) {
+void SessionItem::GetUserNameCardOnLine(const std::string &account) {
     std::list<std::string> account_list;
     account_list.push_back(account);
-    nim::User::GetUserNameCardOnline(account_list,[this](auto &&PH1) {
+    nim::User::GetUserNameCardOnline(account_list, [this](auto &&PH1) {
         OnGetUserCard(std::forward<decltype(PH1)>(PH1));
     });
 }
 
 void SessionItem::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
-    if(json_result.empty()) {
+    if (json_result.empty()) {
         // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
         // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
         userNameCard.SetAccId(sessionData.id_);
