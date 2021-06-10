@@ -12,7 +12,6 @@
 
 #include "client.h"
 #include "sessionitem.h"
-#include "chattingWidget/chattingwindow.h"
 
 /**
  * @brief The RecentSessionWidget class

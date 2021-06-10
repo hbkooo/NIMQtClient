@@ -50,6 +50,7 @@ void FriendListWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     // 从item获取对应的自定义的widget
     auto *friendItem = dynamic_cast<FriendItem *>(this->itemWidget(item));
     if (friendItem == nullptr) return;
+    // MainWindow::OpenChattingWindowFromFriendListsSlot
     emit OpenChattingWindowSignal(friendItem->getUserNameCard());
 //    auto sessionData = messageItem->getSessionData();
 //    auto *chattingWindow = new ChattingWindow(sessionData);
@@ -145,7 +146,8 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
                 for(const auto &profile: profileSyncEvent.profiles_) {
                     auto accID = QString::fromStdString(profile.GetAccId());
                     friendProfileMap.insert(accID, profile);
-                    if(userNameCardMap.contains(accID)) {
+                    qDebug() << "[info]: 同步好友 '" << accID << "' friend ...";
+                    if(!userNameCardMap.contains(accID)) {
                         // 好友列表里没有新增的这些好友名片，所以需要重新获取好友名片后续并会自动考虑是否新增到好友列表中
                         accountIncreased.append(accID);
                     }

@@ -46,17 +46,9 @@ void TeamListWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     QListWidgetItem *item = itemAt(event->pos());       // 获取点击的item
     if (item == nullptr) return;
     // 从item获取对应的自定义的widget
-    auto *friendItem = dynamic_cast<TeamItem *>(this->itemWidget(item));
-    if (friendItem == nullptr) return;
-    //emit OpenChattingWindowSignal(friendItem->getUserNameCard());
-//    auto sessionData = messageItem->getSessionData();
-//    auto *chattingWindow = new ChattingWindow(sessionData);
-    // 将最近发送的消息成功与否信号传递到聊天窗口中
-//    connect(this, &RecentSessionWidget::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
-    // 当其他用户发送来新的消息后所有的聊天窗口界面都会收到该消息。
-//    connect(this, &RecentSessionWidget::receiveMsgSignal, chattingWindow, &ChattingWindow::receiveMsgSlot);
-//    chattingWindow->show();
-//    RestUnread(sessionData.id_, sessionData.type_);
+    auto *teamItem = dynamic_cast<TeamItem *>(this->itemWidget(item));
+    if (teamItem == nullptr) return;
+    emit OpenChattingWindowSignal(teamItem->getTeamInfo());
     QAbstractItemView::mouseDoubleClickEvent(event);
 }
 
@@ -142,6 +134,7 @@ void TeamListWidget::GetTeamMembers(const QString &teamID) {
 void TeamListWidget::ListenTeamChangeEvent() {
     nim::Team::RegTeamEventCb([this](const nim::TeamEvent& team_event) {
         if(team_event.res_code_ == nim::kNIMResSuccess) {
+            qDebug() << "[info]: 监听到群有发生变化，变化 code: " << team_event.res_code_;
 
             if (team_event.notification_id_ == nim::kNIMNotificationIdLocalCreateTeam) {
 
@@ -191,11 +184,11 @@ void TeamListWidget::AddOneTeam(const TeamInfo &teamInfo) {
 
 // 更新群信息
 void TeamListWidget::UpdateTeamInfo(const TeamInfo &teamInfo) {
-    // TODO 用户信息变更
-    // 好友信息更新变化通知处理
+
+    // TODO 群信息变更
+    // 群信息更新变化通知处理
     auto teamID = QString::fromStdString(teamInfo.GetTeamID());
     if (teamItemsMap.contains(teamID)) {
-        // 如果是该用户的好友，则需要更新好友列表的条目
         teamItemsMap[teamID]->setTeamInfo(teamInfo);
         teamItemsMap[teamID]->updateItem();
     }

@@ -140,7 +140,7 @@ void RecentSessionWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     if (sessionItem == nullptr) return;
     auto sessionData = sessionItem->getSessionData();
 
-    emit OpenChattingWindowSignal(sessionData);
+    emit OpenChattingWindowSignal(sessionData);         // MainWindow::OpenChattingWindowFromRecentSessionSlot
     RestUnread(sessionData.id_, sessionData.type_);
 }
 
