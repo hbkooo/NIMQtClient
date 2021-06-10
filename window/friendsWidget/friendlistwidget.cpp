@@ -143,7 +143,7 @@ void FriendListWidget::OnFriendListChange(const nim::FriendChangeEvent &change_e
                 for(const auto &profile: profileSyncEvent.profiles_) {
                     auto accID = QString::fromStdString(profile.GetAccId());
                     friendProfileMap.insert(accID, profile);
-                    if(userNameCardMap.contains(accID)) {
+                    if(!userNameCardMap.contains(accID)) {
                         // 好友列表里没有新增的这些好友名片，所以需要重新获取好友名片后续并会自动考虑是否新增到好友列表中
                         accountIncreased.append(accID);
                     }
