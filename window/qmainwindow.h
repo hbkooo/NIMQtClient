@@ -120,6 +120,8 @@ public slots:
     void OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard);
     // 从最近会话中双击某一个会话打开聊天界面
     void OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData);
+    // 从群聊列表中双击某一个群打开聊天界面
+    void OpenChattingWindowFromTeamInfoListSlot(const nim::TeamInfo &teamInfo);
     // 关闭某一个聊天界面
     void CloseChattingWindowSlot(const QString& id);
 

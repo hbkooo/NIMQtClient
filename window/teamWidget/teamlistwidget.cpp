@@ -46,17 +46,9 @@ void TeamListWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     QListWidgetItem *item = itemAt(event->pos());       // 获取点击的item
     if (item == nullptr) return;
     // 从item获取对应的自定义的widget
-    auto *friendItem = dynamic_cast<TeamItem *>(this->itemWidget(item));
-    if (friendItem == nullptr) return;
-    //emit OpenChattingWindowSignal(friendItem->getUserNameCard());
-//    auto sessionData = messageItem->getSessionData();
-//    auto *chattingWindow = new ChattingWindow(sessionData);
-    // 将最近发送的消息成功与否信号传递到聊天窗口中
-//    connect(this, &RecentSessionWidget::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
-    // 当其他用户发送来新的消息后所有的聊天窗口界面都会收到该消息。
-//    connect(this, &RecentSessionWidget::receiveMsgSignal, chattingWindow, &ChattingWindow::receiveMsgSlot);
-//    chattingWindow->show();
-//    RestUnread(sessionData.id_, sessionData.type_);
+    auto *teamItem = dynamic_cast<TeamItem *>(this->itemWidget(item));
+    if (teamItem == nullptr) return;
+    emit OpenChattingWindowSignal(teamItem->getTeamInfo());
     QAbstractItemView::mouseDoubleClickEvent(event);
 }
 

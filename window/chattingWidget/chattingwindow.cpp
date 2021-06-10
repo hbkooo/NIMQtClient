@@ -21,6 +21,11 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
     setMinimumSize(790, 900);
     setStyleSheet("background:#ffffff");
 
+    if (sessionData.type_ != nim::kNIMSessionTypeP2P) {
+        // 如果不是 P2P 的双向用户聊天类型，则一定是群聊类型。则可以获取群成员信息
+        GetTeamMembers(sessionData.id_);
+    }
+
 //    QueryMsg();
     QueryMsgOnline();
 
@@ -157,114 +162,161 @@ void ChattingWindow::SetConnect() {
     // 点击发送信息按钮
     connect(sendButton, &QPushButton::clicked, this, &ChattingWindow::sendMessageSlot);
     // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
-    connect(this, &ChattingWindow::updateMsgListWidgetSignal, this, &ChattingWindow::updateMsgListWidgetSlot);
+    connect(this, &ChattingWindow::updateMsgListWidgetSignal,
+            this, &ChattingWindow::updateMsgListWidgetSlot);
     // 主要监听聊天记录中垂直滚动条滑动到最上端之后继续从云端获取加载聊天记录
     connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingWindow::valueChangeSlot);
     // 云端已经没有聊天记录了，更新界面显示“已加载全部聊天记录”提示
-    connect(this, &ChattingWindow::noMoreMessageSignal, this, &ChattingWindow::noMoreMessageSlot);
-    // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。
-    connect(this, &ChattingWindow::updateChattingWindowSignal, this, &ChattingWindow::updateChattingWindow);
+    connect(this, &ChattingWindow::noMoreMessageSignal,
+            this, &ChattingWindow::noMoreMessageSlot);
+    // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。触发事件为：P2P下用户名片修改；team下，群数据更改。
+    connect(this, &ChattingWindow::updateChattingWindowSignal, this,
+            &ChattingWindow::updateChattingWindow);
 }
 
 // 更新聊天窗口的头像图标
 void ChattingWindow::updateHeaderPhotoIcon() {
-    if (userNameCard.GetIconUrl().empty()) {
-        userNameCard.SetIconUrl(":/default_header/dh1");
-    }
-    QPixmap map(QString::fromStdString(userNameCard.GetIconUrl()));
-    if (map.isNull()) {
-        // 头像加载失败
-        map.load(":/default_header/dh1");
+    // TODO 更新聊天窗口的头像，需要判断该聊天窗口是 P2P 的双向好友聊天，还是群聊
+    QPixmap map;
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        // P2P 双向用户聊天
+        if (userNameCard.GetIconUrl().empty()) {
+            userNameCard.SetIconUrl(":/default_header/dh1");
+        }
+        map.load(QString::fromStdString(userNameCard.GetIconUrl()));
+        if (map.isNull()) {
+            // 头像加载失败
+            map.load(":/default_header/dh1");
+        }
+    } else if (sessionData.type_ == nim::kNIMSessionTypeTeam) {
+        // 群聊
+        if (teamInfo.GetIcon().empty()) {
+            teamInfo.SetIcon(":/default_header/default_team");
+        }
+        map.load(QString::fromStdString(teamInfo.GetIcon()));
+        if (map.isNull()) {
+            // 头像加载失败
+            map.load(":/default_header/default_team");
+        }
+    } else {
+        // TODO 超级群聊
     }
     headerPhotoLabel->setPixmap(PixmapToRound(map.scaled(headerPhotoLabel->size()), headerPhotoLabel->height() / 2));
 }
 
 // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
 void ChattingWindow::updateChattingWindow() {
-    /**
-     * 设置聊天窗口的标题，对好友的备注或者是好友自己创建账号时的昵称
-     * 首先判断是否为好友关系，即获取好友列表里的每一项 FriendProfile，判断是存在该用户，如果有该用户则与其为好友关系；
-     * 是好友关系的话则获取 FriendProfile 的 alias_ 字段获取对好友的备注昵称。
-     * 如果昵称备注为空，则需要获取用户 UserNameCard 的 nickname_ 昵称字段。
-     * 如果用户的昵称字段 nickname_ 也为空，则直接显示用户的 accID。
-     */
+    // TODO 需要判断该聊天窗口是 P2P 的双向好友聊天，还是群聊
 
-    if (userNameCard.GetAccId().empty() || userNameCard.GetAccId() != sessionData.id_) {
-        // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
-        // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
-        // 获取用户信息，然后再更新界面信息。
-        GetUserNameCardOnLine(sessionData.id_);
-        qDebug() << "userNameCard 无效，重新获取 ...";
-        return;
-    }
-
-    // 用户名片信息有效，首先使用该名片信息更新界面数据
-    QString name = QString::fromStdString(userNameCard.GetName());
-    if (name != "") {
-        // 用户昵称不为空
-        accountLabel->setText(name);
-    } else {
-        // 用户昵称为空，则用户名设置为用户的 accID
-        accountLabel->setText(QString::fromStdString(userNameCard.GetAccId()));
-    }
-    // 用户状态设置为用户的签名信息
-    stateLabel->setText(QString::fromStdString(userNameCard.GetSignature()));
-
-    // 不论二者是否为好友关系，聊天窗口的头像是一样的。所以现在即可更新聊天窗口的头像
-    updateHeaderPhotoIcon();
-
-    // 首先判断是否为好友关系。如果是好友关系则聊天窗口标题设置为好友关系里设置的备注
-    if (friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
-        qDebug() << "二者是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
-        // 如果是好友关系
-        QString alias = QString::fromStdString(friendProfile.GetAlias());
-        if (alias != "") {
-            // 备注不为空，则直接设置为备注信息
-            accountLabel->setText(alias);
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        /** P2P 双向用户聊天
+         * 设置聊天窗口的标题，对好友的备注或者是好友自己创建账号时的昵称
+         * 首先判断是否为好友关系，即获取好友列表里的每一项 FriendProfile，判断是存在该用户，如果有该用户则与其为好友关系；
+         * 是好友关系的话则获取 FriendProfile 的 alias_ 字段获取对好友的备注昵称。
+         * 如果昵称备注为空，则需要获取用户 UserNameCard 的 nickname_ 昵称字段。
+         * 如果用户的昵称字段 nickname_ 也为空，则直接显示用户的 accID。
+         */
+        if (userNameCard.GetAccId().empty() || userNameCard.GetAccId() != sessionData.id_) {
+            // 用户信息的 accID 为空，说明没有调用 set 方法，需要重新获取该聊天用户的信息。
+            // 或者用户信息的名片 accID 与会话数据的 id 不一样，说明该 userNameCard 与该会话数据不一样，所以需要重新获取该会话用户的信息。
+            // 获取用户信息，然后再更新界面信息。
+            GetUserNameCardOnLine(sessionData.id_);
+            qDebug() << "userNameCard 无效，重新获取 ...";
+            return;
         }
+
+        // 用户名片信息有效，首先使用该名片信息更新界面数据
+        QString name = QString::fromStdString(userNameCard.GetName());
+        if (name != "") {
+            // 用户昵称不为空
+            accountLabel->setText(name);
+        } else {
+            // 用户昵称为空，则用户名设置为用户的 accID
+            accountLabel->setText(QString::fromStdString(userNameCard.GetAccId()));
+        }
+        // 用户状态设置为用户的签名信息
+        stateLabel->setText(QString::fromStdString(userNameCard.GetSignature()));
+
+        // 首先判断是否为好友关系。如果是好友关系则聊天窗口标题设置为好友关系里设置的备注
+        if (friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
+            qDebug() << "二者是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+            // 如果是好友关系
+            QString alias = QString::fromStdString(friendProfile.GetAlias());
+            if (alias != "") {
+                // 备注不为空，则直接设置为备注信息
+                accountLabel->setText(alias);
+            }
+        } else {
+            // 非好友关系
+            stateLabel->setText("非好友");     // 状态设置为非好友
+            qDebug() << "二者不是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+        }
+    } else if (sessionData.type_ == nim::kNIMSessionTypeTeam) {
+        // 群聊
+        // 状态标签显示群聊的 teamID
+        stateLabel->setText(QString::fromStdString(teamInfo.GetTeamID()));
+        // 账号信息显示群聊的名称
+        accountLabel->setText(QString::fromStdString(teamInfo.GetName()));
     } else {
-        // 非好友关系
-        stateLabel->setText("非好友");     // 状态设置为非好友
-        qDebug() << "二者不是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+        // TODO 超级群聊
     }
+
+    // 更新聊天窗口的头像
+    updateHeaderPhotoIcon();
 
 }
 
 /**
  * 在消息列表头部插入一条消息
  * @param msg 消息
- * @param extIndex msg 消息在全部消息列表 chattingMsg 中的序号，扩展位，可以不使用
+ * @param extIndex msg 消息在全部消息列表 chattingMsg 中的序号，扩展位，可以不使用。默认为-1，即表示不使用该位信息
  */
 void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
-    bool isRight;
-    if (msg.sender_accid_.empty()) {
-        // 从msg_json构造的 IMMessage 消息发送者为空；所以可以知道是用户点击发送发送的消息
-        isRight = true;
+    // 判断聊天的每一条消息是否显示用户名。如果是P2P的双向用户聊天，则不显示；否则显示。
+    bool showName = false;
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        showName = false;
     } else {
-        // 有发送者id，则判断发送者id和当前的聊天窗口id是否一致，如果不一致则说明消息在右边，是自己发送的；
-        // 如果一致则说明消息在左边，是好友发送给自己的消息
-        isRight = (msg.sender_accid_ != sessionData.id_);
+        showName = true;
     }
-
     // 首先插入聊天消息
     // 插入具体的聊天消息
-    ChattingItem *item;
-    if (sessionData.id_ == msg.sender_accid_) {
-        // 会话id与消息的发送者id一致，则说明该条消息是好友发来的。
-        item = new ChattingItem(true, userNameCard);
+    ChattingItem *chattingItem;
+    if (SELF_USER_NAME_CARD.GetAccId() == msg.sender_accid_) {
+        // 消息发送者 id 与已经登录成功的用户 id 一样，则说明是自己发送的消息
+        chattingItem = new ChattingItem(false, SELF_USER_NAME_CARD, showName);
     } else {
-        // 否则说明该消息是自己发送给好友的
-        item = new ChattingItem(false, SELF_USER_NAME_CARD);
+        // 否则说明该条消息是好友发来的。
+        // 首先构造该好友的用户名片，默认只先构造名片数据只包含用户的唯一标识 accID
+        nim::UserNameCard nameCard(msg.sender_accid_);
+        if (userNameCardMap.contains(msg.sender_accid_)) {
+            // 已经获取到了该用户的名片信息
+            nameCard = userNameCardMap[msg.sender_accid_];
+        } else {
+            // 如果目前没有该用户的名片信息。需要重新获取该用户的名片
+            GetUserNameCardOnLine(msg.sender_accid_);
+        };
+        chattingItem = new ChattingItem(true, nameCard, showName);
     }
     // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
-    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
-    item->updateContent(msg);
+    connect(chattingItem, &ChattingItem::ShowHeaderPhotoLabelSignal, this,
+            &ChattingWindow::ShowHeaderPhotoLabelSlot);
+    chattingItem->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
-    listItem->setSizeHint(QSize(0, item->sizeHint().height()));
+    listItem->setSizeHint(QSize(0, chattingItem->sizeHint().height()));
     chattingListWidget->insertItem(0, listItem);
-    chattingListWidget->setItemWidget(listItem, item);
+    chattingListWidget->setItemWidget(listItem, chattingItem);
 //    chattingListWidget->scrollToItem(listItem);
+
+    // 把该消息记录添加到对应用户的所有条目中
+    if (usersChattingItems.contains(msg.sender_accid_)) {
+        // 在该聊天界面中已经有该用户的发言记录
+        usersChattingItems[msg.sender_accid_].append(chattingItem);
+    } else {
+        // 在该聊天界面中暂时没有该用户的发言记录，则直接将该聊天条目插入进去
+        usersChattingItems.insert(msg.sender_accid_, {chattingItem});
+    }
 
     if (extIndex != -1) {
         // chattingMsg 是按时间倒序排序的消息列表
@@ -284,14 +336,12 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
 
 // 在消息列表尾部插入一条消息
 void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
-    bool isRight;
-    if (msg.sender_accid_.empty()) {
-        // 从msg_json构造的 IMMessage 消息发送者为空；所以可以知道是用户点击发送发送的消息
-        isRight = true;
+    // 判断聊天的每一条消息是否显示用户名。如果是P2P的双向用户聊天，则不显示；否则显示。
+    bool showName = false;
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        showName = false;
     } else {
-        // 有发送者id，则判断发送者id和当前的聊天窗口id是否一致，如果不一致则说明消息在右边，是自己发送的；
-        // 如果一致则说明消息在左边，是好友发送给自己的消息
-        isRight = (msg.sender_accid_ != sessionData.id_);
+        showName = true;
     }
 
     // 判断插入时间提示信息
@@ -314,28 +364,59 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     }
 
     // 插入具体的聊天消息
-    ChattingItem *item;
-    if (sessionData.id_ == msg.sender_accid_) {
-        // 会话id与消息的发送者id一致，则说明该条消息是好友发来的。
-        item = new ChattingItem(true, userNameCard);
+    ChattingItem *chattingItem;
+    if (SELF_USER_NAME_CARD.GetAccId() == msg.sender_accid_) {
+        // 消息发送者 id 与已经登录成功的用户 id 一样，则说明是自己发送的消息
+        chattingItem = new ChattingItem(false, SELF_USER_NAME_CARD, showName);
     } else {
-        // 否则说明该消息是自己发送给好友的
-        item = new ChattingItem(false, SELF_USER_NAME_CARD);
+        // 否则说明该条消息是好友发来的。
+        // 首先构造该好友的用户名片，默认只先构造名片数据只包含用户的唯一标识 accID
+        nim::UserNameCard nameCard(msg.sender_accid_);
+        if (userNameCardMap.contains(msg.sender_accid_)) {
+            // 已经获取到了该用户的名片信息
+            nameCard = userNameCardMap[msg.sender_accid_];
+        } else {
+            // 如果目前没有该用户的名片信息。需要重新获取该用户的名片
+            GetUserNameCardOnLine(msg.sender_accid_);
+        }
+        chattingItem = new ChattingItem(true, nameCard, showName);
     }
     // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
-    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
-    item->updateContent(msg);
+    connect(chattingItem, &ChattingItem::ShowHeaderPhotoLabelSignal, this,
+            &ChattingWindow::ShowHeaderPhotoLabelSlot);
+    chattingItem->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
-    listItem->setSizeHint(QSize(0, item->sizeHint().height()));
+    listItem->setSizeHint(QSize(0, chattingItem->sizeHint().height()));
     chattingListWidget->addItem(listItem);
-    chattingListWidget->setItemWidget(listItem, item);
+    chattingListWidget->setItemWidget(listItem, chattingItem);
     chattingListWidget->scrollToItem(listItem);
+
+    // 把该消息记录添加到对应用户的所有条目中
+    if (usersChattingItems.contains(msg.sender_accid_)) {
+        // 在该聊天界面中已经有该用户的发言记录
+        usersChattingItems[msg.sender_accid_].append(chattingItem);
+    } else {
+        // 在该聊天界面中暂时没有该用户的发言记录，则直接将该聊天条目插入进去
+        usersChattingItems.insert(msg.sender_accid_, {chattingItem});
+    }
 }
 
 // 点击聊天窗口的头像显示信息槽函数
 void ChattingWindow::ClickedHeaderPhotoLabelSlot() {
-    ShowHeaderPhotoLabelSlot(userNameCard);
+    // TODO 修改点击聊天窗口的头像时，显示的界面窗口。
+    // 如果该会话是 P2P 的聊天界面，则点击聊天窗口头像直接显示该用于的具体信息
+    // 如果该会话是群聊的聊天界面，则点击聊天窗口头像显示的是该群的具体信息
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        // P2P 双向用户聊天
+        ShowHeaderPhotoLabelSlot(userNameCard);
+    } else if (sessionData.type_ == nim::kNIMSessionTypeTeam) {
+        // TODO 普通群聊
+        ShowTeamInfoWidget();
+    } else {
+        // TODO 高级群聊
+
+    }
 }
 
 // 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
@@ -346,6 +427,15 @@ void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard)
     // 需要设置显示的名片信息
     userInfoWidget->setUserNameCard(nameCard);
     userInfoWidget->ShowNormal();
+}
+
+// 展示群聊详细信息界面
+void ChattingWindow::ShowTeamInfoWidget() {
+    if (teamInfoWidget == nullptr) {
+        teamInfoWidget = new TeamInfoWidget(teamInfo);
+    }
+    teamInfoWidget->setTeamInfo(teamInfo);
+    teamInfoWidget->ShowNormal();
 }
 
 // 发送消息
@@ -424,7 +514,8 @@ void ChattingWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 void ChattingWindow::closeEvent(QCloseEvent *event) {
 //    qDebug() << "ChattingWindow : get close event...";
-    emit closeChattingWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
+    emit closeChattingWindowSignal(
+            QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
 //    event->ignore();
     QWidget::closeEvent(event);
 }
@@ -449,8 +540,8 @@ void ChattingWindow::QueryMsg() {
  * @param end_msg_id 最后一条消息的服务器消息id，在 IMMessage 中的 readonly_server_id_ 字段中
  */
 void ChattingWindow::QueryMsgOnline(int64_t from_time,
-                                    int64_t end_time,
-                                    int64_t end_msg_id) {
+                                        int64_t end_time,
+                                        int64_t end_msg_id) {
     isQuerying = true;          // 当前正在请求，防止再次发送相同的请求
     nim::MsgLog::QueryMsgOnlineAsync(sessionData.id_, sessionData.type_, LIMIT_COUNT_PER_REQ,
                                      from_time, end_time, end_msg_id,
@@ -466,7 +557,7 @@ void ChattingWindow::QueryMsgOnline(int64_t from_time,
 }
 
 void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::string &id,
-                                        nim::NIMSessionType to_type, const nim::QueryMsglogResult &result) {
+                                            nim::NIMSessionType to_type, const nim::QueryMsglogResult &result) {
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
@@ -479,16 +570,11 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
         // 将消息添加进所有的消息列表中。
         // 这里消息的顺序是按时间逆序排列的，也就是说最新的一条消息在数组的第一条，最久远的消息在数组的最后一条
         chattingMsg.append(msg);
-        if (msg.sender_accid_ == "hbk5") {
-            qDebug() << "[info]: IMMessage: " << QString::fromStdString(result.msglogs_.front().ToJsonString(false));
-        }
-        //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
-        //                << ", content: " << QString::fromStdString(msg.content_);
     }
     emit updateMsgListWidgetSignal(result.msglogs_.size());     // ChattingWindow::updateMsgListWidgetSlot
 }
 
-// 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
+// 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示。其中msgNumber是最新获取的消息条目数量
 void ChattingWindow::updateMsgListWidgetSlot(int msgNumber) {
     qDebug() << "[info]: get " << msgNumber << " messages ...";
     for (int i = chattingMsg.size() - msgNumber; i < chattingMsg.size(); ++i) {
@@ -519,6 +605,7 @@ void ChattingWindow::sendTextMsgToReceiver(const std::string &content, nim::IMMe
     message = std::move(nim::IMMessage(msg_json));
     message.timetag_ = QDateTime::currentDateTimeUtc().toTime_t();  // 秒数
     message.timetag_ *= 1000;       // 需要×1000转化为毫秒数
+    message.sender_accid_ = SELF_USER_NAME_CARD.GetAccId();         // 设置该消息的发送者为自己
 }
 
 // 消息发送之后会有一个发送回调，通知发送的结果。该槽函数来自于信号RecentSessionWidget::sendMsgCallbackSignal
@@ -624,18 +711,48 @@ void ChattingWindow::GetUserNameCardOnLine(const std::string &account) {
 
 void ChattingWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
     if (json_result.empty()) {
-        // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
-        // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
-        userNameCard.SetAccId(sessionData.id_);
+        if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+            // 如果是 P2P 的双向用户聊天，则查询好友的操作只存在于 ChattingWindow::updateChattingWindow()中，
+            // 而且是 userNameCard accID 为空或者 accID 与sessionData.id_不同导致
+            // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
+            // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
+            userNameCard.SetAccId(sessionData.id_);
+        }
     } else {
-        userNameCard = json_result.front();
+        for(const auto &nameCard: json_result) {
+            userNameCardMap.insert(nameCard.GetAccId(), nameCard);
+            if (usersChattingItems.contains(nameCard.GetAccId())) {
+                // 如果已经存在的聊天记录中有该用户已经发送的消息，则需要更新这些用户的消息条目中的数据。比如头像、名片等。
+                for(const auto &chattingItem: usersChattingItems[nameCard.GetAccId()]) {
+                    // 正好这里可以更新前面创建聊天 item 时，自行只设置了accID的名片。
+                    chattingItem->setUserNameCard(nameCard);
+                    chattingItem->updateNamePhoto();
+                }
+            }
+
+        }
     }
-    emit updateChattingWindowSignal();      // ChattingWindow::updateChattingWindow
+    if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        // 如果是P2P的双向用户聊天，则被聊天的对象名片发生变化时，则需要更新该聊天界面的信息。
+        // 如果是群聊的话，只有修改了群的相关信息才会更新聊天界面信息。
+        emit updateChattingWindowSignal();      // 更新聊天界面标题。ChattingWindow::updateChattingWindow
+    }
+
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
 
+// 获取群组成员
+void ChattingWindow::GetTeamMembers(const std::string &teamID) {
+    nim::Team::QueryTeamMembersAsync(teamID,
+                                     [this](const std::string &tid,
+                                            int member_count,
+                                            const std::list<nim::TeamMemberProperty> &props) {
+                                         qDebug() << "[info]: get " << member_count << " members in "
+                                                  << QString::fromStdString(tid);
+                                     });
+}
 
 
 

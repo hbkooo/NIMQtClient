@@ -83,7 +83,8 @@ public:
     signals:
     void AddOneFriendSignal(const nim::UserNameCard &userNameCard);         // 新增一个好友条目信号
 
-    void OpenChattingWindowSignal(const nim::UserNameCard &userNameCard);         // 双击某一个好友 item ，需要打开与该好友的聊天界面
+    // 双击某一个好友 item ，需要打开与该好友的聊天界面
+    void OpenChattingWindowSignal(const nim::UserNameCard &userNameCard);
 
     // 初始化加载完毕用户名片和好友列表后发送信号
     void InitUserNameCardMapSignal(const QMap<QString, nim::UserNameCard> &userNameMap);

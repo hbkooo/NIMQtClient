@@ -50,6 +50,7 @@ void FriendListWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     // 从item获取对应的自定义的widget
     auto *friendItem = dynamic_cast<FriendItem *>(this->itemWidget(item));
     if (friendItem == nullptr) return;
+    // MainWindow::OpenChattingWindowFromFriendListsSlot
     emit OpenChattingWindowSignal(friendItem->getUserNameCard());
 //    auto sessionData = messageItem->getSessionData();
 //    auto *chattingWindow = new ChattingWindow(sessionData);

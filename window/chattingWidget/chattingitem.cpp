@@ -47,12 +47,12 @@ void ChattingItem::InitControl() {
     nameLabel = new QLabel("用户名");
     nameLabel->setStyleSheet("color:black;"
                              "font-size: 14px;");
-    updateUserName();
 
     headPhotoLabel = new ClickableLabel();
     headPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));
     headPhotoLabel->setFixedSize(40, 40);
-    updateHeaderPhotoIcon();
+
+    updateNamePhoto();
 
 }
 
@@ -68,7 +68,7 @@ void ChattingItem::SetLayout() {
     vLayout->addWidget(messageContentLabel);
 
     auto *hLayout = new QHBoxLayout();
-    if(isLeft) {
+    if (isLeft) {
         // 别人发送的消息
         hLayout->addWidget(headPhotoLabel);
         hLayout->addLayout(vLayout);
@@ -85,9 +85,15 @@ void ChattingItem::SetLayout() {
     setLayout(hLayout);
 }
 
+// 更新显示的用户名和头像，主要用在当用户的个人信息修改之后需要修改每一个聊天记录的 item
+void ChattingItem::updateNamePhoto() {
+    updateUserName();
+    updateHeaderPhotoIcon();
+}
+
 void ChattingItem::updateUserName() {
-    if(showName) {
-        if(!userNameCard.GetName().empty()) {
+    if (showName) {
+        if (!userNameCard.GetName().empty()) {
             nameLabel->setText(QString::fromStdString(userNameCard.GetName()));
         } else {
             nameLabel->setText(QString::fromStdString(userNameCard.GetAccId()));
@@ -104,10 +110,10 @@ void ChattingItem::updateHeaderPhotoIcon() {
         // 头像加载失败
         map.load(":/default_header/dh1");
     }
-    headPhotoLabel->setPixmap(PixmapToRound(map.scaled(headPhotoLabel->size()), headPhotoLabel->height()/2));
+    headPhotoLabel->setPixmap(PixmapToRound(map.scaled(headPhotoLabel->size()), headPhotoLabel->height() / 2));
 }
 
-void ChattingItem::updateContent(const QString& content) {
+void ChattingItem::updateContent(const QString &content) {
     messageContentLabel->setText(content);
     qDebug() << "after update content messageContentLabel size : " << messageContentLabel->size();
     qDebug() << "after update content messageContentLabel size : " << messageContentLabel->sizeHint();

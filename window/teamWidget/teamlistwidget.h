@@ -23,6 +23,8 @@ public:
     explicit TeamListWidget(QListWidget *parent = nullptr);
     ~TeamListWidget() override;
 
+    const QMap<QString, TeamInfo>& getTeamInfoMap() const { return teamInfoMap; }
+
 private:
     void InitControl();
     void SetConnect();
@@ -64,6 +66,9 @@ public:
     void AddOneTeamSignal(const TeamInfo &teamInfo);
 
     void UpdateTeamInfoSignal(const nim::TeamInfo &teamInfo);
+
+    // 双击某一个群 item ，需要打开与该群的聊天界面
+    void OpenChattingWindowSignal(const nim::TeamInfo &teamInfo);
 
 public slots:
 

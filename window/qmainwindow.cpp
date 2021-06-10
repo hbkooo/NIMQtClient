@@ -232,6 +232,9 @@ void MainWindow::SetConnect() {
     // 连接好友列表中打开聊天窗口的信号到本类中打开聊天界面
     connect(friendListWidget, &FriendListWidget::OpenChattingWindowSignal,
             this, &MainWindow::OpenChattingWindowFromFriendListsSlot);
+    // 连接群列表中打开聊天窗口的信号到本类中打开聊天界面
+    connect(teamListWidget, &TeamListWidget::OpenChattingWindowSignal,
+            this, &MainWindow::OpenChattingWindowFromTeamInfoListSlot);
 
     // 当在好友列表控件中加载完毕好友数据和用户数据后，将这些数据发送给最近会话窗口中，方便最近会话的每一个条目的显示更新
     connect(friendListWidget, &FriendListWidget::InitFriendProfileMapSignal,
@@ -420,6 +423,35 @@ void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &
     OpenChattingWindowFromRecentSessionSlot(session);
 }
 
+// 从群聊列表中双击某一个群打开聊天界面
+void MainWindow::OpenChattingWindowFromTeamInfoListSlot(const nim::TeamInfo &teamInfo) {
+    if (chattingWindows.contains(QString::fromStdString(teamInfo.GetTeamID()))) {
+        // 如果与该群的聊天界面已经存在，则直接打开
+        chattingWindows[QString::fromStdString(teamInfo.GetTeamID())]->showNormal();     // 让最小化的窗口显示出来
+        chattingWindows[QString::fromStdString(teamInfo.GetTeamID())]->raise();          // 让该聊天窗口置顶显示
+        return;
+    }
+    // 如果从群列表里打开该群的聊天窗口，则需要向最近会话列表里插入该群的会话记录（如果最近的会话列表里没有该群的话），
+    // 创建一个会话数据；
+    // 如果最近会话列表里有与该群的会话记录，则获取到该会话数据。
+    auto sessionItemMap = recentSessionWidget->getAllSessionItemMap();
+    if (sessionItemMap.contains(QString::fromStdString(teamInfo.GetTeamID()))) {
+        // 如果最近会话里有与该用户的会话，则获取到该会话数据，并使用该会话数据打开聊天窗口。然后直接返回即可。
+        OpenChattingWindowFromRecentSessionSlot(
+                sessionItemMap[QString::fromStdString(teamInfo.GetTeamID())]->getSessionData()
+        );
+        return;
+    }
+    // 说明最近会话列表里没有与该用户的会话，则需要自己创建一个新的会话并创建聊天窗口。
+    nim::SessionData session;
+    session.id_ = teamInfo.GetTeamID();
+    session.type_ = nim::kNIMSessionTypeTeam;
+    session.msg_timetag_ = ((int64_t) (QDateTime::currentDateTimeUtc().toTime_t())) * 1000;
+    recentSessionWidget->AddSessionItem(session, 0);
+    OpenChattingWindowFromRecentSessionSlot(session);
+
+}
+
 // 从最近会话中双击某一个会话打开聊天界面
 void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData) {
 
@@ -429,7 +461,7 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
         chattingWindows[QString::fromStdString(sessionData.id_)]->raise();  // 让该聊天窗口置顶显示
         return;
     }
-
+    // 用户的唯一账号 accID 或者是群聊下的 teamID
     QString accId = QString::fromStdString(sessionData.id_);
 
     // 与该好友的聊天界面不存在，则新建聊天界面并打开
@@ -448,6 +480,12 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
     if (userCards.contains(accId)) {
         // 已经存在该用户信息
         chattingWindow->setUserNameCard(userCards[accId]);
+    }
+
+    // 获取所有的群聊信息
+    auto &teamInfos = teamListWidget->getTeamInfoMap();
+    if (teamInfos.contains(accId)) {
+        chattingWindow->setTeamInfo(teamInfos[accId]);
     }
     // 调用好set方法后，需要重新更新界面数据
     chattingWindow->updateChattingWindow();
@@ -478,6 +516,7 @@ void MainWindow::CloseChattingWindowSlot(const QString &id) {
         delete window;
     }
 }
+
 
 
 

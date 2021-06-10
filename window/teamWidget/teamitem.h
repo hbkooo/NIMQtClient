@@ -26,6 +26,7 @@ public:
 
     ~TeamItem() override;
 
+    const nim::TeamInfo& getTeamInfo() const { return teamInfo; }
     // 重新设置新的item数据
     void setTeamInfo(const TeamInfo &info);
     // 更新这一个item信息
