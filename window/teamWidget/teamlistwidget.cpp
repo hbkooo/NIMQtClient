@@ -191,11 +191,10 @@ void TeamListWidget::AddOneTeam(const TeamInfo &teamInfo) {
 
 // 更新群信息
 void TeamListWidget::UpdateTeamInfo(const TeamInfo &teamInfo) {
-    // TODO 用户信息变更
-    // 好友信息更新变化通知处理
+    // TODO 群信息变更
+    // 群信息更新变化通知处理
     auto teamID = QString::fromStdString(teamInfo.GetTeamID());
     if (teamItemsMap.contains(teamID)) {
-        // 如果是该用户的好友，则需要更新好友列表的条目
         teamItemsMap[teamID]->setTeamInfo(teamInfo);
         teamItemsMap[teamID]->updateItem();
     }

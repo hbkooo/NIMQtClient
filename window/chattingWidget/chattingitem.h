@@ -21,7 +21,7 @@ class ChattingItem : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, QWidget *parent = nullptr);
+    explicit ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, bool showName = false, QWidget *parent = nullptr);
 
     ~ChattingItem() override;
 
@@ -30,6 +30,7 @@ public:
     void updateContent(const nim::IMMessage &msg);
     const nim::IMMessage& getIMMessage() const {return message;};
 
+    void updateUserName();
     void updateHeaderPhotoIcon();           // 更新消息的头像图标
 
 private:
@@ -38,8 +39,9 @@ private:
     void SetLayout();
 
 private:
-    QLabel *messageContentLabel;
     ClickableLabel *headPhotoLabel;
+    QLabel *nameLabel;
+    QLabel *messageContentLabel;
 
 private:
     // 消息数据
@@ -47,7 +49,8 @@ private:
     const nim::UserNameCard &userNameCard;        // 该消息所属用户名片
 private:
 
-    bool isLeft;       // 消息是否在左边，如果消息的发送者和接收者一样，则在左边
+    bool isLeft;        // 消息是否在左边，如果消息的发送者和接收者一样，则在左边
+    bool showName;      // 是否展示该消息所属的用户名
 
     signals:
     void ShowHeaderPhotoLabelSignal(const nim::UserNameCard &nameCard);

@@ -9,8 +9,8 @@
  * @param isRight_ 该条消息是自己发送的消息还是对方发送的消息，因为要根据这个标志来判断头像是在右边还是左边
  * @param parent 父控件
  */
-ChattingItem::ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, QWidget *parent) :
-        isLeft(isLeft_), userNameCard(nameCard), QWidget(parent) {
+ChattingItem::ChattingItem(bool isLeft_, const nim::UserNameCard &nameCard, bool showName, QWidget *parent) :
+        userNameCard(nameCard), isLeft(isLeft_), showName(showName), QWidget(parent) {
 
     InitControl();
     SetConnect();
@@ -44,6 +44,11 @@ void ChattingItem::InitControl() {
 //    qDebug() << "messageContentLabel size : " << messageContentLabel->size();
 //    qDebug() << "messageContentLabel size : " << messageContentLabel->sizeHint();
 
+    nameLabel = new QLabel("用户名");
+    nameLabel->setStyleSheet("color:black;"
+                             "font-size: 14px;");
+    updateUserName();
+
     headPhotoLabel = new ClickableLabel();
     headPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));
     headPhotoLabel->setFixedSize(40, 40);
@@ -58,19 +63,38 @@ void ChattingItem::SetConnect() {
 
 void ChattingItem::SetLayout() {
 
+    auto *vLayout = new QVBoxLayout();
+    vLayout->addWidget(nameLabel);
+    vLayout->addWidget(messageContentLabel);
+
     auto *hLayout = new QHBoxLayout();
     if(isLeft) {
         // 别人发送的消息
         hLayout->addWidget(headPhotoLabel);
-        hLayout->addWidget(messageContentLabel);
+        hLayout->addLayout(vLayout);
+        //hLayout->addWidget(messageContentLabel);
         hLayout->addStretch();
     } else {
         // 自己发送的消息
         hLayout->addStretch();
-        hLayout->addWidget(messageContentLabel);
+        hLayout->addLayout(vLayout);
+        //hLayout->addWidget(messageContentLabel);
         hLayout->addWidget(headPhotoLabel);
+        nameLabel->setVisible(false);
     }
     setLayout(hLayout);
+}
+
+void ChattingItem::updateUserName() {
+    if(showName) {
+        if(!userNameCard.GetName().empty()) {
+            nameLabel->setText(QString::fromStdString(userNameCard.GetName()));
+        } else {
+            nameLabel->setText(QString::fromStdString(userNameCard.GetAccId()));
+        }
+    } else {
+        nameLabel->setVisible(false);
+    }
 }
 
 // 更新消息的头像图标

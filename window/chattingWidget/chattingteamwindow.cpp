@@ -2,13 +2,13 @@
 // Created by 19216 on 2021/5/31.
 //
 
-#include "chattingwindow.h"
+#include "chattingteamwindow.h"
 
-QString ChattingWindow::NO_MORE_MSG_TAG = "noMoreInfo";
-QString ChattingWindow::TIME_INFO_TAG = "timeInfo";
-QString ChattingWindow::NORMAL_MSG_TAG = "normalMsg";
+QString ChattingTeamWindow::NO_MORE_MSG_TAG = "noMoreInfo";
+QString ChattingTeamWindow::TIME_INFO_TAG = "timeInfo";
+QString ChattingTeamWindow::NORMAL_MSG_TAG = "normalMsg";
 
-ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
+ChattingTeamWindow::ChattingTeamWindow(const nim::SessionData &data, QWidget *parent) :
         sessionData(data), QWidget(parent) {
 
     // 默认构造的用户好友关系中，accID为空，设置为非好友关系。用户调用 set 方法后可以获得该属性的值。
@@ -37,11 +37,11 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
 
 }
 
-ChattingWindow::~ChattingWindow() {
-    qDebug() << "[info]: In ~ChattingWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
+ChattingTeamWindow::~ChattingTeamWindow() {
+    qDebug() << "[info]: In ~ChattingTeamWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
 }
 
-void ChattingWindow::InitHeader() {
+void ChattingTeamWindow::InitHeader() {
 
     headerPhotoLabel = new ClickableLabel("头像");
     headerPhotoLabel->setCursor(QCursor(Qt::PointingHandCursor));       // 鼠标移上去变手型
@@ -79,7 +79,7 @@ void ChattingWindow::InitHeader() {
 
 }
 
-void ChattingWindow::InitCenterMessage() {
+void ChattingTeamWindow::InitCenterMessage() {
     chattingListWidget = new QListWidget();
     QFile css(":/css/listWidget");
     css.open(QFile::ReadOnly);
@@ -94,7 +94,7 @@ void ChattingWindow::InitCenterMessage() {
     messageLayout->addWidget(chattingListWidget);
 }
 
-void ChattingWindow::InitBottomEnterMessage() {
+void ChattingTeamWindow::InitBottomEnterMessage() {
 
     messageTextEdit = new QTextEdit();
     messageTextEdit->setContentsMargins(20, 20, 40, 20);
@@ -136,7 +136,7 @@ void ChattingWindow::InitBottomEnterMessage() {
     enterMessageWidget->setLayout(vLayout);
 }
 
-void ChattingWindow::SetLayout() {
+void ChattingTeamWindow::SetLayout() {
 
     auto splitWidget = new QWidget();
     splitWidget->setStyleSheet("background:#d2d4d6;");
@@ -151,23 +151,23 @@ void ChattingWindow::SetLayout() {
     this->setLayout(mainLayout);
 }
 
-void ChattingWindow::SetConnect() {
+void ChattingTeamWindow::SetConnect() {
     // 点击聊天窗口的头像
-    connect(headerPhotoLabel, &ClickableLabel::clicked, this, &ChattingWindow::ClickedHeaderPhotoLabelSlot);
+    connect(headerPhotoLabel, &ClickableLabel::clicked, this, &ChattingTeamWindow::ClickedHeaderPhotoLabelSlot);
     // 点击发送信息按钮
-    connect(sendButton, &QPushButton::clicked, this, &ChattingWindow::sendMessageSlot);
+    connect(sendButton, &QPushButton::clicked, this, &ChattingTeamWindow::sendMessageSlot);
     // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
-    connect(this, &ChattingWindow::updateMsgListWidgetSignal, this, &ChattingWindow::updateMsgListWidgetSlot);
+    connect(this, &ChattingTeamWindow::updateMsgListWidgetSignal, this, &ChattingTeamWindow::updateMsgListWidgetSlot);
     // 主要监听聊天记录中垂直滚动条滑动到最上端之后继续从云端获取加载聊天记录
-    connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingWindow::valueChangeSlot);
+    connect(verticalScrollBar, &QScrollBar::valueChanged, this, &ChattingTeamWindow::valueChangeSlot);
     // 云端已经没有聊天记录了，更新界面显示“已加载全部聊天记录”提示
-    connect(this, &ChattingWindow::noMoreMessageSignal, this, &ChattingWindow::noMoreMessageSlot);
+    connect(this, &ChattingTeamWindow::noMoreMessageSignal, this, &ChattingTeamWindow::noMoreMessageSlot);
     // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。
-    connect(this, &ChattingWindow::updateChattingWindowSignal, this, &ChattingWindow::updateChattingWindow);
+    connect(this, &ChattingTeamWindow::updateChattingTeamWindowSignal, this, &ChattingTeamWindow::updateChattingTeamWindow);
 }
 
 // 更新聊天窗口的头像图标
-void ChattingWindow::updateHeaderPhotoIcon() {
+void ChattingTeamWindow::updateHeaderPhotoIcon() {
     if (userNameCard.GetIconUrl().empty()) {
         userNameCard.SetIconUrl(":/default_header/dh1");
     }
@@ -180,7 +180,7 @@ void ChattingWindow::updateHeaderPhotoIcon() {
 }
 
 // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
-void ChattingWindow::updateChattingWindow() {
+void ChattingTeamWindow::updateChattingTeamWindow() {
     /**
      * 设置聊天窗口的标题，对好友的备注或者是好友自己创建账号时的昵称
      * 首先判断是否为好友关系，即获取好友列表里的每一项 FriendProfile，判断是存在该用户，如果有该用户则与其为好友关系；
@@ -235,7 +235,7 @@ void ChattingWindow::updateChattingWindow() {
  * @param msg 消息
  * @param extIndex msg 消息在全部消息列表 chattingMsg 中的序号，扩展位，可以不使用
  */
-void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
+void ChattingTeamWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
     bool isRight;
     if (msg.sender_accid_.empty()) {
         // 从msg_json构造的 IMMessage 消息发送者为空；所以可以知道是用户点击发送发送的消息
@@ -257,7 +257,7 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
     // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
-    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingTeamWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
@@ -283,7 +283,7 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
 }
 
 // 在消息列表尾部插入一条消息
-void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
+void ChattingTeamWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
     bool isRight;
     if (msg.sender_accid_.empty()) {
         // 从msg_json构造的 IMMessage 消息发送者为空；所以可以知道是用户点击发送发送的消息
@@ -323,7 +323,7 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
         item = new ChattingItem(false, SELF_USER_NAME_CARD);
     }
     // 这里主要为了当点击某一个聊天消息的头像时，显示该用户的详细信息
-    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingWindow::ShowHeaderPhotoLabelSlot);
+    connect(item, &ChattingItem::ShowHeaderPhotoLabelSignal, this, &ChattingTeamWindow::ShowHeaderPhotoLabelSlot);
     item->updateContent(msg);
     auto *listItem = new QListWidgetItem();
     listItem->setData(Qt::UserRole, NORMAL_MSG_TAG);
@@ -334,12 +334,12 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
 }
 
 // 点击聊天窗口的头像显示信息槽函数
-void ChattingWindow::ClickedHeaderPhotoLabelSlot() {
+void ChattingTeamWindow::ClickedHeaderPhotoLabelSlot() {
     ShowHeaderPhotoLabelSlot(userNameCard);
 }
 
 // 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
-void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard) {
+void ChattingTeamWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard) {
     if (userInfoWidget == nullptr) {
         userInfoWidget = new UserInfoWidget(nameCard);
     }
@@ -349,7 +349,7 @@ void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard)
 }
 
 // 发送消息
-void ChattingWindow::sendMessageSlot() {
+void ChattingTeamWindow::sendMessageSlot() {
 
     QString msg = messageTextEdit->toPlainText();
     if (msg == "") {
@@ -367,7 +367,7 @@ void ChattingWindow::sendMessageSlot() {
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////// 系统事件监听 ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-void ChattingWindow::wheelEvent(QWheelEvent *event) {
+void ChattingTeamWindow::wheelEvent(QWheelEvent *event) {
     if (currentTopIndex == verticalScrollBar->minimum() && !isQuerying && hasMoreMessage && event->delta() > 0) {
         qDebug() << "[info]: at top and still move ...";
         if (chattingMsg.empty()) {
@@ -379,7 +379,7 @@ void ChattingWindow::wheelEvent(QWheelEvent *event) {
     QWidget::wheelEvent(event);
 }
 
-bool ChattingWindow::eventFilter(QObject *watched, QEvent *event) {
+bool ChattingTeamWindow::eventFilter(QObject *watched, QEvent *event) {
     if (watched == messageTextEdit) {
         if (event->type() == QEvent::KeyPress) {
             auto *k = dynamic_cast<QKeyEvent *>(event);
@@ -397,7 +397,7 @@ bool ChattingWindow::eventFilter(QObject *watched, QEvent *event) {
     return QObject::eventFilter(watched, event);
 }
 
-void ChattingWindow::mousePressEvent(QMouseEvent *event) {
+void ChattingTeamWindow::mousePressEvent(QMouseEvent *event) {
     if (headerWidget && headerWidget->contentsRect().contains(event->pos())) {
         pressPoint = event->globalPos();
         isMoving = true;
@@ -405,7 +405,7 @@ void ChattingWindow::mousePressEvent(QMouseEvent *event) {
     QWidget::mousePressEvent(event);
 }
 
-void ChattingWindow::mouseMoveEvent(QMouseEvent *event) {
+void ChattingTeamWindow::mouseMoveEvent(QMouseEvent *event) {
     if ((event->buttons() == Qt::LeftButton) && isMoving) {
         int dx = event->globalX() - pressPoint.x();
         int dy = event->globalY() - pressPoint.y();
@@ -415,23 +415,23 @@ void ChattingWindow::mouseMoveEvent(QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
 }
 
-void ChattingWindow::mouseReleaseEvent(QMouseEvent *event) {
+void ChattingTeamWindow::mouseReleaseEvent(QMouseEvent *event) {
     if (isMoving) {
         isMoving = false;
     }
     QWidget::mouseReleaseEvent(event);
 }
 
-void ChattingWindow::closeEvent(QCloseEvent *event) {
-//    qDebug() << "ChattingWindow : get close event...";
-    emit closeChattingWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingWindowSlot
+void ChattingTeamWindow::closeEvent(QCloseEvent *event) {
+//    qDebug() << "ChattingTeamWindow : get close event...";
+    emit closeChattingTeamWindowSignal(QString::fromStdString(sessionData.id_));    // MainWindow::CloseChattingTeamWindowSlot
 //    event->ignore();
     QWidget::closeEvent(event);
 }
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-void ChattingWindow::QueryMsg() {
+void ChattingTeamWindow::QueryMsg() {
     isQuerying = true;          // 当前正在请求，防止再次发送相同的请求
     nim::MsgLog::QueryMsgAsync(sessionData.id_, sessionData.type_, LIMIT_COUNT_PER_REQ, sessionData.msg_timetag_,
                                [this](auto &&PH1, auto &&PH2, auto &&PH3, auto &&PH4) {
@@ -448,7 +448,7 @@ void ChattingWindow::QueryMsg() {
  * @param end_time 结束时间，1970年到结束时间的毫秒数，如果为0则是1970年1月1日8:00
  * @param end_msg_id 最后一条消息的服务器消息id，在 IMMessage 中的 readonly_server_id_ 字段中
  */
-void ChattingWindow::QueryMsgOnline(int64_t from_time,
+void ChattingTeamWindow::QueryMsgOnline(int64_t from_time,
                                     int64_t end_time,
                                     int64_t end_msg_id) {
     isQuerying = true;          // 当前正在请求，防止再次发送相同的请求
@@ -465,14 +465,14 @@ void ChattingWindow::QueryMsgOnline(int64_t from_time,
 
 }
 
-void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::string &id,
+void ChattingTeamWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::string &id,
                                         nim::NIMSessionType to_type, const nim::QueryMsglogResult &result) {
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> res_code: " << res_code;
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> id: " << QString::fromStdString(id);
     //    qDebug() << __FILE__ << ":" << __LINE__ << " ==> to_type: " << to_type;
     if (result.msglogs_.empty()) {
         hasMoreMessage = false;
-        emit noMoreMessageSignal();     // 没有更多的聊天消息了,ChattingWindow::noMoreMessageSlot
+        emit noMoreMessageSignal();     // 没有更多的聊天消息了,ChattingTeamWindow::noMoreMessageSlot
         return;
     }
     for (const auto &msg: result.msglogs_) {
@@ -485,11 +485,11 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
         //        qDebug() << "time: " << QDateTime::fromTime_t(msg.timetag_/1000)
         //                << ", content: " << QString::fromStdString(msg.content_);
     }
-    emit updateMsgListWidgetSignal(result.msglogs_.size());     // ChattingWindow::updateMsgListWidgetSlot
+    emit updateMsgListWidgetSignal(result.msglogs_.size());     // ChattingTeamWindow::updateMsgListWidgetSlot
 }
 
 // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
-void ChattingWindow::updateMsgListWidgetSlot(int msgNumber) {
+void ChattingTeamWindow::updateMsgListWidgetSlot(int msgNumber) {
     qDebug() << "[info]: get " << msgNumber << " messages ...";
     for (int i = chattingMsg.size() - msgNumber; i < chattingMsg.size(); ++i) {
         const auto &msg = chattingMsg.at(i);
@@ -508,7 +508,7 @@ void ChattingWindow::updateMsgListWidgetSlot(int msgNumber) {
 }
 
 // 调用nim接口将消息发送给该聊天界面的用户
-void ChattingWindow::sendTextMsgToReceiver(const std::string &content, nim::IMMessage &message) {
+void ChattingTeamWindow::sendTextMsgToReceiver(const std::string &content, nim::IMMessage &message) {
 
     std::string msg_json = nim::Talk::CreateTextMessage(sessionData.id_, sessionData.type_,
                                                         nim::Tool::GetUuid(),
@@ -522,7 +522,7 @@ void ChattingWindow::sendTextMsgToReceiver(const std::string &content, nim::IMMe
 }
 
 // 消息发送之后会有一个发送回调，通知发送的结果。该槽函数来自于信号RecentSessionWidget::sendMsgCallbackSignal
-void ChattingWindow::sendMsgCallbackSlot(const nim::SendMessageArc &messageArc) {
+void ChattingTeamWindow::sendMsgCallbackSlot(const nim::SendMessageArc &messageArc) {
     if (messageArc.rescode_ == nim::kNIMResSuccess) {
         qDebug() << "[info]: 消息回执：消息发送成功...";
     } else {
@@ -531,7 +531,7 @@ void ChattingWindow::sendMsgCallbackSlot(const nim::SendMessageArc &messageArc) 
 }
 
 // 当其他用户发送来新的消息后所有的聊天窗口界面都会收到该消息。该槽函数来自于信号RecentSessionWidget::receiveMsgSignal
-void ChattingWindow::receiveMsgSlot(const nim::IMMessage &msg) {
+void ChattingTeamWindow::receiveMsgSlot(const nim::IMMessage &msg) {
     std::string id = msg.local_talk_id_;
     if (id != sessionData.id_) {
         // 该消息不属于该聊天界面窗口，直接放弃
@@ -554,7 +554,7 @@ void ChattingWindow::receiveMsgSlot(const nim::IMMessage &msg) {
 }
 
 // 当聊天消息ListWidget滑动时触发滑动到的位置信息。以此来处理滑动到到最顶端的时候加载更多的聊天信息
-void ChattingWindow::valueChangeSlot(int position) {
+void ChattingTeamWindow::valueChangeSlot(int position) {
     currentTopIndex = position;
     if (position == verticalScrollBar->minimum() && !isQuerying && hasMoreMessage) {
         qDebug() << "[info]: 滑动到最顶端，需要加载更多记录 ...";
@@ -563,7 +563,7 @@ void ChattingWindow::valueChangeSlot(int position) {
 }
 
 // 当获取消息时，没有更多的聊天消息处理槽函数
-void ChattingWindow::noMoreMessageSlot() {
+void ChattingTeamWindow::noMoreMessageSlot() {
     qDebug() << "[info]: 没有更多的聊天消息了";
     isQuerying = false;             // 聊天消息请求结束，可以进行下一步的请求
 
@@ -585,7 +585,7 @@ void ChattingWindow::noMoreMessageSlot() {
  * @param time 插入的时间，毫秒数
  * @param end 是否插入到末尾，true 则插入到 ListWidget 的末尾； false 则插入到头部。默认是 true ，插入到末尾。
  */
-void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
+void ChattingTeamWindow::AddPromptTimeInfo(int64_t time, bool end) {
 
     auto *label = new QLabel(FormatTimeInfoInChattingWindow(time));
     label->setAlignment(Qt::AlignHCenter);
@@ -606,7 +606,7 @@ void ChattingWindow::AddPromptTimeInfo(int64_t time, bool end) {
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////根据用户 id 查询用户详细信息 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
-void ChattingWindow::GetUserNameCard(const std::string &account) {
+void ChattingTeamWindow::GetUserNameCard(const std::string &account) {
     std::list<std::string> account_list;
     account_list.push_back(account);
     nim::User::GetUserNameCard(account_list, [this](auto &&PH1) {
@@ -614,7 +614,7 @@ void ChattingWindow::GetUserNameCard(const std::string &account) {
     });
 }
 
-void ChattingWindow::GetUserNameCardOnLine(const std::string &account) {
+void ChattingTeamWindow::GetUserNameCardOnLine(const std::string &account) {
     std::list<std::string> account_list;
     account_list.push_back(account);
     nim::User::GetUserNameCardOnline(account_list, [this](auto &&PH1) {
@@ -622,7 +622,7 @@ void ChattingWindow::GetUserNameCardOnLine(const std::string &account) {
     });
 }
 
-void ChattingWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
+void ChattingTeamWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result) {
     if (json_result.empty()) {
         // 如果返回的查询数据为空，说明系统里不存在该用户，即查询的 accID 是错误的。
         // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
@@ -630,7 +630,7 @@ void ChattingWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_resu
     } else {
         userNameCard = json_result.front();
     }
-    emit updateChattingWindowSignal();      // ChattingWindow::updateChattingWindow
+    emit updateChattingTeamWindowSignal();      // ChattingTeamWindow::updateChattingTeamWindow
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////

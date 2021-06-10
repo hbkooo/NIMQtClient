@@ -11,7 +11,7 @@
 CreateTeamItem::CreateTeamItem(UserNameCard nameCard, FriendProfile profile, QWidget *parent) :
         userNameCard(std::move(nameCard)), friendProfile(std::move(profile)), QWidget(parent) {
     qDebug() << QString::fromStdString(friendProfile.ToJsonString());
-    this->setFixedHeight(68);
+    this->setFixedHeight(58);
     InitControl();
 
 }
@@ -24,8 +24,8 @@ void CreateTeamItem::InitControl() {
 
     radioButton = new QRadioButton();
     radioButton->setStyleSheet("QRadioButton::indicator {"
-                               "    width: 24px;"
-                               "    height: 24px;"
+                               "    width: 22px;"
+                               "    height: 22px;"
                                "}"
                                "QRadioButton::indicator:unchecked {"
                                "     image: url(:/res/rb_unchecked);}"
@@ -34,11 +34,11 @@ void CreateTeamItem::InitControl() {
                                "}");
 
     headerPhotoLabel = new QLabel("头像");
-    headerPhotoLabel->setFixedSize(48, 48);
+    headerPhotoLabel->setFixedSize(44, 44);
     updateHeaderPhotoIcon();
 
     nameLabel = new QLabel("用户名");
-    nameLabel->setStyleSheet("font-size:20px;");
+    nameLabel->setStyleSheet("font-size:18px;");
     QString name;
     if (!friendProfile.GetAlias().empty()) {
         // 用户的备注不为空

@@ -430,23 +430,24 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
         return;
     }
 
-    QString accID = QString::fromStdString(sessionData.id_);
+    QString accId = QString::fromStdString(sessionData.id_);
 
     // 与该好友的聊天界面不存在，则新建聊天界面并打开
     auto *chattingWindow = new ChattingWindow(sessionData);
 
     // 获取所有的好友关系列表
     auto &profiles = friendListWidget->getFriendProfileMap();
-    if (profiles.contains(accID)) {
+    if (profiles.contains(accId)) {
         // 二者是好友关系
-        chattingWindow->setFriendProfile(profiles[accID]);
+        qDebug() << "[info]: " << __FUNCTION__ << ", is friend ...";
+        chattingWindow->setFriendProfile(profiles[accId]);
     }
 
     // 获取所有的用户信息
     auto &userCards = friendListWidget->getUserNameCardMap();
-    if (userCards.contains(accID)) {
+    if (userCards.contains(accId)) {
         // 已经存在该用户信息
-        chattingWindow->setUserNameCard(userCards[accID]);
+        chattingWindow->setUserNameCard(userCards[accId]);
     }
     // 调用好set方法后，需要重新更新界面数据
     chattingWindow->updateChattingWindow();
