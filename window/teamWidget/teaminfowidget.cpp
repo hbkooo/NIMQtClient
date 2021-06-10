@@ -17,6 +17,7 @@ TeamInfoWidget::~TeamInfoWidget() {
 
 void TeamInfoWidget::ShowNormal() {
     // TODO
-
+    this->showNormal();
+    this->raise();
 }
 

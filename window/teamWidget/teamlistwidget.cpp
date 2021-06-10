@@ -134,7 +134,7 @@ void TeamListWidget::GetTeamMembers(const QString &teamID) {
 void TeamListWidget::ListenTeamChangeEvent() {
     nim::Team::RegTeamEventCb([this](const nim::TeamEvent& team_event) {
         if(team_event.res_code_ == nim::kNIMResSuccess) {
-
+            qDebug() << "[info]: 监听到群有发生变化，变化 code: " << team_event.res_code_;
             if (team_event.notification_id_ == nim::kNIMNotificationIdLocalCreateTeam) {
 
             }
