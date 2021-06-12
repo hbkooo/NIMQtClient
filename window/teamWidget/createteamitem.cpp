@@ -67,7 +67,7 @@ void CreateTeamItem::updateHeaderPhotoIcon() {
     if (userNameCard.GetIconUrl().empty()) {
         userNameCard.SetIconUrl(":/default_header/dh9");
     }
-    QPixmap map(QString::fromStdString(SELF_USER_NAME_CARD.GetIconUrl()));
+    QPixmap map(QString::fromStdString(userNameCard.GetIconUrl()));
     if (map.isNull()) {
         // 头像加载失败
         map.load(":/default_header/dh9");

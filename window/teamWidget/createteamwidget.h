@@ -13,6 +13,8 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QEvent>
+#include <QKeyEvent>
 #include <QDebug>
 
 #include "client.h"
@@ -43,6 +45,7 @@ private:
     QLineEdit *teamNameLineEdit;        //  群名称
     QListWidget *userInfoListWidget;
     QTextEdit *teamDescriptionTextEdit; // 群描述
+    QLabel *infoLabel;                  // 操作提示信息
     QPushButton *createButton;
 
 private:
@@ -50,8 +53,18 @@ private:
     QMap<QString, nim::FriendProfile> friendProfileMap;     // 该用户的好友关系列表
     QMap<QString, nim::UserNameCard> userNameCardMap;       // 所有的用户的详细信息，可能并不是该用户的好友
 
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev) override;
+
+signals:
+    // 显示创建群的提示信息结果
+    void ShowResultOfCreateTeamSignal(const QString &resultInfo);
+
 public slots:
     void ClickedCreateTeamButtonSlot();
+    // 显示创建群的提示信息结果
+    void ShowResultOfCreateTeamSlot(const QString &resultInfo);
 
 };
 

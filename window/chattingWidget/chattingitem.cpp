@@ -87,6 +87,8 @@ void ChattingItem::SetLayout() {
 
 // 更新显示的用户名和头像，主要用在当用户的个人信息修改之后需要修改每一个聊天记录的 item
 void ChattingItem::updateNamePhoto() {
+//    qDebug() << "[info]: update chatting item of " << QString::fromStdString(userNameCard.GetAccId())
+//                << ", in " << __FUNCTION__;
     updateUserName();
     updateHeaderPhotoIcon();
 }

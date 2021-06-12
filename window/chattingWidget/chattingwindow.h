@@ -50,7 +50,10 @@ public:
 
     void setSessionData(const nim::SessionData &data) { sessionData = data; }
     void setFriendProfile(const nim::FriendProfile &profile) { friendProfile = profile; }
-    void setUserNameCard(const nim::UserNameCard &nameCard) { userNameCard = nameCard; }
+    void setUserNameCard(const nim::UserNameCard &nameCard) {
+        userNameCard = nameCard;
+        userNameCardMap.insert(userNameCard.GetAccId(), userNameCard);
+    }
     void setTeamInfo(const nim::TeamInfo &info) { teamInfo = info; }
     // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
     void updateChattingWindow();

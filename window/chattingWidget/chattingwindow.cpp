@@ -44,6 +44,8 @@ ChattingWindow::ChattingWindow(const nim::SessionData &data, QWidget *parent) :
 
 ChattingWindow::~ChattingWindow() {
     qDebug() << "[info]: In ~ChattingWindow delete chatting window of " << QString::fromStdString(sessionData.id_);
+    if (userInfoWidget != nullptr) delete userInfoWidget;
+    if (teamInfoWidget != nullptr) delete teamInfoWidget;
 }
 
 void ChattingWindow::InitHeader() {
@@ -239,7 +241,7 @@ void ChattingWindow::updateChattingWindow() {
 
         // 首先判断是否为好友关系。如果是好友关系则聊天窗口标题设置为好友关系里设置的备注
         if (friendProfile.GetRelationship() == nim::kNIMFriendFlagNormal) {
-            qDebug() << "二者是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
+            qDebug() << "[info]: In " << __FUNCTION__ << ": 二者是好友关系: " << QString::fromStdString(friendProfile.GetAccId());
             // 如果是好友关系
             QString alias = QString::fromStdString(friendProfile.GetAlias());
             if (alias != "") {
@@ -294,6 +296,7 @@ void ChattingWindow::AddOneMsgFront(const nim::IMMessage &msg, int extIndex) {
             nameCard = userNameCardMap[msg.sender_accid_];
         } else {
             // 如果目前没有该用户的名片信息。需要重新获取该用户的名片
+            qDebug() << "[info]: 重新获取用户'" << QString::fromStdString(msg.sender_accid_) << "'名片, in " << __FUNCTION__ ;
             GetUserNameCardOnLine(msg.sender_accid_);
         };
         chattingItem = new ChattingItem(true, nameCard, showName);
@@ -377,6 +380,7 @@ void ChattingWindow::AddOneMsgEnd(const nim::IMMessage &msg) {
             nameCard = userNameCardMap[msg.sender_accid_];
         } else {
             // 如果目前没有该用户的名片信息。需要重新获取该用户的名片
+            qDebug() << "[info]: 重新获取用户'" << QString::fromStdString(msg.sender_accid_) << "'名片, in " << __FUNCTION__ ;
             GetUserNameCardOnLine(msg.sender_accid_);
         }
         chattingItem = new ChattingItem(true, nameCard, showName);
@@ -576,7 +580,7 @@ void ChattingWindow::OnQueryMsgCallback(nim::NIMResCode res_code, const std::str
 
 // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示。其中msgNumber是最新获取的消息条目数量
 void ChattingWindow::updateMsgListWidgetSlot(int msgNumber) {
-    qDebug() << "[info]: get " << msgNumber << " messages ...";
+    qDebug() << "[info]: get " << msgNumber << " messages in " << __FUNCTION__;
     for (int i = chattingMsg.size() - msgNumber; i < chattingMsg.size(); ++i) {
         const auto &msg = chattingMsg.at(i);
         AddOneMsgFront(msg, i);
@@ -591,6 +595,7 @@ void ChattingWindow::updateMsgListWidgetSlot(int msgNumber) {
     //    chattingListWidget->scrollToItem(chattingListWidget->item(msgNumber));
     // }
     isQuerying = false;             // 聊天消息请求结束，可以进行下一步的请求
+    qDebug() << "[info]: update message list over ..., in " << __FUNCTION__;
 }
 
 // 调用nim接口将消息发送给该聊天界面的用户
@@ -729,10 +734,12 @@ void ChattingWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_resu
                     chattingItem->updateNamePhoto();
                 }
             }
-
+            qDebug() << "in " << __FUNCTION__ << ", get user card of " << QString::fromStdString(nameCard.GetAccId())
+                        << ", userNameCardMap.size(): " << userNameCardMap.size();
         }
     }
     if (sessionData.type_ == nim::kNIMSessionTypeP2P) {
+        // 如果是P2P的双向用户聊天，则获取好友的名片一定是获取聊天用户的名片，则需要更新所有的信息
         // 如果是P2P的双向用户聊天，则被聊天的对象名片发生变化时，则需要更新该聊天界面的信息。
         // 如果是群聊的话，只有修改了群的相关信息才会更新聊天界面信息。
         emit updateChattingWindowSignal();      // 更新聊天界面标题。ChattingWindow::updateChattingWindow

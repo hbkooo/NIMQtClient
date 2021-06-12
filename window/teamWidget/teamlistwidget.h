@@ -43,8 +43,6 @@ private:
     // 根据群 id 在线获取该群的信息
     void GetTeamInfoOnline(const QString& teamID);
 
-    // 获取群组成员
-    void GetTeamMembers(const QString &teamID);
 
     // 注册群变化通知
     void ListenTeamChangeEvent();
