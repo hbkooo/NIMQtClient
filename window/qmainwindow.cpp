@@ -4,8 +4,7 @@
 //#include <QGLWidget>
 
 MainWindow::MainWindow(QString accID_, QWidget *parent)
-    : accID(accID_), QWidget(parent)
-{
+        : accID(accID_), QWidget(parent) {
     this->resize(360, 700);
     this->setMinimumSize(360, 700);
     this->setMaximumWidth(800);
@@ -18,6 +17,13 @@ MainWindow::MainWindow(QString accID_, QWidget *parent)
     qRegisterMetaType<nim::IMMessage>("nim::IMMessage");            // 收发消息
     qRegisterMetaType<nim::UserNameCard>("nim::UserNameCard");      // 用户个人信息
     qRegisterMetaType<nim::FriendProfile>("nim::FriendProfile");    // 好友关系信息
+    qRegisterMetaType<nim::TeamInfo>("nim::TeamInfo");              // 群信息
+    qRegisterMetaType<SessionData>("SessionData");                  // 注册消息传递的数据类型
+    qRegisterMetaType<SendMessageArc>("SendMessageArc");            // 发送消息回调结果
+    qRegisterMetaType<IMMessage>("IMMessage");                      // 收发消息
+    qRegisterMetaType<UserNameCard>("UserNameCard");                // 用户个人信息
+    qRegisterMetaType<FriendProfile>("FriendProfile");              // 好友关系信息
+    qRegisterMetaType<TeamInfo>("TeamInfo");                        // 群信息
     qRegisterMetaType<QMap<QString, nim::UserNameCard>>("QMap<QString, nim::UserNameCard>");      // 用户个人信息
     qRegisterMetaType<QMap<QString, nim::FriendProfile>>("QMap<QString, nim::FriendProfile>");      // 用户个人信息
 
@@ -37,24 +43,28 @@ MainWindow::MainWindow(QString accID_, QWidget *parent)
     recentSessionWidget->InitSessionList();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     qDebug() << "[info]: in ~MainWindow. Opened chatting windows number is " << chattingWindows.size();
-    for(auto * chattingWindow: chattingWindows) {
-        if(chattingWindow) {
+    for (auto *chattingWindow: chattingWindows) {
+        if (chattingWindow) {
             chattingWindow->hide();
             delete chattingWindow;
         }
     }
     // 释放修改个人信息窗口资源
-    if(userInfoWidget != nullptr) {
+    if (userInfoWidget != nullptr) {
         delete userInfoWidget;
         userInfoWidget = nullptr;
     }
     // 释放添加好友窗口资源
-    if(addFriendWidget != nullptr) {
+    if (addFriendWidget != nullptr) {
         delete addFriendWidget;
         addFriendWidget = nullptr;
+    }
+    // 释放创建群聊窗口资源
+    if (createTeamWidget != nullptr) {
+        delete createTeamWidget;
+        createTeamWidget = nullptr;
     }
 }
 
@@ -68,7 +78,7 @@ void MainWindow::updateMyHeader() {
         nameLabel->setText(QString::fromStdString(SELF_USER_NAME_CARD.GetAccId()));
     }
     // 更新签名
-    if(!SELF_USER_NAME_CARD.GetSignature().empty()) {
+    if (!SELF_USER_NAME_CARD.GetSignature().empty()) {
         signatureLabel->setText(QString::fromStdString(SELF_USER_NAME_CARD.GetSignature()));
     } else {
         signatureLabel->setText("设置签名");
@@ -116,16 +126,19 @@ void MainWindow::InitControl() {
     recentSessionWidget = new RecentSessionWidget();
     // 好友列表控件
     friendListWidget = new FriendListWidget();
+    // 群聊列表控件
+    teamListWidget = new TeamListWidget();
 
     // 新建堆栈窗口，并将两个窗口添加进去，设置当前显示的窗口为“最近会话”窗口
     mainStackedWidget = new QStackedWidget();
     mainStackedWidget->addWidget(friendListWidget);
     mainStackedWidget->addWidget(recentSessionWidget);
+    mainStackedWidget->addWidget(teamListWidget);
     mainStackedWidget->setCurrentIndex(1);
 
     // 创建与上面窗口对应的选项卡按钮，点击不同的选项卡切换到不同的窗口
-    QStringList stringListTool = {"联系人", "消息"};
-    for(int i = 0; i < stringListTool.size(); ++i) {
+    QStringList stringListTool = {"联系人", "消息", "群聊"};
+    for (int i = 0; i < stringListTool.size(); ++i) {
         auto *toolLabel = new ToolLabel(stringListTool.at(i));
         toolLabel->setObjectName(QString::number(i));
         toolLabels.append(toolLabel);
@@ -138,11 +151,33 @@ void MainWindow::InitControl() {
     addFriendLabel->setContentsMargins(8, 16, 8, 16);
     addFriendLabel->setFixedSize(46, 62);
     addFriendLabel->setToolTip("添加好友");
-    QPixmap pixmap(":/res/add_friend");
-    addFriendLabel->setPixmap(pixmap.scaled(30, 30));
+    QPixmap addFriendPixmap(":/res/add_friend");
+    addFriendLabel->setPixmap(addFriendPixmap.scaled(30, 30));
     addFriendLabel->setStyleSheet("QLabel:hover {"
                                   "background:rgb(213,203,208);"
                                   "}");
+
+    // 创建群聊
+    createTeamLabel = new ClickableLabel("创建群聊");
+    createTeamLabel->setContentsMargins(8, 16, 8, 16);
+    createTeamLabel->setFixedSize(46, 62);
+    createTeamLabel->setToolTip("创建群聊");
+    QPixmap createTeamPixmap(":/res/create_team");
+    createTeamLabel->setPixmap(createTeamPixmap.scaled(30, 30));
+    createTeamLabel->setStyleSheet("QLabel:hover {"
+                                   "background:rgb(213,203,208);"
+                                   "}");
+
+    // 搜索群聊
+    searchTeamLabel = new ClickableLabel("搜索群聊");
+    searchTeamLabel->setContentsMargins(8, 16, 8, 16);
+    searchTeamLabel->setFixedSize(46, 62);
+    searchTeamLabel->setToolTip("搜索群聊");
+    QPixmap searchTeamPixmap(":/res/search_team");
+    searchTeamLabel->setPixmap(searchTeamPixmap.scaled(30, 30));
+    searchTeamLabel->setStyleSheet("QLabel:hover {"
+                                   "background:rgb(213,203,208);"
+                                   "}");
 
 }
 
@@ -150,13 +185,15 @@ void MainWindow::SetLayout() {
 
     // 选项卡按钮布局
     auto *toolLabelLayout = new QHBoxLayout();
-    for(auto *toolLabel: toolLabels) {
+    for (auto *toolLabel: toolLabels) {
         toolLabelLayout->addWidget(toolLabel);
     }
 
     auto *bottomToolLayout = new QHBoxLayout();
     bottomToolLayout->setContentsMargins(8, 0, 8, 0);
     bottomToolLayout->addWidget(addFriendLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addWidget(createTeamLabel, 0, Qt::AlignVCenter);
+    bottomToolLayout->addWidget(searchTeamLabel, 0, Qt::AlignVCenter);
     bottomToolLayout->addStretch();
 
     layout = new QVBoxLayout();
@@ -180,6 +217,10 @@ void MainWindow::SetConnect() {
 
     // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
     connect(addFriendLabel, &ClickableLabel::clicked, this, &MainWindow::ClickAddFriendLabelSlot);
+    // 点击创建群聊按钮。
+    connect(createTeamLabel, &ClickableLabel::clicked, this, &MainWindow::ClickCreateTeamLabelSlot);
+    // 点击搜索群聊按钮。
+    connect(searchTeamLabel, &ClickableLabel::clicked, this, &MainWindow::ClickSearchTeamLabelSlot);
 
     // 连接最近会话变化时的信号传递到本类中，以将最新的会话数据传递给打开的聊天界面
     connect(recentSessionWidget, &RecentSessionWidget::UpdateSessionSignal,
@@ -191,6 +232,9 @@ void MainWindow::SetConnect() {
     // 连接好友列表中打开聊天窗口的信号到本类中打开聊天界面
     connect(friendListWidget, &FriendListWidget::OpenChattingWindowSignal,
             this, &MainWindow::OpenChattingWindowFromFriendListsSlot);
+    // 连接群列表中打开聊天窗口的信号到本类中打开聊天界面
+    connect(teamListWidget, &TeamListWidget::OpenChattingWindowSignal,
+            this, &MainWindow::OpenChattingWindowFromTeamInfoListSlot);
 
     // 当在好友列表控件中加载完毕好友数据和用户数据后，将这些数据发送给最近会话窗口中，方便最近会话的每一个条目的显示更新
     connect(friendListWidget, &FriendListWidget::InitFriendProfileMapSignal,
@@ -202,10 +246,15 @@ void MainWindow::SetConnect() {
             recentSessionWidget, &RecentSessionWidget::UpdateFriendProfileSlot);
     connect(friendListWidget, &FriendListWidget::UpdateUserNameCardSignal,
             recentSessionWidget, &RecentSessionWidget::UpdateUserNameCardSlot);
+    // 群消息发生变化
+    connect(teamListWidget, &TeamListWidget::UpdateTeamInfoSignal,
+            recentSessionWidget, &RecentSessionWidget::UpdateTeamInfoSlot);
+
     connect(friendListWidget, &FriendListWidget::UpdateUserNameCardSignal,
             this, &MainWindow::UserCardChangeToChattingWindowSlot);
     connect(friendListWidget, &FriendListWidget::UpdateFriendProfileSignal,
             this, &MainWindow::FriendProfileChangeToChattingWindowSlot);
+    // TODO 打开的群消息聊天界面
 }
 
 // 设置用户头像
@@ -220,9 +269,9 @@ void MainWindow::updateHeaderPhotoIcon() {
     }
     headerPhotoLabel->setPixmap(
             PixmapToRound(
-                map.scaled(headerPhotoLabel->size()),
-                headerPhotoLabel->height()/2)
-            );
+                    map.scaled(headerPhotoLabel->size()),
+                    headerPhotoLabel->height() / 2)
+    );
 }
 
 // 关闭窗口事件处理，这里处理为退出登录，到登录界面
@@ -244,8 +293,9 @@ void MainWindow::RegisterSendMsg() {
         OnSendMsgCallback(std::forward<decltype(PH1)>(PH1));
     });
 }
+
 // 消息发送成功与否回调函数
-void MainWindow::OnSendMsgCallback(const nim::SendMessageArc& messageArc) {
+void MainWindow::OnSendMsgCallback(const nim::SendMessageArc &messageArc) {
     emit sendMsgCallbackSignal(messageArc);     // ChattingWindow::sendMsgCallbackSlot
 }
 ////////////////////////////////////////////////////////////////////////////////////
@@ -260,6 +310,7 @@ void MainWindow::RegisterReceiveMsg() {
         OnReceiveMsgCallback(std::forward<decltype(PH1)>(PH1));
     });
 }
+
 // 接收消息回调函数
 void MainWindow::OnReceiveMsgCallback(const nim::IMMessage &message) {
     emit receiveMsgSignal(message);     // ChattingWindow::receiveMsgSlot
@@ -279,17 +330,37 @@ void MainWindow::ClickHeaderPhotoSlot() {
 // 点击添加好友按钮。实现打开添加好友界面，搜索添加好友
 void MainWindow::ClickAddFriendLabelSlot() {
     // qDebug() << "打开添加好友控件 ...";
-    if(addFriendWidget == nullptr) {
+    if (addFriendWidget == nullptr) {
         addFriendWidget = new AddFriendWidget();
     }
     addFriendWidget->showNormal();
     addFriendWidget->raise();
 }
 
+// 点击创建群聊按钮。
+void MainWindow::ClickCreateTeamLabelSlot() {
+     // qDebug() << "打开创建群聊控件 ...";
+    if (createTeamWidget == nullptr) {
+        createTeamWidget = new CreateTeamWidget();
+    }
+    createTeamWidget->setFriendProfileMap(friendListWidget->getFriendProfileMap());
+    createTeamWidget->setUserNameCardMap(friendListWidget->getUserNameCardMap());
+    createTeamWidget->updateWindow();
+
+    createTeamWidget->showNormal();
+    createTeamWidget->raise();
+}
+
+// 点击搜索群聊按钮。
+void MainWindow::ClickSearchTeamLabelSlot() {
+     qDebug() << "打开搜索群聊控件 ...";
+
+}
+
 // 选项卡按钮选中之后槽函数，主要更新按钮的样式、显示点击的界面窗口
 void MainWindow::toolLabelChecked() {
-    auto *label = (ToolLabel*) sender();
-            foreach(ToolLabel* toolLabel, toolLabels) {
+    auto *label = (ToolLabel *) sender();
+            foreach(ToolLabel *toolLabel, toolLabels) {
             toolLabel->setUnChecked();
             toolLabel->style()->polish(toolLabel);      // 自定义属性在调用后必须调用刷新样式的操作!!!
         }
@@ -301,7 +372,7 @@ void MainWindow::toolLabelChecked() {
 
 void MainWindow::UserCardChangeToChattingWindowSlot(const nim::UserNameCard &nameCard) {
     QString accId = QString::fromStdString(nameCard.GetAccId());
-    if(chattingWindows.contains(accId)) {
+    if (chattingWindows.contains(accId)) {
         // 如果存在已经打开的该聊天窗口，则更新需要更新的信息
         chattingWindows[accId]->setUserNameCard(nameCard);
         chattingWindows[accId]->updateChattingWindow();
@@ -310,7 +381,7 @@ void MainWindow::UserCardChangeToChattingWindowSlot(const nim::UserNameCard &nam
 
 void MainWindow::FriendProfileChangeToChattingWindowSlot(const nim::FriendProfile &friendProfile) {
     QString accId = QString::fromStdString(friendProfile.GetAccId());
-    if(chattingWindows.contains(accId)) {
+    if (chattingWindows.contains(accId)) {
         // 如果存在已经打开的该聊天窗口，则更新需要更新的信息
         chattingWindows[accId]->setFriendProfile(friendProfile);
         chattingWindows[accId]->updateChattingWindow();
@@ -319,14 +390,14 @@ void MainWindow::FriendProfileChangeToChattingWindowSlot(const nim::FriendProfil
 
 // 最近会话变动，需要将会话数据传递给聊天界面中
 void MainWindow::SessionChangToChattingWindowSlot(const nim::SessionData &sessionData) {
-    if(chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
+    if (chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
         chattingWindows[QString::fromStdString(sessionData.id_)]->setSessionData(sessionData);
     }
 }
 
 // 从好友列表中双击某一个好友打开聊天界面
 void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &userNameCard) {
-    if(chattingWindows.contains(QString::fromStdString(userNameCard.GetAccId()))) {
+    if (chattingWindows.contains(QString::fromStdString(userNameCard.GetAccId()))) {
         // 如果与该好友的聊天界面已经存在，则直接打开
         chattingWindows[QString::fromStdString(userNameCard.GetAccId())]->showNormal();     // 让最小化的窗口显示出来
         chattingWindows[QString::fromStdString(userNameCard.GetAccId())]->raise();          // 让该聊天窗口置顶显示
@@ -336,11 +407,11 @@ void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &
     // 创建一个会话数据；
     // 如果最近会话列表里有与该用户的会话记录，则获取到该会话数据。
     auto sessionItemMap = recentSessionWidget->getAllSessionItemMap();
-    if(sessionItemMap.contains(QString::fromStdString(userNameCard.GetAccId()))) {
+    if (sessionItemMap.contains(QString::fromStdString(userNameCard.GetAccId()))) {
         // 如果最近会话里有与该用户的会话，则获取到该会话数据，并使用该会话数据打开聊天窗口。然后直接返回即可。
         OpenChattingWindowFromRecentSessionSlot(
                 sessionItemMap[QString::fromStdString(userNameCard.GetAccId())]->getSessionData()
-                );
+        );
         return;
     }
     // 说明最近会话列表里没有与该用户的会话，则需要自己创建一个新的会话并创建聊天窗口。
@@ -352,36 +423,74 @@ void MainWindow::OpenChattingWindowFromFriendListsSlot(const nim::UserNameCard &
     OpenChattingWindowFromRecentSessionSlot(session);
 }
 
+// 从群聊列表中双击某一个群打开聊天界面
+void MainWindow::OpenChattingWindowFromTeamInfoListSlot(const nim::TeamInfo &teamInfo) {
+    if (chattingWindows.contains(QString::fromStdString(teamInfo.GetTeamID()))) {
+        // 如果与该群的聊天界面已经存在，则直接打开
+        chattingWindows[QString::fromStdString(teamInfo.GetTeamID())]->showNormal();     // 让最小化的窗口显示出来
+        chattingWindows[QString::fromStdString(teamInfo.GetTeamID())]->raise();          // 让该聊天窗口置顶显示
+        return;
+    }
+    // 如果从群列表里打开该群的聊天窗口，则需要向最近会话列表里插入该群的会话记录（如果最近的会话列表里没有该群的话），
+    // 创建一个会话数据；
+    // 如果最近会话列表里有与该群的会话记录，则获取到该会话数据。
+    auto sessionItemMap = recentSessionWidget->getAllSessionItemMap();
+    if (sessionItemMap.contains(QString::fromStdString(teamInfo.GetTeamID()))) {
+        // 如果最近会话里有与该用户的会话，则获取到该会话数据，并使用该会话数据打开聊天窗口。然后直接返回即可。
+        OpenChattingWindowFromRecentSessionSlot(
+                sessionItemMap[QString::fromStdString(teamInfo.GetTeamID())]->getSessionData()
+        );
+        return;
+    }
+    // 说明最近会话列表里没有与该用户的会话，则需要自己创建一个新的会话并创建聊天窗口。
+    nim::SessionData session;
+    session.id_ = teamInfo.GetTeamID();
+    session.type_ = nim::kNIMSessionTypeTeam;
+    session.msg_timetag_ = ((int64_t) (QDateTime::currentDateTimeUtc().toTime_t())) * 1000;
+    recentSessionWidget->AddSessionItem(session, 0);
+    OpenChattingWindowFromRecentSessionSlot(session);
+
+}
+
 // 从最近会话中双击某一个会话打开聊天界面
 void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData &sessionData) {
 
-    if(chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
+    if (chattingWindows.contains(QString::fromStdString(sessionData.id_))) {
         // 如果与该好友的聊天界面已经存在，则直接打开
         chattingWindows[QString::fromStdString(sessionData.id_)]->showNormal();     // 让最小化的窗口显示出来
         chattingWindows[QString::fromStdString(sessionData.id_)]->raise();  // 让该聊天窗口置顶显示
         return;
     }
-
-    QString accID = QString::fromStdString(sessionData.id_);
+    // 用户的唯一账号 accID 或者是群聊下的 teamID
+    QString accId = QString::fromStdString(sessionData.id_);
 
     // 与该好友的聊天界面不存在，则新建聊天界面并打开
     auto *chattingWindow = new ChattingWindow(sessionData);
 
     // 获取所有的好友关系列表
     auto &profiles = friendListWidget->getFriendProfileMap();
-    if(profiles.contains(accID)) {
+    if (profiles.contains(accId)) {
         // 二者是好友关系
-        chattingWindow->setFriendProfile(profiles[accID]);
+        qDebug() << "[info]: " << __FUNCTION__ << ", is friend ...";
+        chattingWindow->setFriendProfile(profiles[accId]);
     }
 
     // 获取所有的用户信息
     auto &userCards = friendListWidget->getUserNameCardMap();
-    if(userCards.contains(accID)) {
+    if (userCards.contains(accId)) {
         // 已经存在该用户信息
-        chattingWindow->setUserNameCard(userCards[accID]);
+        chattingWindow->setUserNameCard(userCards[accId]);
     }
+
+    // 获取所有的群聊信息
+    auto &teamInfos = teamListWidget->getTeamInfoMap();
+    if (teamInfos.contains(accId)) {
+        chattingWindow->setTeamInfo(teamInfos[accId]);
+    }
+    qDebug() << "[info]: start update chatting window head info ...";
     // 调用好set方法后，需要重新更新界面数据
     chattingWindow->updateChattingWindow();
+    qDebug() << "[info]: update chatting window head info over ...";
 
     // 将最近发送的消息成功与否信号传递到聊天窗口中
     connect(this, &MainWindow::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
@@ -395,19 +504,21 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
 }
 
 // 关闭聊天窗口
-void MainWindow::CloseChattingWindowSlot(const QString& id) {
+void MainWindow::CloseChattingWindowSlot(const QString &id) {
     qDebug() << "[info]: close chatting window : " << id;
     if (!chattingWindows.contains(id)) {
-        qDebug() << "[error]: close window error, the closed window '" << id << "' not in all opened windows: " << chattingWindows.keys();
+        qDebug() << "[error]: close window error, the closed window '" << id << "' not in all opened windows: "
+                 << chattingWindows.keys();
         return;
     }
     // 删除该聊天窗口
     auto *window = chattingWindows.take(id);
-    if(window) {
+    if (window) {
         window->hide();
         delete window;
     }
 }
+
 
 
 

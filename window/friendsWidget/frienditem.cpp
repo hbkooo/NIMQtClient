@@ -20,7 +20,7 @@ FriendItem::~FriendItem() {
 }
 
 void FriendItem::InitControl() {
-// 用户头像
+    // 用户头像
     header_label = new QLabel("头像");
     header_label->setFixedSize(48, 48);
     if (userNameCard.GetIconUrl().empty()) {

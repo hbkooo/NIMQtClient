@@ -223,6 +223,12 @@ bool LoginWindow::eventFilter(QObject *obj, QEvent *ev) {
         } else if (ev->type() == QEvent::FocusOut)
         {
             userIconBtn->setIcon(userNormalIcon);
+        } else if(ev->type() == QEvent::KeyPress) {
+            // 在密码框内回车按键则直接登录
+            auto *key = dynamic_cast<QKeyEvent *>(ev);
+            if (key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return) {
+                OnLoginClicked();
+            }
         }
     }
     if(obj == passwordLE)
@@ -381,7 +387,6 @@ void LoginWindow::OnGetUserCard(const std::list<nim::UserNameCard> &json_result)
         // 这里强制设置用户名片 id 为会话 id，结束后续的不断查询。
         qDebug() << "[error]: 获取用户 '" << usernameLE->text() << "' 信息失败 ...";
     } else {
-        qDebug() << "[info]: 登录成功的用户信息为：" << QString::fromStdString(json_result.front().ToJsonString());
         SELF_USER_NAME_CARD = json_result.front();
         // 获取用户信息成功，修改主界面的显示信息。MainWindow::updateMyHeader
         emit GetLoginUserNameCardSuccessSignal();

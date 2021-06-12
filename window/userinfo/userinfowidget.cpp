@@ -12,6 +12,7 @@ UserInfoWidget::UserInfoWidget(nim::UserNameCard nameCard, QWidget *parent) :
         userNameCard(std::move(nameCard)), QWidget(parent) {
     qDebug() << "[info]: create widget, " << __FUNCTION__;
 
+    this->setWindowTitle("个人信息");
     this->setFixedSize(520, 680);
     this->setStyleSheet("background:#ffffff;");
 

@@ -26,13 +26,14 @@
 #include <QDate>
 
 #include "chattingitem.h"
+#include "teamWidget/teaminfowidget.h"
 #include "userinfo/userinfowidget.h"
 #include "util/util.h"
 #include "util/clickablelabel.h"
 #include "client.h"
 
 /**
- * 只是点对点的个人用户之间的聊天窗口，不是群聊、聊天室窗口界面。
+ * 聊天窗口。可以是 P2P 双向用户聊天，或者是 team 的多人群聊
  * 设置聊天窗口的标题，对好友的备注或者是好友自己创建账号时的昵称
  * 首先判断是否为好友关系，即获取好友列表里的每一项 FriendProfile，判断是存在该用户，如果有该用户则与其为好友关系；
  * 是好友关系的话则获取 FriendProfile 的 alias_ 字段获取对好友的备注昵称。
@@ -49,7 +50,11 @@ public:
 
     void setSessionData(const nim::SessionData &data) { sessionData = data; }
     void setFriendProfile(const nim::FriendProfile &profile) { friendProfile = profile; }
-    void setUserNameCard(const nim::UserNameCard &nameCard) { userNameCard = nameCard; }
+    void setUserNameCard(const nim::UserNameCard &nameCard) {
+        userNameCard = nameCard;
+        userNameCardMap.insert(userNameCard.GetAccId(), userNameCard);
+    }
+    void setTeamInfo(const nim::TeamInfo &info) { teamInfo = info; }
     // 更新聊天界面的显示信息。主要是聊天界面的头部控件信息。一般是调用好上面的三个set方法之后然后调用该方法，更新头控件数据
     void updateChattingWindow();
 
@@ -70,6 +75,9 @@ private:
     // 添加一条提示消息，比如时间、已显示全部消息等提示信息
     void AddPromptTimeInfo(int64_t msg_time_tag, bool end=true);
 
+    // 展示群聊详细信息界面
+    void ShowTeamInfoWidget();
+
 private:
     /// API 获取用户信息操作
     // 获取本地用户信息
@@ -78,6 +86,9 @@ private:
     void GetUserNameCardOnLine(const std::string & account);
     //  获取用户信息回调
     void OnGetUserCard(const std::list<nim::UserNameCard> &json_result);
+
+    /// API 获取群成员信息操作
+    void GetTeamMembers(const std::string &teamID);
 
 private:
     // 主要是查询历史聊天记录
@@ -99,7 +110,7 @@ private:
                             nim::NIMSessionType to_type, const nim::QueryMsglogResult& result);
 
 private:
-    // 发送消息相关函数
+    // 发送消息函数
     void sendTextMsgToReceiver(const std::string &msg, nim::IMMessage &message);
 
 private:
@@ -112,6 +123,8 @@ private:
     // 中间控件
     QListWidget *chattingListWidget;    // 中间聊天消息列表
     QScrollBar *verticalScrollBar;      // 垂直的滚动条
+    // 键为每一个用户的唯一 accID，值为该用户的所有聊天消息 item
+    QMap<std::string, QList<ChattingItem*>> usersChattingItems;
 
 private:
     // 底部输入消息、发送消息控件
@@ -134,8 +147,12 @@ private:
     // 如果是P2P的好友聊天，还需要获取该好友的信息。userNameCard 的 accID 必须与 sessionData 的 id 是一样的。
     // 默认构造的userNameCard 的accID为空，所以如果使用时为空，则说明创建窗口时没有调用set方法，需要在这聊天窗口中重新获取用户信息
     nim::UserNameCard userNameCard;
+    // 如果是群聊界面，则需要获取该群聊的消息
+    nim::TeamInfo teamInfo;
+    QMap<std::string, nim::UserNameCard> userNameCardMap;   // 该窗口涉及到的用户名片信息
 
-    UserInfoWidget *userInfoWidget = nullptr;       // 查看用户详细信息界面
+    UserInfoWidget *userInfoWidget = nullptr;               // 查看用户详细信息界面
+    TeamInfoWidget *teamInfoWidget = nullptr;               // 查看群详细信息界面
 
 private:
     // 拖动头部可以移动窗口
