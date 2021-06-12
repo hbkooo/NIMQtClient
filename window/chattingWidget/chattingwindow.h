@@ -155,6 +155,9 @@ private:
     nim::TeamInfo teamInfo;
     QMap<std::string, nim::UserNameCard> userNameCardMap;   // 该窗口涉及到的用户名片信息
 
+    // 视频通话界面
+    VideoCommunicateWidget *videoComWidget = nullptr;
+
     UserInfoWidget *userInfoWidget = nullptr;               // 查看用户详细信息界面
     TeamInfoWidget *teamInfoWidget = nullptr;               // 查看群详细信息界面
 

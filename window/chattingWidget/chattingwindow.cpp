@@ -156,9 +156,18 @@ void ChattingWindow::InitBottomEnterMessage() {
                               "QPushButton:focus{outline: none;}" // 获取焦点时不显示虚线框
     );
 
+    // 额外功能栏：语音通话、视频通话等
+    auto hExtLayout = new QHBoxLayout();
+    hExtLayout->setContentsMargins(0, 0, 0, 0);
+    hExtLayout->setSpacing(10);
+    hExtLayout->addWidget(audioComButton, 0, Qt::AlignVCenter);
+    hExtLayout->addWidget(videoComButton, 0, Qt::AlignVCenter);
+    hExtLayout->addStretch();
+
     auto vLayout = new QVBoxLayout();
     vLayout->setContentsMargins(10, 8, 10, 10);
     vLayout->setSpacing(10);
+    vLayout->addLayout(hExtLayout);
     vLayout->addWidget(messageTextEdit);
     vLayout->addWidget(sendButton, 0, Qt::AlignRight);
 
@@ -460,6 +469,34 @@ void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard)
     // 需要设置显示的名片信息
     userInfoWidget->setUserNameCard(nameCard);
     userInfoWidget->ShowNormal();
+}
+
+// 点击语音通话按钮槽函数
+void ChattingWindow::AudioCommunicateLabelSlot() {
+    qDebug() << "[info]: 开始语音通话 ...";
+
+}
+
+// 点击视频通话按钮槽函数
+void ChattingWindow::VideoCommunicateLabelSlot() {
+    qDebug() << "[info]: 开始视频通话 ...";
+    QString chatRoomName;
+    // 房间名取二者唯一标识 accID 中较小的一个
+    // 因为 accID 在系统中是唯一的，所以创建的房间名称也就是唯一的，不可能存在相同的房间名称。
+    if(SELF_USER_NAME_CARD.GetAccId() > userNameCard.GetAccId()) {
+        chatRoomName = QString::fromStdString(userNameCard.GetAccId());
+    } else {
+        chatRoomName = QString::fromStdString(SELF_USER_NAME_CARD.GetAccId());
+    }
+    qDebug() << "[info]: starting create chat room : " << chatRoomName;
+
+    videoComWidget = new VideoCommunicateWidget(chatRoomName);
+    videoComWidget->AddOneVideoCom(2, userNameCard);
+    connect(videoComWidget, &VideoCommunicateWidget::CloseVideoWidgetSignal, this, [this]() {
+        videoComWidget = nullptr;
+    });
+    videoComWidget->showNormal();
+    videoComWidget->raise();
 }
 
 // 展示群聊详细信息界面
