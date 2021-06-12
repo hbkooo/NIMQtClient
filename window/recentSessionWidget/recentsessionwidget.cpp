@@ -152,7 +152,7 @@ void RecentSessionWidget::QueryAllRecentSession() {
 
 void RecentSessionWidget::OnQuerySessionListCallback(int unread_count, const nim::SessionDataList &session_list) {
     qDebug() << "===============================";
-    qDebug() << "[info]: 最近会话一共有 " << unread_count << " 条";
+    qDebug() << "[info]: 最近会话一共有 " << session_list.sessions_.size() << " 条";
     auto sessions = session_list.sessions_;
     // 按时间降序排列
     sessions.sort([](const nim::SessionData &data1, const nim::SessionData &data2) {
@@ -172,7 +172,8 @@ void RecentSessionWidget::OnQuerySessionListCallback(int unread_count, const nim
     qDebug() << "===============================";
 }
 
-void RecentSessionWidget::ListenRecentSessionChange() {
+void RecentSessionWidget::ListenRecentSessionChange()
+{
     nim::Session::RegChangeCb([this](auto &&PH1, auto &&PH2, auto &&PH3) {
         OnRecentSessionChangeCallback(std::forward<decltype(PH1)>(PH1),
                                       std::forward<decltype(PH2)>(PH2), std::forward<decltype(PH3)>(PH3));
@@ -230,11 +231,14 @@ void RecentSessionWidget::InitFriendProfileMapSlot(const QMap<QString, nim::Frie
     friendProfileMap = friendProMap;
 }
 
+// 更新最近会话中的该用户的条目
 void RecentSessionWidget::UpdateUserNameCardSlot(const nim::UserNameCard &userNameCard) {
-    qDebug() << "[info]: receive update user name card in " << __FUNCTION__ ;
     QString accID = QString::fromStdString(userNameCard.GetAccId());
     userNameCardMap.insert(accID, userNameCard);
     if(sessionItemMap.contains(accID)) {
+
+        qDebug() << "[info]: update recent user name card session of "
+                    << accID << ". In " << __FUNCTION__ ;
         // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
         auto *session = sessionItemMap[accID];
         session->setUserNameCard(userNameCard);
@@ -245,12 +249,13 @@ void RecentSessionWidget::UpdateUserNameCardSlot(const nim::UserNameCard &userNa
     }
 }
 
+// 更新最近会话中的该用户的条目
 void RecentSessionWidget::UpdateFriendProfileSlot(const nim::FriendProfile &friendProfile) {
-    qDebug() << "[info]: receive update friend profile in " << __FUNCTION__ ;
-    // TODO
     QString accID = QString::fromStdString(friendProfile.GetAccId());
     friendProfileMap.insert(accID, friendProfile);
     if(sessionItemMap.contains(accID)) {
+        qDebug() << "[info]: update recent friend session of "
+                    << QString::fromStdString(friendProfile.GetAccId()) << ". In " << __FUNCTION__ ;
         // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
         auto *session = sessionItemMap[accID];
         session->setFriendProfile(friendProfile);
@@ -261,12 +266,17 @@ void RecentSessionWidget::UpdateFriendProfileSlot(const nim::FriendProfile &frie
     }
 }
 
+// 更新最近会话中的该群的条目
 void RecentSessionWidget::UpdateTeamInfoSlot(const nim::TeamInfo &teamInfo) {
-    qDebug() << "[info]: receive update team info in " << __FUNCTION__ ;
+    // 在teamList中首先获取群消息也会发送到这里，因为在初始化的时候最近会话列表中并没有最近会话的群聊信息，
+    // 所以这样最近会话列表中显示的群聊信息就只有群号（也是从session.id_中获取的）GetUserNameCardOnline，并没有群的名称等信息。
+    // qDebug() << "[info]: receive update team info in " << __FUNCTION__ ;
     // TODO
     QString teamID = QString::fromStdString(teamInfo.GetTeamID());
     teamInfoMap.insert(teamID, teamInfo);
     if(sessionItemMap.contains(teamID)) {
+        qDebug() << "[info]: update recent team session of "
+                    << QString::fromStdString(teamInfo.GetName()) << ". In " << __FUNCTION__ ;
         // 如果当前的会话列表里有该用户，则更新该会话条目的显示信息
         auto *session = sessionItemMap[teamID];
         session->setTeamInfo(teamInfo);

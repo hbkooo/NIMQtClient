@@ -23,6 +23,7 @@ void CreateTeamWidget::InitControl() {
     int EditHeight = 40;
 
     teamNameLineEdit = new QLineEdit();
+    teamNameLineEdit->installEventFilter(this);
     teamNameLineEdit->setFixedHeight(EditHeight);
     teamNameLineEdit->setTextMargins(EditMargins);
     teamNameLineEdit->setPlaceholderText("请输入群名称");
@@ -42,6 +43,7 @@ void CreateTeamWidget::InitControl() {
     userInfoListWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);   // 让内容连续地滚动，而不是整行整行的滚动
 
     teamDescriptionTextEdit = new QTextEdit();
+    teamDescriptionTextEdit->installEventFilter(this);
     teamDescriptionTextEdit->setPlaceholderText("输入群描述");
     teamDescriptionTextEdit->setContentsMargins(EditMargins);
     teamDescriptionTextEdit->setFixedHeight(88);
@@ -58,6 +60,12 @@ void CreateTeamWidget::InitControl() {
                                            "QTextEdit:focus {"
                                            "border-color:#238efa;}");
 
+    infoLabel = new QLabel("提示消息");
+    infoLabel->setContentsMargins(0, 8, 0, 0);
+    infoLabel->setStyleSheet("color:red;"
+                             "font-size: 20px;");
+    infoLabel->setVisible(false);
+
     createButton = new QPushButton("创建");
     connect(createButton, &QPushButton::clicked, this, &CreateTeamWidget::ClickedCreateTeamButtonSlot);
     createButton->setFixedSize(120, 40);
@@ -73,12 +81,22 @@ void CreateTeamWidget::InitControl() {
                                 "border: 2px solid #80BDFF;}"
                                 "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
 
+    auto *hLayout = new QHBoxLayout();
+    hLayout->addWidget(infoLabel);
+    hLayout->addStretch();
+    hLayout->addWidget(createButton);
+
     auto mainLayout = new QVBoxLayout();
     mainLayout->addWidget(teamNameLineEdit);
     mainLayout->addWidget(userInfoListWidget);
     mainLayout->addWidget(teamDescriptionTextEdit);
-    mainLayout->addWidget(createButton, 0, Qt::AlignRight);
+    // mainLayout->addWidget(createButton, 0, Qt::AlignRight);
+    mainLayout->addLayout(hLayout);
     setLayout(mainLayout);
+
+    // 显示创建群的提示信息结果
+    connect(this, &CreateTeamWidget::ShowResultOfCreateTeamSignal, this, &CreateTeamWidget::ShowResultOfCreateTeamSlot);
+
 }
 
 // 更新显示的好友列表
@@ -98,6 +116,10 @@ void CreateTeamWidget::updateWindow() {
 void CreateTeamWidget::ClickedCreateTeamButtonSlot() {
     qDebug() << "[info]: create ...";
 
+    if (teamNameLineEdit->text() == "") {
+        ShowResultOfCreateTeamSlot("群名称不能为空！");
+        return;
+    }
     nim::TeamInfo teamInfo;
     teamInfo.SetName(teamNameLineEdit->text().toStdString());
     teamInfo.SetType(nim::kNIMTeamTypeNormal);
@@ -131,12 +153,38 @@ void CreateTeamWidget::CreateTeam(const nim::TeamInfo &teamInfo,
     Team::CreateTeamAsync(teamInfo, id_list, description.toStdString(),
                           [this](const nim::TeamEvent &team_event) {
                               if (team_event.res_code_ == nim::kNIMResSuccess) {
-                                  qDebug() << "[info]: create team success ..";
+                                  emit ShowResultOfCreateTeamSignal("创建群成功！");
                               } else {
-                                  qDebug() << "[error]: Create team error, code is " << team_event.res_code_;
+                                  emit ShowResultOfCreateTeamSignal("创建群失败！" + QString::number(team_event.res_code_));
                               }
                           });
 
+}
+
+// 显示添加好友的提示信息结果
+void CreateTeamWidget::ShowResultOfCreateTeamSlot(const QString &resultInfo) {
+    infoLabel->setVisible(true);
+    infoLabel->setText(resultInfo);
+}
+
+bool CreateTeamWidget::eventFilter(QObject *obj, QEvent *ev) {
+    if(obj == teamNameLineEdit) {
+        if(ev->type() == QEvent::FocusIn) {
+            infoLabel->setVisible(false);
+        }
+    }
+    if(obj == teamDescriptionTextEdit) {
+        if(ev->type() == QEvent::FocusIn) {
+            infoLabel->setVisible(false);
+        }  else if(ev->type() == QEvent::KeyPress) {
+            // 在验证消息框内回车按键则直接搜索添加好友
+            auto *key = dynamic_cast<QKeyEvent *>(ev);
+            if (key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return) {
+                ClickedCreateTeamButtonSlot();
+            }
+        }
+    }
+    return QWidget::eventFilter(obj,ev);
 }
 
 

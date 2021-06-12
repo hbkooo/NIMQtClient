@@ -102,7 +102,7 @@ void TeamListWidget::GetTeamInfoOnline(const QString& teamID) {
         if(team_event.res_code_ == nim::kNIMResSuccess) {
             const nim::TeamInfo &info = team_event.team_info_;
             qDebug() << "[info]: In " << __FUNCTION__ << ", query team online: "
-                     << QString::fromStdString(info.ToJsonString());
+                     << QString::fromStdString(info.GetName());
             teamIDs.insert(QString::fromStdString(info.GetTeamID()));
 
             // TeamListWidget::AddOneTeam
@@ -120,21 +120,11 @@ void TeamListWidget::GetTeamInfoOnline(const QString& teamID) {
 
 }
 
-// 获取群组成员
-void TeamListWidget::GetTeamMembers(const QString &teamID) {
-    nim::Team::QueryTeamMembersAsync(teamID.toStdString(),
-                                    [this](const std::string& tid,
-                                            int member_count,
-                                            const std::list<nim::TeamMemberProperty>& props) {
-        qDebug() << "[info]: get " << member_count << " members in " << QString::fromStdString(tid);
-    });
-}
-
 // 注册群变化通知
 void TeamListWidget::ListenTeamChangeEvent() {
     nim::Team::RegTeamEventCb([this](const nim::TeamEvent& team_event) {
         if(team_event.res_code_ == nim::kNIMResSuccess) {
-            qDebug() << "[info]: 监听到群有发生变化，变化 code: " << team_event.res_code_;
+            qDebug() << "[info]: 监听到群有发生变化，变化 code: " << team_event.notification_id_;
 
             if (team_event.notification_id_ == nim::kNIMNotificationIdLocalCreateTeam) {
 

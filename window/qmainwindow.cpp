@@ -488,8 +488,10 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
     if (teamInfos.contains(accId)) {
         chattingWindow->setTeamInfo(teamInfos[accId]);
     }
+    qDebug() << "[info]: start update chatting window head info ...";
     // 调用好set方法后，需要重新更新界面数据
     chattingWindow->updateChattingWindow();
+    qDebug() << "[info]: update chatting window head info over ...";
 
     // 将最近发送的消息成功与否信号传递到聊天窗口中
     connect(this, &MainWindow::sendMsgCallbackSignal, chattingWindow, &ChattingWindow::sendMsgCallbackSlot);
