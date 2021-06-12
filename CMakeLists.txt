@@ -78,6 +78,10 @@ add_executable(${PROJECT_NAME} main.cpp
         Qrc.qrc
         logo.rc)
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set_property(TARGET ${PROJECT_NAME} PROPERTY WIN32_EXECUTABLE true)
+endif()
+
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 
 set(NIM_LIBRARY nim_wrapper_util nim_cpp_wrapper nim_tools_cpp_wrapper nim_chatroom_cpp_wrapper)
