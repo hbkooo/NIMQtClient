@@ -27,19 +27,19 @@ Debug\\NIMQtClient.exe
 ## 界面
 
 ### 登录
-[!login](image/login.png)
+![login](image/login.png)
 
 ### 主界面
-[!main](image/main.png)
+![main](image/main.png)
 
 ### 用户信息
-[!userinfo](image/userinfo.png)
+![userinfo](image/userinfo.png)
 
 ### 添加好友
-[!addfriend](image/addfriend.png)
+![addfriend](image/addfriend.png)
 
 ### 创建群聊
-[!createTeam](image/createteam.png)
+![createTeam](image/createteam.png)
 
 ### 聊天界面
 ![chatting_user](image/chat1.png)
