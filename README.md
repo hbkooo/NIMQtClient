@@ -42,6 +42,6 @@ Debug\\NIMQtClient.exe
 [!createTeam](image/createteam.png)
 
 ### 聊天界面
-[!chatting_user](image/chat1.png)
+![chatting_user](image/chat1.png)
 
-[!chatting_team](image/chat2.png)
+![chatting_team](image/chat2.png)
