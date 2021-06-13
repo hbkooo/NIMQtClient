@@ -23,3 +23,25 @@ Debug\\NIMQtClient.exe
 |username|hbk |hbk1|hbk2|hbk3|hbk4|hbk5|
 |-------:|:--:|:--:| --:| --:| --:|---:|
 |password|123456 |123456| 123456|123456 | 123456|123456|
+
+## 界面
+
+### 登录
+[!login](image/login.png)
+
+### 主界面
+[!main](image/main.png)
+
+### 用户信息
+[!userinfo](image/userinfo.png)
+
+### 添加好友
+[!addfriend](image/addfriend.png)
+
+### 创建群聊
+[!createTeam](image/createteam.png)
+
+### 聊天界面
+[!chatting_user](image/chat1.png)
+
+[!chatting_team](image/chat2.png)
