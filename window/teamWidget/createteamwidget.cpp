@@ -80,6 +80,7 @@ void CreateTeamWidget::InitControl() {
                                 "background-color:#1f7ddb;"
                                 "border: 2px solid #80BDFF;}"
                                 "QPushButton:focus{outline: none;}"); // 获取焦点时不显示虚线框
+
     auto *hLayout = new QHBoxLayout();
     hLayout->addWidget(infoLabel);
     hLayout->addStretch();

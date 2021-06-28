@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPixmap>
+#include <QIcon>
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QTextEdit>
@@ -28,6 +29,7 @@
 #include "chattingitem.h"
 #include "teamWidget/teaminfowidget.h"
 #include "userinfo/userinfowidget.h"
+#include "videocommunicatewidget.h"
 #include "util/util.h"
 #include "util/clickablelabel.h"
 #include "client.h"
@@ -128,6 +130,8 @@ private:
 
 private:
     // 底部输入消息、发送消息控件
+    QPushButton *audioComButton;        // 语音通话按钮
+    QPushButton *videoComButton;         // 视频通话按钮
     QTextEdit *messageTextEdit;         // 输入文本消息编辑框
     QPushButton *sendButton;            // 发送消息按钮
 
@@ -150,6 +154,9 @@ private:
     // 如果是群聊界面，则需要获取该群聊的消息
     nim::TeamInfo teamInfo;
     QMap<std::string, nim::UserNameCard> userNameCardMap;   // 该窗口涉及到的用户名片信息
+
+    // 视频通话界面
+    VideoCommunicateWidget *videoComWidget = nullptr;
 
     UserInfoWidget *userInfoWidget = nullptr;               // 查看用户详细信息界面
     TeamInfoWidget *teamInfoWidget = nullptr;               // 查看群详细信息界面
@@ -180,6 +187,10 @@ public slots:
     void ClickedHeaderPhotoLabelSlot();
     // 传递过来一个用户名片，显示用户名片。主要用在当点击聊天消息中的一条消息中的用户头像时，显示该用户的详细信息
     void ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard);
+    // 点击语音通话按钮槽函数
+    void AudioCommunicateLabelSlot();
+    // 点击视频通话按钮槽函数
+    void VideoCommunicateLabelSlot();
     // 点击发送按钮后发送消息槽函数
     void sendMessageSlot();
     // 刚进入聊天界面后，当从服务端获取消息记录后更新聊天界面

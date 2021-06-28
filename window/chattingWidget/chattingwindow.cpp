@@ -103,6 +103,31 @@ void ChattingWindow::InitCenterMessage() {
 
 void ChattingWindow::InitBottomEnterMessage() {
 
+    QSize iconSize(26, 26);
+    audioComButton = new QPushButton("");
+    audioComButton->setFlat(true);
+    audioComButton->setToolTip("语音通话");
+    audioComButton->setIcon(QIcon(":/res/audio_com"));
+    audioComButton->setIconSize(iconSize);
+    audioComButton->setStyleSheet("QPushButton:hover {"
+                                  "border: 1px solid #e5e5e5;"
+                                  "border-radius: 3px;}"
+                                  "QPushButton:pressed {"
+                                  "background:#ebedf0;}"
+                                  "QPushButton:focus{outline: none;}");
+
+    videoComButton = new QPushButton("");
+    videoComButton->setFlat(true);
+    videoComButton->setToolTip("视频通话");
+    videoComButton->setIcon(QIcon(":/res/video_com"));
+    videoComButton->setIconSize(iconSize);
+    videoComButton->setStyleSheet("QPushButton:hover {"
+                                  "border: 1px solid #e5e5e5;"
+                                  "border-radius: 3px;}"
+                                  "QPushButton:pressed {"
+                                  "background:#ebedf0;}"
+                                  "QPushButton:focus{outline: none;}");
+
     messageTextEdit = new QTextEdit();
     messageTextEdit->setContentsMargins(20, 20, 40, 20);
     messageTextEdit->setStyleSheet("border: none;"
@@ -118,7 +143,6 @@ void ChattingWindow::InitBottomEnterMessage() {
     textCursor.setBlockFormat(blockFormat);
     messageTextEdit->setTextCursor(textCursor);
 
-
     sendButton = new QPushButton("发送");
     sendButton->setFixedSize(120, 40);
     sendButton->setStyleSheet("QPushButton { font-size:20px;"
@@ -132,9 +156,18 @@ void ChattingWindow::InitBottomEnterMessage() {
                               "QPushButton:focus{outline: none;}" // 获取焦点时不显示虚线框
     );
 
+    // 额外功能栏：语音通话、视频通话等
+    auto hExtLayout = new QHBoxLayout();
+    hExtLayout->setContentsMargins(0, 0, 0, 0);
+    hExtLayout->setSpacing(10);
+    hExtLayout->addWidget(audioComButton, 0, Qt::AlignVCenter);
+    hExtLayout->addWidget(videoComButton, 0, Qt::AlignVCenter);
+    hExtLayout->addStretch();
+
     auto vLayout = new QVBoxLayout();
-    vLayout->setContentsMargins(10, 10, 10, 10);
+    vLayout->setContentsMargins(10, 8, 10, 10);
     vLayout->setSpacing(10);
+    vLayout->addLayout(hExtLayout);
     vLayout->addWidget(messageTextEdit);
     vLayout->addWidget(sendButton, 0, Qt::AlignRight);
 
@@ -151,6 +184,7 @@ void ChattingWindow::SetLayout() {
 
     mainLayout = new QVBoxLayout();
     mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
     mainLayout->addWidget(headerWidget);
     mainLayout->addLayout(messageLayout);
     mainLayout->addWidget(splitWidget);
@@ -161,6 +195,10 @@ void ChattingWindow::SetLayout() {
 void ChattingWindow::SetConnect() {
     // 点击聊天窗口的头像
     connect(headerPhotoLabel, &ClickableLabel::clicked, this, &ChattingWindow::ClickedHeaderPhotoLabelSlot);
+    // 点击语音通话按钮
+    connect(audioComButton, &QPushButton::clicked, this, &ChattingWindow::AudioCommunicateLabelSlot);
+    // 点击视频通话按钮
+    connect(videoComButton, &QPushButton::clicked, this, &ChattingWindow::VideoCommunicateLabelSlot);
     // 点击发送信息按钮
     connect(sendButton, &QPushButton::clicked, this, &ChattingWindow::sendMessageSlot);
     // 每次从云端获取完新的聊天消息时都更新聊天界面，将聊天消息插入到聊天界面中显示
@@ -431,6 +469,34 @@ void ChattingWindow::ShowHeaderPhotoLabelSlot(const nim::UserNameCard &nameCard)
     // 需要设置显示的名片信息
     userInfoWidget->setUserNameCard(nameCard);
     userInfoWidget->ShowNormal();
+}
+
+// 点击语音通话按钮槽函数
+void ChattingWindow::AudioCommunicateLabelSlot() {
+    qDebug() << "[info]: 开始语音通话 ...";
+
+}
+
+// 点击视频通话按钮槽函数
+void ChattingWindow::VideoCommunicateLabelSlot() {
+    qDebug() << "[info]: 开始视频通话 ...";
+    QString chatRoomName;
+    // 房间名取二者唯一标识 accID 中较小的一个
+    // 因为 accID 在系统中是唯一的，所以创建的房间名称也就是唯一的，不可能存在相同的房间名称。
+    if(SELF_USER_NAME_CARD.GetAccId() > userNameCard.GetAccId()) {
+        chatRoomName = QString::fromStdString(userNameCard.GetAccId());
+    } else {
+        chatRoomName = QString::fromStdString(SELF_USER_NAME_CARD.GetAccId());
+    }
+    qDebug() << "[info]: starting create chat room : " << chatRoomName;
+
+    videoComWidget = new VideoCommunicateWidget(chatRoomName);
+    videoComWidget->AddOneVideoCom(2, userNameCard);
+    connect(videoComWidget, &VideoCommunicateWidget::CloseVideoWidgetSignal, this, [this]() {
+        videoComWidget = nullptr;
+    });
+    videoComWidget->showNormal();
+    videoComWidget->raise();
 }
 
 // 展示群聊详细信息界面

@@ -477,6 +477,7 @@ void MainWindow::OpenChattingWindowFromRecentSessionSlot(const nim::SessionData 
 
     // 获取所有的用户信息
     auto &userCards = friendListWidget->getUserNameCardMap();
+
     if (userCards.contains(accId)) {
         // 已经存在该用户信息
         chattingWindow->setUserNameCard(userCards[accId]);

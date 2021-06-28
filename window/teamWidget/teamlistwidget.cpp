@@ -125,6 +125,7 @@ void TeamListWidget::ListenTeamChangeEvent() {
     nim::Team::RegTeamEventCb([this](const nim::TeamEvent& team_event) {
         if(team_event.res_code_ == nim::kNIMResSuccess) {
             qDebug() << "[info]: 监听到群有发生变化，变化 code: " << team_event.notification_id_;
+
             if (team_event.notification_id_ == nim::kNIMNotificationIdLocalCreateTeam) {
 
             }
@@ -173,6 +174,7 @@ void TeamListWidget::AddOneTeam(const TeamInfo &teamInfo) {
 
 // 更新群信息
 void TeamListWidget::UpdateTeamInfo(const TeamInfo &teamInfo) {
+
     // TODO 群信息变更
     // 群信息更新变化通知处理
     auto teamID = QString::fromStdString(teamInfo.GetTeamID());

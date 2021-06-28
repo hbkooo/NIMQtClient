@@ -396,7 +396,3 @@ void TeamInfoWidget::updateOneMemberByUserNameCardSlot(const nim::UserNameCard &
     }
 
 }
-
-
-
-

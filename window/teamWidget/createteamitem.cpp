@@ -11,6 +11,7 @@
 CreateTeamItem::CreateTeamItem(UserNameCard nameCard, FriendProfile profile, QWidget *parent) :
         userNameCard(std::move(nameCard)), friendProfile(std::move(profile)), QWidget(parent) {
     qDebug() << QString::fromStdString(friendProfile.ToJsonString());
+
     this->setFixedHeight(58);
     InitControl();
 
@@ -39,6 +40,7 @@ void CreateTeamItem::InitControl() {
 
     nameLabel = new QLabel("用户名");
     nameLabel->setStyleSheet("font-size:18px;");
+
     QString name;
     if (!friendProfile.GetAlias().empty()) {
         // 用户的备注不为空
